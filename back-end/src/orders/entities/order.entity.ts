@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductEntity } from 'src/products/entities/product.entity';
+import { UserEntity } from 'src/users/auth/entities/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class OrderEntity {
@@ -25,4 +27,10 @@ export class OrderEntity {
 
   @Column({ default: false })
   buyCanceledByAdmin: boolean;
+
+  @ManyToOne(() => UserEntity, (user) => user.orders)
+  user: UserEntity;
+
+  @ManyToOne(() => ProductEntity, (product) => product.orders)
+  product: ProductEntity;
 }
