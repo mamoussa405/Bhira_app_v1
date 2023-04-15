@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from 'src/users/auth/entities/user.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class StoryEntity {
@@ -10,4 +11,7 @@ export class StoryEntity {
 
   @Column({ default: '' })
   description: string;
+
+  @ManyToMany(() => UserEntity, (user) => user.stories)
+  users: UserEntity[];
 }
