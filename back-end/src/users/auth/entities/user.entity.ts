@@ -4,7 +4,6 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn()
-  @Exclude()
   id: number;
 
   @Column()
@@ -23,6 +22,7 @@ export class UserEntity {
   @Column({ default: false })
   isAdmin: boolean;
 
+  // !change this to false before production
   @Column({ default: true })
   confirmedByAdmin: boolean;
 }
