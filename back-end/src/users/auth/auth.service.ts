@@ -59,10 +59,10 @@ export class AuthService {
     if (!userEntity) {
       throw new NotFoundException('User not found');
     }
-    // IMPORTANT: Uncomment this line to enable admin confirmation
-    // if (!userEntity.confirmedByAdmin) {
-    //   throw new UnauthorizedException('User not confirmed');
-    // }
+    // Check if the user is not confirmed by the admin
+    if (!userEntity.confirmedByAdmin) {
+      throw new UnauthorizedException('User not confirmed');
+    }
     // Compare password with hashed password
     const isMatch = await bcrypt.compare(password, userEntity.password);
     // If password does not match throw UnauthorizedException
