@@ -20,18 +20,17 @@ export class UserEntity {
   @Column()
   phoneNumber: string;
 
-  @Column({ default: '' })
+  @Column()
   address: string;
 
   @Column()
   @Exclude()
   password: string;
 
-  @Column({ default: false })
+  @Column()
   isAdmin: boolean;
 
-  // !change this to false before production
-  @Column({ default: true })
+  @Column()
   confirmedByAdmin: boolean;
 
   @OneToMany(() => OrderEntity, (order) => order.user)
