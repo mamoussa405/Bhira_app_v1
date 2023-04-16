@@ -1,18 +1,43 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class StoryEntity1681481655041 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    // !important add: "videoURL" VARCHAR(255) NOT NULL
-    await queryRunner.query(`
-            CREATE TABLE story_entity (
-                id SERIAL PRIMARY KEY,
-                title VARCHAR(255) NOT NULL,
-                description VARCHAR(255) NOT NULL
-                )
-          `);
+    await queryRunner.createTable(
+      new Table({
+        name: 'story_entity',
+        columns: [
+          {
+            name: 'id',
+            type: 'int',
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
+          },
+          {
+            name: 'title',
+            type: 'varchar',
+            length: '255',
+          },
+          {
+            name: 'description',
+            type: 'text',
+          },
+          {
+            name: 'videoURL',
+            type: 'varchar',
+            length: '500',
+          },
+          {
+            name: 'imageURL',
+            type: 'varchar',
+            length: '500',
+          },
+        ],
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DROP TABLE story_entity`);
+    await queryRunner.dropTable('story_entity');
   }
 }
