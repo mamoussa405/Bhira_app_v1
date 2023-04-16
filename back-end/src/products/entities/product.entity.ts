@@ -12,17 +12,20 @@ export class ProductEntity {
   @Column()
   category: string;
 
-  @Column({ type: 'decimal', precision: 5, default: 0.0 })
+  @Column()
   price: number;
 
-  @Column({ default: '' })
+  @Column()
   description: string;
 
-  @Column({ type: 'decimal', precision: 5, default: 0.0 })
+  @Column()
   stock: number;
 
-  @Column({ default: true })
+  @Column()
   isNormalProduct: boolean;
+
+  @Column({ type: 'varchar', array: true, default: [] })
+  imagesURL: string[];
 
   @OneToMany(() => OrderEntity, (order) => order.product)
   orders: OrderEntity[];
