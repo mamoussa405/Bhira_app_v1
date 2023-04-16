@@ -10,22 +10,22 @@ export class OrderEntity {
   @Column()
   orderTime: Date;
 
-  @Column({ type: 'decimal', precision: 5, default: 0.0 })
+  @Column()
   quantity: number;
 
-  @Column({ type: 'decimal', precision: 5, default: 0.0 })
+  @Column()
   totalPrice: number;
 
-  @Column({ default: false })
+  @Column()
   isAddedToCart: boolean;
 
-  @Column({ default: false })
+  @Column()
   buyConfirmedByUser: boolean;
 
-  @Column({ default: false })
-  byConfirmedByAdmin: boolean;
+  @Column()
+  buyConfirmedByAdmin: boolean;
 
-  @Column({ default: false })
+  @Column()
   buyCanceledByAdmin: boolean;
 
   @ManyToOne(() => UserEntity, (user) => user.orders)
