@@ -6,11 +6,17 @@ export class StoryEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: '' })
+  @Column()
   title: string;
 
-  @Column({ default: '' })
+  @Column()
   description: string;
+
+  @Column()
+  videoURL: string;
+
+  @Column()
+  imageURL: string;
 
   @ManyToMany(() => UserEntity, (user) => user.stories)
   users: UserEntity[];
