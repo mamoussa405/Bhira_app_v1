@@ -26,6 +26,7 @@ import { JwtModule } from '@nestjs/jwt';
         database: configService.get<string>('POSTGRES_DB'),
         autoLoadEntities: true,
         migrations: ['dist/migrations/*.js'],
+        migrationsRun: true,
       }),
       inject: [ConfigService],
     }),
