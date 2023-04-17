@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuard } from './users/auth/guards/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
+import { CloudinaryModule } from 'nestjs-cloudinary';
 
 @Module({
   imports: [
@@ -40,6 +41,15 @@ import { JwtModule } from '@nestjs/jwt';
         global: true,
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: { expiresIn: '40m' },
+      }),
+      inject: [ConfigService],
+    }),
+    CloudinaryModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        cloud_name: configService.get<string>('CLOUDINARY_CLOUD_NAME'),
+        api_key: configService.get<string>('CLOUDINARY_API_KEY'),
+        api_secret: configService.get<string>('CLOUDINARY_API_SECRET'),
       }),
       inject: [ConfigService],
     }),
