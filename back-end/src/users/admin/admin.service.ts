@@ -5,6 +5,7 @@ import { ProductEntity } from 'src/products/entities/product.entity';
 import { CreateStoryDto } from './dto/create-story.dto';
 import { StoryEntity } from 'src/stories/entities/story.entity';
 import { StoryService } from 'src/stories/story.service';
+import { IFiles } from 'src/types/files.type';
 
 /**
  * Service for admin related operations.
@@ -24,8 +25,11 @@ export class AdminService {
    * @param {CreateProductDto} product - The product to create.
    * @returns {Promise<ProductEntity>} The created product.
    */
-  async createProduct(product: CreateProductDto): Promise<ProductEntity> {
-    return await this.productService.createProduct(product);
+  async createProduct(
+    product: CreateProductDto,
+    images: Express.Multer.File[],
+  ): Promise<ProductEntity> {
+    return await this.productService.createProduct(product, images);
   }
 
   /**
@@ -34,7 +38,10 @@ export class AdminService {
    * @param {CreateStoryDto} story - The story to create.
    * @returns {Promise<StoryEntity>} The created story.
    */
-  async createStory(story: CreateStoryDto): Promise<StoryEntity> {
-    return await this.storyService.createStory(story);
+  async createStory(
+    story: CreateStoryDto,
+    files: IFiles,
+  ): Promise<StoryEntity> {
+    return await this.storyService.createStory(story, files);
   }
 }
