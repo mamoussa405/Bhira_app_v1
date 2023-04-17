@@ -10,7 +10,7 @@ export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   // This regular expression matches only Arabic letters
-  @Matches(/^ال[\u0600-\u06FF]+$/)
+  @Matches(/^[\u0600-\u06FF]+$/)
   name: string;
 
   @IsString()
