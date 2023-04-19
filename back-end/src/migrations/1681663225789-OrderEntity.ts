@@ -14,6 +14,21 @@ export class OrderEntity1681663225789 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
+            name: 'buyerName',
+            type: 'varchar',
+            length: '255',
+          },
+          {
+            name: 'buyerPhoneNumber',
+            type: 'varchar',
+            length: '255',
+          },
+          {
+            name: 'shipmentAddress',
+            type: 'varchar',
+            length: '255',
+          },
+          {
             name: 'orderTime',
             type: 'timestamp',
           },
@@ -30,11 +45,6 @@ export class OrderEntity1681663225789 implements MigrationInterface {
             precision: 10,
             scale: 2,
             default: 0.0,
-          },
-          {
-            name: 'isAddedToCart',
-            type: 'boolean',
-            default: false,
           },
           {
             name: 'buyConfirmedByUser',
