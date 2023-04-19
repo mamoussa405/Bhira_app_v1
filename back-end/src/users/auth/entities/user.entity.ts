@@ -33,6 +33,9 @@ export class UserEntity {
   @Column()
   confirmedByAdmin: boolean;
 
+  @Column()
+  avatarURL: string;
+
   @OneToMany(() => OrderEntity, (order) => order.user)
   orders: OrderEntity[];
 
