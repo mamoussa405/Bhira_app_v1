@@ -6,6 +6,9 @@ import { CreateStoryDto } from './dto/create-story.dto';
 import { StoryEntity } from 'src/stories/entities/story.entity';
 import { StoryService } from 'src/stories/story.service';
 import { IFiles } from 'src/types/files.type';
+import { ProfileService } from '../profile/profile.service';
+import { IConfirmationMessage } from 'src/types/response.type';
+import { IProfile } from '../types/profile.type';
 
 /**
  * Service for admin related operations.
@@ -17,7 +20,17 @@ export class AdminService {
   constructor(
     private readonly productService: ProductService,
     private readonly storyService: StoryService,
+    private readonly profileService: ProfileService,
   ) {}
+
+  /**
+   * Get the profile of the admin with the given id.
+   * @param {number} id - The id of the admin.
+   * @returns {Promise<IProfile>} The profile of the admin.
+   */
+  async getProfile(id: number): Promise<IProfile> {
+    return await this.profileService.getAdminProfile(id);
+  }
 
   /**
    * Create a new product, and return the created product,
@@ -30,6 +43,15 @@ export class AdminService {
     images: Express.Multer.File[],
   ): Promise<ProductEntity> {
     return await this.productService.createProduct(product, images);
+  }
+
+  /**
+   * Delete a product by id.
+   * @param {number} id - The id of the product to delete.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   */
+  async deleteProduct(id: number): Promise<IConfirmationMessage> {
+    return await this.productService.deleteProduct(id);
   }
 
   /**
