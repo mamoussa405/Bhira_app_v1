@@ -8,25 +8,28 @@ export class OrderEntity {
   id: number;
 
   @Column()
+  buyerName: string;
+
+  @Column()
+  buyerPhoneNumber: string;
+
+  @Column()
+  shipmentAddress: string;
+
+  @Column()
   orderTime: Date;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   quantity: number;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   totalPrice: number;
-
-  @Column()
-  isAddedToCart: boolean;
 
   @Column()
   buyConfirmedByUser: boolean;
 
   @Column()
   buyConfirmedByAdmin: boolean;
-
-  @Column()
-  buyCanceledByAdmin: boolean;
 
   @ManyToOne(() => UserEntity, (user) => user.orders)
   user: UserEntity;
