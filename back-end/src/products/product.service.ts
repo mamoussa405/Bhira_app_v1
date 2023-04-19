@@ -1,19 +1,30 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ProductEntity } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/users/admin/dto/create-product.dto';
 import { CloudinaryService } from 'nestjs-cloudinary';
+import { INormalProduct } from './types/product.type';
+import { IConfirmationMessage } from 'src/types/response.type';
 
 /**
  * Service for product related operations.
  * @function createProduct - Create a new product.
+ * @function getProducts - Get all products.
+ * @function getProduct - Get a product by id.
+ * @function deleteProduct - Delete a product by id.
+ * @function uploadImages - Upload images to cloudinary.
  */
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(ProductEntity)
-    private readonly typeormRepository: Repository<ProductEntity>,
+    private readonly productRepository: Repository<ProductEntity>,
     private readonly cloudinaryService: CloudinaryService,
   ) {}
 
@@ -27,11 +38,83 @@ export class ProductService {
     images: Express.Multer.File[],
   ): Promise<ProductEntity> {
     try {
-      const productEntity = this.typeormRepository.create(product);
+      const productEntity = this.productRepository.create(product);
       productEntity.imagesURL = await this.uploadImages(images);
-      return await this.typeormRepository.save(productEntity);
+      return await this.productRepository.save(productEntity);
     } catch (error) {
       throw new InternalServerErrorException('Error creating product');
+    }
+  }
+
+  /**
+   * Get all products.
+   * @param {string} category - The category of the products to get.
+   * @returns {Promise<INormalProduct[]>} The products.
+   */
+  async getProducts(category: string): Promise<INormalProduct[]> {
+    try {
+      const products = await this.productRepository.find({
+        where: { category, isNormalProduct: true },
+      });
+      if (!products || !products.length)
+        throw new NotFoundException('No Products found');
+
+      return products.map((product) => ({
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        imagesURL: product.imagesURL[0],
+      }));
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error getting products');
+    }
+  }
+
+  /**
+   * Get a product by id.
+   * @param {number} id - The id of the product to get.
+   * @returns {Promise<ProductEntity>} The product.
+   */
+  async getProduct(id: number): Promise<ProductEntity> {
+    try {
+      const product = await this.productRepository.findOne({
+        where: { id },
+      });
+      if (!product) {
+        throw new NotFoundException('Product not found');
+      }
+
+      return product;
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error finding product');
+    }
+  }
+
+  /**
+   * Delete a product by id.
+   * @param {number} id - The id of the product to delete.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   */
+  async deleteProduct(id: number): Promise<IConfirmationMessage> {
+    try {
+      const product = await this.productRepository.findOne({
+        where: { id },
+      });
+      if (!product) {
+        throw new NotFoundException('Product not found');
+      }
+      await this.productRepository.delete({ id });
+
+      return { message: 'Product deleted successfully' };
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error deleting product');
     }
   }
 
