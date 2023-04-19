@@ -11,6 +11,7 @@ import { SignInDto, SignUpDto } from './dto/auth.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 /**
  * Service to handle user authentication, sign up and sign in.
@@ -21,6 +22,7 @@ export class AuthService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
     private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
   ) {}
 
   /**
@@ -32,6 +34,9 @@ export class AuthService {
     user.password = await this.hashPassword(user.password);
     try {
       const userEntity = this.userRepository.create(user);
+      userEntity.avatarURL = this.configService.get<string>(
+        'USER_DEFAULT_AVATAR',
+      );
       return await this.userRepository.save(userEntity);
     } catch (error) {
       if (error.constraint === 'user_entity_phoneNumber_key')
