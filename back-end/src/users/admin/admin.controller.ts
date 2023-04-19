@@ -1,7 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
+  Get,
+  Param,
   Post,
+  Req,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -13,15 +17,21 @@ import {
   FilesInterceptor,
 } from '@nestjs/platform-express';
 import { JsonParseInterceptor } from 'src/interceptors/json-parse.interceptor';
-import { ValidateFilesPipe } from './pipes/validate-files.pipe';
-import { FilesValidation } from './enums/files-validation.enum';
+import { ValidateFilesPipe } from '../pipes/validate-files.pipe';
+import { FilesValidation } from '../enums/files-validation.enum';
 import { IFiles } from 'src/types/files.type';
+import { ProductParamDto } from 'src/products/dto/product.dto';
 
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  @Post('create/product')
+  @Get('profile')
+  async getProfile(@Req() req: Request) {
+    return await this.adminService.getProfile(req['user'].sub);
+  }
+
+  @Post('product/create')
   @UseInterceptors(FilesInterceptor('images'), JsonParseInterceptor)
   async createProduct(
     @UploadedFiles(new ValidateFilesPipe(FilesValidation.PRODUCT))
@@ -31,7 +41,12 @@ export class AdminController {
     return await this.adminService.createProduct(product, images);
   }
 
-  @Post('create/story')
+  @Delete('product/delete/:id')
+  async deleteProduct(@Param() params: ProductParamDto) {
+    return await this.adminService.deleteProduct(params.id);
+  }
+
+  @Post('story/create')
   @UseInterceptors(
     FileFieldsInterceptor([{ name: 'image' }, { name: 'video' }]),
     JsonParseInterceptor,
