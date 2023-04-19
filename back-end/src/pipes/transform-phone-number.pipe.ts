@@ -13,7 +13,7 @@ export class TransformPhoneNumberPipe implements PipeTransform {
        * First regex matches +212 and spaces, second regex matches 0
        * at the beginning of the string.
        */
-      const REGEX1 = /\+212\s*/g;
+      const REGEX1 = /^\s*\+212\s*/g;
       const REGEX2 = /^0/;
 
       /**
