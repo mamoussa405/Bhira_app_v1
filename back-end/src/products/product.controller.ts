@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductParamDto, ProductQueryDto } from './dto/product.dto';
 import { INormalProduct } from './types/product.type';
@@ -25,10 +25,5 @@ export class ProductController {
       price: product.price,
       imagesURL: product.imagesURL,
     };
-  }
-
-  @Delete('delete/:id')
-  async deleteProduct(@Param() params: ProductParamDto) {
-    return await this.productService.deleteProduct(params.id);
   }
 }
