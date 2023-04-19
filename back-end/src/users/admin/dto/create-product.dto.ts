@@ -15,7 +15,7 @@ export class CreateProductDto {
 
   @IsString()
   @IsNotEmpty()
-  @Matches(/^Fruits|Vegetables|Herbs$/)
+  @Matches(/^(Fruits|Vegetables|Herbes)$/)
   category: string;
 
   @IsNumber()
