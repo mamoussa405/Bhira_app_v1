@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateStoryDto } from 'src/users/admin/dto/create-story.dto';
 import { IFiles } from 'src/types/files.type';
 import { CloudinaryService } from 'nestjs-cloudinary';
+import { IConfirmationMessage } from 'src/types/response.type';
 
 /**
  * Service for story related operations.
@@ -21,17 +22,19 @@ export class StoryService {
   /**
    * Create a new story, and return the created story.
    * @param {CreateStoryDto} story - The story to create.
-   * @returns {Promise<StoryEntity>} The created story.
+   * @returns {Promise<IConfirmationMessage>} The created story.
    */
   async createStory(
     story: CreateStoryDto,
     files: IFiles,
-  ): Promise<StoryEntity> {
+  ): Promise<IConfirmationMessage> {
     try {
       const storyEntity = this.storyRepository.create(story);
       storyEntity.imageURL = await this.uploadImage(files.image[0]);
       storyEntity.videoURL = await this.uploadVideo(files.video[0]);
-      return await this.storyRepository.save(storyEntity);
+      await this.storyRepository.save(storyEntity);
+
+      return { message: 'Story created successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error creating story');
     }
