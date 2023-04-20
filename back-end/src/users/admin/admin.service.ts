@@ -1,15 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import {
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { ProductService } from 'src/products/product.service';
 import { CreateProductDto } from './dto/create-product.dto';
-import { ProductEntity } from 'src/products/entities/product.entity';
 import { CreateStoryDto } from './dto/create-story.dto';
-import { StoryEntity } from 'src/stories/entities/story.entity';
 import { StoryService } from 'src/stories/story.service';
 import { IFiles } from 'src/types/files.type';
 import { ProfileService } from '../profile/profile.service';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { IProfile } from '../types/profile.type';
 import { OrderService } from 'src/orders/order.service';
+import { IClient } from '../types/client.type';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { UserEntity } from '../auth/entities/user.entity';
 
 /**
  * Service for admin related operations.
@@ -23,6 +30,8 @@ export class AdminService {
     private readonly storyService: StoryService,
     private readonly profileService: ProfileService,
     private readonly orderService: OrderService,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
   /**
@@ -35,15 +44,45 @@ export class AdminService {
   }
 
   /**
+   * Get all the clients that are not confirmed by the admin.
+   * @returns {Promise<IClient[]>} The clients.
+   */
+  async getClients(): Promise<IClient[]> {
+    try {
+      const clients = await this.userRepository.find({
+        where: { confirmedByAdmin: false },
+      });
+      if (!clients || clients.length === 0)
+        throw new NotFoundException('No clients found');
+      const clientsArray: IClient[] = [];
+
+      for (const client of clients) {
+        clientsArray.push({
+          id: client.id,
+          name: client.name,
+          phoneNumber: client.phoneNumber,
+          avatarURL: client.avatarURL,
+        });
+      }
+
+      return clientsArray;
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error getting clients');
+    }
+  }
+
+  /**
    * Create a new product, and return the created product,
    * it uses the ProductService to create the product.
    * @param {CreateProductDto} product - The product to create.
-   * @returns {Promise<ProductEntity>} The created product.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
   async createProduct(
     product: CreateProductDto,
     images: Express.Multer.File[],
-  ): Promise<ProductEntity> {
+  ): Promise<IConfirmationMessage> {
     return await this.productService.createProduct(product, images);
   }
 
@@ -60,20 +99,72 @@ export class AdminService {
    * Create a new story, and return the created story,
    * it uses the StoryService to create the story.
    * @param {CreateStoryDto} story - The story to create.
-   * @returns {Promise<StoryEntity>} The created story.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
   async createStory(
     story: CreateStoryDto,
     files: IFiles,
-  ): Promise<StoryEntity> {
+  ): Promise<IConfirmationMessage> {
     return await this.storyService.createStory(story, files);
   }
 
+  /**
+   * Confirm an order by id.
+   * @param {number} id - The id of the order to confirm.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   */
   async confirmOrder(id: number): Promise<IConfirmationMessage> {
     return await this.orderService.confirmOrder(id);
   }
 
+  /**
+   * Confirm a client by id.
+   * @param {number} id - The id of the client to confirm.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   */
+  async confirmClient(id: number): Promise<IConfirmationMessage> {
+    try {
+      const client = await this.userRepository.findOne({
+        where: { id },
+      });
+      if (!client) throw new NotFoundException('Client not found');
+      await this.userRepository.update(id, { confirmedByAdmin: true });
+
+      return { message: 'Client confirmed' };
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error confirming client');
+    }
+  }
+
+  /**
+   * Cancel an order by id.
+   * @param {number} id - The id of the order to cancel.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   */
   async cancelOrder(id: number): Promise<IConfirmationMessage> {
     return await this.orderService.cancelOrder(id);
+  }
+
+  /**
+   * Cancel a client by id.
+   * @param {number} id - The id of the client to cancel.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   */
+  async cancelClient(id: number): Promise<IConfirmationMessage> {
+    try {
+      const client = await this.userRepository.findOne({
+        where: { id },
+      });
+      if (!client) throw new NotFoundException('Client not found');
+      await this.userRepository.delete(id);
+
+      return { message: 'Client canceled' };
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error canceling client');
+    }
   }
 }
