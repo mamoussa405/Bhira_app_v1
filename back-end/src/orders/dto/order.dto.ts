@@ -1,10 +1,14 @@
 import {
+  IsArray,
   IsNotEmpty,
   IsNumber,
   IsNumberString,
+  IsPhoneNumber,
   IsPositive,
+  IsString,
   Matches,
 } from 'class-validator';
+import { ICartOrder } from 'src/types/order.type';
 
 export class CreateOrderDto {
   @IsNumber()
@@ -30,4 +34,24 @@ export class CreateOrderParamDto {
   @IsNumberString()
   @Matches(/^[1-9][0-9]*$/)
   id: number;
+}
+
+export class ConfirmOrdersBuyDto {
+  @IsString()
+  @IsNotEmpty()
+  // This regular expression matches only English and Arabic letters
+  @Matches(/^[a-zA-Z\s\u0600-\u06FF]+$/)
+  buyerName: string;
+
+  @IsPhoneNumber('MA')
+  @IsNotEmpty()
+  buyerPhoneNumber: string;
+
+  @IsString()
+  @IsNotEmpty()
+  shipmentAddress: string;
+
+  @IsNotEmpty()
+  @IsArray({ each: true })
+  orders: Omit<ICartOrder, 'product'>[];
 }
