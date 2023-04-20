@@ -62,7 +62,7 @@ export class AdminController {
     return await this.adminService.confirmOrder(params.id);
   }
 
-  @Delete('product/delete/:id')
+  @Delete('products/delete/:id')
   async deleteProduct(@Param() params: ProductParamDto) {
     return await this.adminService.deleteProduct(params.id);
   }
