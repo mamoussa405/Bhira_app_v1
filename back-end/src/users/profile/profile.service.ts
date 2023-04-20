@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import {
   HttpStatus,
   Injectable,
@@ -12,6 +13,7 @@ import { CloudinaryService } from 'nestjs-cloudinary';
 import { OrderService } from 'src/orders/order.service';
 import { IProfile } from '../types/profile.type';
 import { IConfirmationMessage } from 'src/types/response.type';
+import { UpdatePasswordDto } from './dto/profile.dto';
 
 /**
  * The profile service it will be responsible for the user profile operations.
@@ -160,6 +162,35 @@ export class ProfileService {
       return { message: 'Address updated successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error updating address');
+    }
+  }
+
+  /**
+   * Update the user password, the old password must be provided.
+   * @param {number} id - The user id.
+   * @param {UpdatePasswordDto} body - The new password.
+   * @returns {Promise<IConfirmationMessage>} - The confirmation message.
+   */
+  async updatePassword(
+    id: number,
+    body: UpdatePasswordDto,
+  ): Promise<IConfirmationMessage> {
+    try {
+      const user = await this.userRepository.findOne({ where: { id } });
+      if (!user) throw new NotFoundException('User not found');
+      const isMatch = await bcrypt.compare(body.oldPassword, user.password);
+      if (!isMatch) throw new UnauthorizedException('Wong password');
+      const salt = await bcrypt.genSalt();
+      const password = await bcrypt.hash(body.newPassword, salt);
+      await this.userRepository.update(id, { password });
+
+      return { message: 'Password updated successfully' };
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      if (error.status === HttpStatus.UNAUTHORIZED)
+        throw new UnauthorizedException(error.message);
+      throw new InternalServerErrorException('Error updating password');
     }
   }
 
