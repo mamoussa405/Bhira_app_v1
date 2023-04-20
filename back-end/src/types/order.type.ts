@@ -9,6 +9,7 @@ export interface ICartOrder {
   product: {
     name: string;
     imageURL: string;
+    price: number;
   };
 }
 
