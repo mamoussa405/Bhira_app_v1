@@ -241,7 +241,7 @@ export class OrderService {
    * @param {number} adminId - The id of the admin who confirms the order.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms the confirmation.
    */
-  async confimOrder(
+  async confirmOrder(
     orderId: number,
     adminId: number,
   ): Promise<IConfirmationMessage> {
