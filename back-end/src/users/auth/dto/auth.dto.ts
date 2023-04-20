@@ -14,6 +14,7 @@ export class SignUpDto {
   name: string;
 
   @IsString()
+  @IsNotEmpty()
   address: string;
 
   @IsPhoneNumber('MA')
