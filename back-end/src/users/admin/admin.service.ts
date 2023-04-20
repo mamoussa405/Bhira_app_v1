@@ -9,6 +9,7 @@ import { IFiles } from 'src/types/files.type';
 import { ProfileService } from '../profile/profile.service';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { IProfile } from '../types/profile.type';
+import { OrderService } from 'src/orders/order.service';
 
 /**
  * Service for admin related operations.
@@ -21,6 +22,7 @@ export class AdminService {
     private readonly productService: ProductService,
     private readonly storyService: StoryService,
     private readonly profileService: ProfileService,
+    private readonly orderService: OrderService,
   ) {}
 
   /**
@@ -65,5 +67,13 @@ export class AdminService {
     files: IFiles,
   ): Promise<StoryEntity> {
     return await this.storyService.createStory(story, files);
+  }
+
+  async confirmOrder(id: number): Promise<IConfirmationMessage> {
+    return await this.orderService.confirmOrder(id);
+  }
+
+  async cancelOrder(id: number): Promise<IConfirmationMessage> {
+    return await this.orderService.cancelOrder(id);
   }
 }
