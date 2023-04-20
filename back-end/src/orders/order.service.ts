@@ -5,7 +5,7 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { CreateOrderDto } from './dto/order.dto';
+import { ConfirmOrdersBuyDto, CreateOrderDto } from './dto/order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEntity } from './entities/order.entity';
 import { Repository } from 'typeorm';
@@ -110,6 +110,7 @@ export class OrderService {
             product: {
               name: order.product.name,
               imageURL: order.product.imagesURL[0],
+              price: order.product.price,
             },
           });
       }
@@ -232,6 +233,59 @@ export class OrderService {
       if (error.status === HttpStatus.UNAUTHORIZED)
         throw new UnauthorizedException(error.message);
       throw new InternalServerErrorException('Error deleting order');
+    }
+  }
+
+  /**
+   * Confirm the orders that the user added to the cart, we use this
+   * to confirm that the user wants to buy the products that are in the
+   * cart.
+   * @param {ConfirmOrdersBuyDto} body - The body of the request.
+   * @param {number} userId - The id of the user who owns the orders.
+   * @returns {Promise<IConfirmationMessage>} - A message that confirms the confirmation.
+   */
+  async confirmOrdersBuy(
+    body: ConfirmOrdersBuyDto,
+    userId: number,
+  ): Promise<IConfirmationMessage> {
+    try {
+      /**
+       * First we check if the orders that the user wants to confirm exist,
+       * and belong to the user with the {userId}, most likely the user who
+       * logged in, then we update the orders to set the {buyConfirmedByUser}
+       * to true, and we set the other fields to the values that the user
+       * sent in the request. Finally we update the order time.
+       */
+      for (const order of body.orders) {
+        const orderToConfirm = await this.orderRepository.findOne({
+          where: { id: order.id },
+          relations: ['user'],
+        });
+        if (!orderToConfirm) throw new NotFoundException('Order not found');
+        if (orderToConfirm.user.id !== userId)
+          throw new UnauthorizedException(
+            'User is not the owner of the orders',
+          );
+      }
+      for (const order of body.orders) {
+        await this.orderRepository.update(order.id, {
+          buyConfirmedByUser: true,
+          quantity: order.quantity,
+          totalPrice: order.totalPrice,
+          buyerName: body.buyerName,
+          buyerPhoneNumber: body.buyerPhoneNumber,
+          shipmentAddress: body.shipmentAddress,
+          orderTime: new Date(),
+        });
+      }
+
+      return { message: 'Orders confirmed successfully' };
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      if (error.status === HttpStatus.UNAUTHORIZED)
+        throw new UnauthorizedException(error.message);
+      throw new InternalServerErrorException('Error confirming orders');
     }
   }
 
