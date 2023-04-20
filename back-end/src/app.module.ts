@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
-import { AuthGuard } from './users/auth/guards/auth.guard';
+import { AuthGuard } from './users/guards/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryModule } from 'nestjs-cloudinary';
 
