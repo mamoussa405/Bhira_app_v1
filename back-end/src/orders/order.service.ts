@@ -238,24 +238,14 @@ export class OrderService {
   /**
    * Confirms an order, we use this method to let the admin confirm an order.
    * @param {number} orderId - The id of the order to be confirmed.
-   * @param {number} adminId - The id of the admin who confirms the order.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms the confirmation.
    */
-  async confirmOrder(
-    orderId: number,
-    adminId: number,
-  ): Promise<IConfirmationMessage> {
+  async confirmOrder(orderId: number): Promise<IConfirmationMessage> {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
       });
       if (!order) throw new NotFoundException('Order not found');
-      const user = await this.userRepository.findOne({
-        where: { id: adminId },
-      });
-      if (!user) throw new NotFoundException('User not found');
-      if (!user.isAdmin)
-        throw new UnauthorizedException('User is not an admin');
       await this.orderRepository.update(orderId, { buyConfirmedByAdmin: true });
 
       return { message: 'Order confirmed successfully' };
@@ -271,24 +261,14 @@ export class OrderService {
   /**
    * Cancels an order, we use this method to let the admin cancel an order.
    * @param {number} orderId - The id of the order to be canceled.
-   * @param {number} adminId - The id of the admin who cancels the order.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms the cancellation.
    */
-  async cancelOrder(
-    orderId: number,
-    adminId: number,
-  ): Promise<IConfirmationMessage> {
+  async cancelOrder(orderId: number): Promise<IConfirmationMessage> {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
       });
       if (!order) throw new NotFoundException('Order not found');
-      const user = await this.userRepository.findOne({
-        where: { id: adminId },
-      });
-      if (!user) throw new NotFoundException('User not found');
-      if (!user.isAdmin)
-        throw new UnauthorizedException('User is not an admin');
       await this.orderRepository.delete(orderId);
 
       return { message: 'Order canceled successfully' };
