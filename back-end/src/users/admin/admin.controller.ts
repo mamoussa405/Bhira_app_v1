@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Req,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -21,7 +23,9 @@ import { ValidateFilesPipe } from '../pipes/validate-files.pipe';
 import { FilesValidation } from '../enums/files-validation.enum';
 import { IFiles } from 'src/types/files.type';
 import { ProductParamDto } from 'src/products/dto/product.dto';
+import { AdminGuard } from '../guards/admin.guard';
 
+@UseGuards(AdminGuard)
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
@@ -41,11 +45,6 @@ export class AdminController {
     return await this.adminService.createProduct(product, images);
   }
 
-  @Delete('product/delete/:id')
-  async deleteProduct(@Param() params: ProductParamDto) {
-    return await this.adminService.deleteProduct(params.id);
-  }
-
   @Post('story/create')
   @UseInterceptors(
     FileFieldsInterceptor([{ name: 'image' }, { name: 'video' }]),
@@ -56,5 +55,20 @@ export class AdminController {
     @UploadedFiles(new ValidateFilesPipe(FilesValidation.STORY)) files: IFiles,
   ) {
     return await this.adminService.createStory(story, files);
+  }
+
+  @Patch('orders/confirm/:id')
+  async confirmOrder(@Param() params: ProductParamDto) {
+    return await this.adminService.confirmOrder(params.id);
+  }
+
+  @Delete('product/delete/:id')
+  async deleteProduct(@Param() params: ProductParamDto) {
+    return await this.adminService.deleteProduct(params.id);
+  }
+
+  @Delete('orders/cancel/:id')
+  async cancelOrder(@Param() params: ProductParamDto) {
+    return await this.adminService.cancelOrder(params.id);
   }
 }
