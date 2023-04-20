@@ -22,8 +22,11 @@ import { JsonParseInterceptor } from 'src/interceptors/json-parse.interceptor';
 import { ValidateFilesPipe } from '../pipes/validate-files.pipe';
 import { FilesValidation } from '../enums/files-validation.enum';
 import { IFiles } from 'src/types/files.type';
-import { ProductParamDto } from 'src/products/dto/product.dto';
 import { AdminGuard } from '../guards/admin.guard';
+import { IConfirmationMessage } from 'src/types/response.type';
+import { IProfile } from '../types/profile.type';
+import { IClient } from '../types/client.type';
+import { ParamDto } from './dto/params.dto';
 
 @UseGuards(AdminGuard)
 @Controller('admin')
@@ -31,8 +34,13 @@ export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
   @Get('profile')
-  async getProfile(@Req() req: Request) {
+  async getProfile(@Req() req: Request): Promise<IProfile> {
     return await this.adminService.getProfile(req['user'].sub);
+  }
+
+  @Get('clients/get')
+  async getClients(): Promise<IClient[]> {
+    return await this.adminService.getClients();
   }
 
   @Post('product/create')
@@ -41,7 +49,7 @@ export class AdminController {
     @UploadedFiles(new ValidateFilesPipe(FilesValidation.PRODUCT))
     images: Express.Multer.File[],
     @Body() product: CreateProductDto,
-  ) {
+  ): Promise<IConfirmationMessage> {
     return await this.adminService.createProduct(product, images);
   }
 
@@ -53,22 +61,36 @@ export class AdminController {
   async createStory(
     @Body() story: CreateStoryDto,
     @UploadedFiles(new ValidateFilesPipe(FilesValidation.STORY)) files: IFiles,
-  ) {
+  ): Promise<IConfirmationMessage> {
     return await this.adminService.createStory(story, files);
   }
 
   @Patch('orders/confirm/:id')
-  async confirmOrder(@Param() params: ProductParamDto) {
+  async confirmOrder(@Param() params: ParamDto): Promise<IConfirmationMessage> {
     return await this.adminService.confirmOrder(params.id);
   }
 
+  @Patch('clients/confirm/:id')
+  async confirmClient(
+    @Param() params: ParamDto,
+  ): Promise<IConfirmationMessage> {
+    return await this.adminService.confirmClient(params.id);
+  }
+
   @Delete('products/delete/:id')
-  async deleteProduct(@Param() params: ProductParamDto) {
+  async deleteProduct(
+    @Param() params: ParamDto,
+  ): Promise<IConfirmationMessage> {
     return await this.adminService.deleteProduct(params.id);
   }
 
   @Delete('orders/cancel/:id')
-  async cancelOrder(@Param() params: ProductParamDto) {
+  async cancelOrder(@Param() params: ParamDto): Promise<IConfirmationMessage> {
     return await this.adminService.cancelOrder(params.id);
+  }
+
+  @Delete('clients/cancel/:id')
+  async cancelClient(@Param() params: ParamDto): Promise<IConfirmationMessage> {
+    return await this.adminService.cancelClient(params.id);
   }
 }
