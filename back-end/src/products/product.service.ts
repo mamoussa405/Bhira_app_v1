@@ -31,16 +31,18 @@ export class ProductService {
   /**
    * Create a new product, and return the created product.
    * @param {CreateProductDto} product - The product to create.
-   * @returns {Promise<ProductEntity>} The created product.
+   * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
   async createProduct(
     product: CreateProductDto,
     images: Express.Multer.File[],
-  ): Promise<ProductEntity> {
+  ): Promise<IConfirmationMessage> {
     try {
       const productEntity = this.productRepository.create(product);
       productEntity.imagesURL = await this.uploadImages(images);
-      return await this.productRepository.save(productEntity);
+      await this.productRepository.save(productEntity);
+
+      return { message: 'Product created successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error creating product');
     }
