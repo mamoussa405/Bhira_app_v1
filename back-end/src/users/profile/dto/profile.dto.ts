@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsPhoneNumber, IsString, Matches } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsPhoneNumber,
+  IsString,
+  IsStrongPassword,
+  Matches,
+} from 'class-validator';
 
 export class UpdateNameDto {
   @IsString()
@@ -18,4 +24,15 @@ export class UpdateAddressDto {
   @IsString()
   @IsNotEmpty()
   address: string;
+}
+
+export class UpdatePasswordDto {
+  @IsString()
+  @IsNotEmpty()
+  oldPassword: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @IsStrongPassword()
+  newPassword: string;
 }
