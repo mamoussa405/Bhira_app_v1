@@ -26,7 +26,9 @@ export class AdminGuard implements CanActivate {
     const req = context.switchToHttp().getRequest();
 
     try {
-      const user = await this.userRepository.findOne(req['user'].sub);
+      const user = await this.userRepository.findOne({
+        where: { id: req['user'].sub },
+      });
       if (!user) throw new NotFoundException('User not found');
       if (!user.isAdmin) throw new UnauthorizedException('User is not admin');
 
