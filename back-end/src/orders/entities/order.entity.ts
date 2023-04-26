@@ -31,9 +31,11 @@ export class OrderEntity {
   @Column()
   buyConfirmedByAdmin: boolean;
 
-  @ManyToOne(() => UserEntity, (user) => user.orders)
+  @ManyToOne(() => UserEntity, (user) => user.orders, { onDelete: 'CASCADE' })
   user: UserEntity;
 
-  @ManyToOne(() => ProductEntity, (product) => product.orders)
+  @ManyToOne(() => ProductEntity, (product) => product.orders, {
+    onDelete: 'CASCADE',
+  })
   product: ProductEntity;
 }
