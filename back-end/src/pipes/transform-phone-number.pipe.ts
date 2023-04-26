@@ -8,7 +8,7 @@ import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
 export class TransformPhoneNumberPipe implements PipeTransform {
   transform(value: any, metadata: ArgumentMetadata) {
     // Check if the data passed to the pipe is the body of the request.
-    if (metadata.type === 'body') {
+    if (metadata.type === 'body' && value && value.phoneNumber) {
       /**
        * First regex matches +212 and spaces, second regex matches 0
        * at the beginning of the string.
