@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   HttpStatus,
   Injectable,
   InternalServerErrorException,
@@ -9,7 +10,7 @@ import { ProductEntity } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/users/admin/dto/create-product.dto';
 import { CloudinaryService } from 'nestjs-cloudinary';
-import { INormalProduct } from './types/product.type';
+import { INormalProduct, ITopMarketProduct } from './types/product.type';
 import { IConfirmationMessage } from 'src/types/response.type';
 
 /**
@@ -38,10 +39,34 @@ export class ProductService {
     images: Express.Multer.File[],
   ): Promise<IConfirmationMessage> {
     try {
+      /**
+       * Check if the product is a top market product and if it is, check
+       * if the stock is provided.
+       */
+      if (product.isTopMarketProduct && !product.stock)
+        throw new BadRequestException(
+          'Stock is required for top market product',
+        );
       const productEntity = this.productRepository.create(product);
       productEntity.imagesURL = await this.uploadImages(images);
+      /**
+       * If the product is a top market product, check if there is a current
+       * top market product, and if there is, set the current top market product
+       * to false.
+       * Set the new product as the current top market product.
+       */
+      if (productEntity.isTopMarketProduct) {
+        const currentTopMarketProduct = await this.productRepository.findOne({
+          where: { isCurrentTopMarketProduct: true },
+        });
+        if (currentTopMarketProduct) {
+          await this.productRepository.update(currentTopMarketProduct.id, {
+            isCurrentTopMarketProduct: false,
+          });
+        }
+        productEntity.isCurrentTopMarketProduct = true;
+      }
       await this.productRepository.save(productEntity);
-
       return { message: 'Product created successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error creating product');
@@ -50,13 +75,12 @@ export class ProductService {
 
   /**
    * Get all products.
-   * @param {string} category - The category of the products to get.
    * @returns {Promise<INormalProduct[]>} The products.
    */
-  async getProducts(category: string): Promise<INormalProduct[]> {
+  async getProducts(): Promise<INormalProduct[]> {
     try {
       const products = await this.productRepository.find({
-        where: { category, isNormalProduct: true },
+        where: { isTopMarketProduct: false },
       });
       if (!products || !products.length)
         throw new NotFoundException('No Products found');
@@ -72,6 +96,34 @@ export class ProductService {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
       throw new InternalServerErrorException('Error getting products');
+    }
+  }
+
+  /**
+   * Get the top market product, if there is one.
+   * @throws {NotFoundException} Product not found.
+   * @throws {InternalServerErrorException} Error finding product.
+   * @returns {Promise<ITopMarketProduct>} The top market product.
+   */
+  async getTopMarketProduct(): Promise<ITopMarketProduct> {
+    try {
+      const product = await this.productRepository.findOne({
+        where: { isCurrentTopMarketProduct: true },
+      });
+
+      if (!product) throw new NotFoundException('Product not found');
+      return {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        stock: product.stock,
+        imageURL: product.imagesURL[0],
+      };
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error finding product');
     }
   }
 
@@ -117,6 +169,22 @@ export class ProductService {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
       throw new InternalServerErrorException('Error deleting product');
+    }
+  }
+
+  /**
+   * Update a product stock by id, this method will be used when a user
+   * buys a top market product or when an admin cancels an order that
+   * contains a top market product.
+   * @throws {InternalServerErrorException} Error updating product stock.
+   * @param {number} id - The id of the product to update.
+   * @param {number} stock - The new stock.
+   */
+  async updateProductStock(id: number, stock: number): Promise<void> {
+    try {
+      await this.productRepository.update(id, { stock });
+    } catch (error) {
+      throw new InternalServerErrorException('Error updating product stock');
     }
   }
 
