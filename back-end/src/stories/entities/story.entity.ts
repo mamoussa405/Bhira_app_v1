@@ -1,5 +1,5 @@
-import { UserEntity } from 'src/users/auth/entities/user.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { StoryViewEntity } from 'src/home/entities/story-view.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class StoryEntity {
@@ -18,6 +18,8 @@ export class StoryEntity {
   @Column()
   imageURL: string;
 
-  @ManyToMany(() => UserEntity, (user) => user.stories)
-  users: UserEntity[];
+  @OneToMany(() => StoryViewEntity, (storyView) => storyView.story, {
+    cascade: true,
+  })
+  storyViews: StoryViewEntity[];
 }
