@@ -45,13 +45,14 @@ export class ConfirmOrdersBuyDto {
 
   @IsPhoneNumber('MA')
   @IsNotEmpty()
-  buyerPhoneNumber: string;
+  phoneNumber: string;
 
   @IsString()
   @IsNotEmpty()
   shipmentAddress: string;
 
   @IsNotEmpty()
-  @IsArray({ each: true })
+  @IsArray()
+  // TODO: Add validation for the array items
   orders: Omit<ICartOrder, 'product'>[];
 }
