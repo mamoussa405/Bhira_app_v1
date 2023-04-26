@@ -42,8 +42,7 @@ export class UserEntity1681279367699 implements MigrationInterface {
           {
             name: 'confirmedByAdmin',
             type: 'boolean',
-            // !change this to false before production
-            default: true,
+            default: false,
           },
           {
             name: 'avatarURL',
