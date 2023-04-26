@@ -18,6 +18,7 @@ import {
   IUserProfileOrder,
 } from 'src/types/order.type';
 import { IConfirmationMessage } from 'src/types/response.type';
+import { AppGateway } from 'src/app.gateway';
 
 /**
  * The order service is responsible for orders related operations.
@@ -37,6 +38,7 @@ export class OrderService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
     private readonly productService: ProductService,
+    private readonly appGateway: AppGateway,
   ) {}
 
   /**
@@ -61,6 +63,22 @@ export class OrderService {
        * service it will throw a NotFoundException if the product is not found.
        */
       const product = await this.productService.getProduct(productId);
+      /**
+       * If the product is a top market product we check if the product is
+       * the current top market product, if it is not we throw a NotFoundException.
+       * Then we check if the stock is enough to make the order, if it is not
+       * we throw a NotFoundException.
+       * If the stock is enough we update the stock of the product and we emit
+       * an event to the client to update the stock of the product.
+       */
+      if (product.isTopMarketProduct) {
+        if (!product.isCurrentTopMarketProduct)
+          throw new NotFoundException('Product not found');
+        const stock = +product.stock - +order.quantity;
+        if (stock < 0) throw new NotFoundException('Not enough stock');
+        await this.productService.updateProductStock(productId, stock);
+        this.appGateway.server.emit('updateTopMarketProduct', stock);
+      }
       const user = await this.userRepository.findOne({ where: { id: userId } });
       /**
        * If the user is not found or the user is not confirmed by the admin
@@ -68,10 +86,10 @@ export class OrderService {
        */
       if (!user) throw new NotFoundException('User not found');
       const newOrder = this.orderRepository.create(order);
-      // Then we fill the order with the neccessary information.
+
+      /* Then we fill the order with the neccessary information.*/
       this.fillOrder(newOrder, order, user, product);
       await this.orderRepository.save(newOrder);
-
       return { message: 'Order created successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -114,9 +132,11 @@ export class OrderService {
             },
           });
       }
-
+      if (!res.length) throw new NotFoundException('No orders found');
       return res;
     } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
       throw new InternalServerErrorException('Error getting orders');
     }
   }
@@ -157,7 +177,6 @@ export class OrderService {
           },
         });
       }
-
       return res;
     } catch (error) {
       throw new InternalServerErrorException('Error getting orders');
@@ -199,7 +218,6 @@ export class OrderService {
             },
           });
       }
-
       return res;
     } catch (error) {
       throw new InternalServerErrorException('Error getting orders');
@@ -219,13 +237,25 @@ export class OrderService {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
-        relations: ['user'],
+        relations: ['user', 'product'],
       });
+
       if (!order) throw new NotFoundException('Order not found');
       if (order.user.id !== userId)
         throw new UnauthorizedException('User is not the owner of the order');
+      /**
+       * If the order is for a top market product, we need to update the
+       * stock of the product, and if the product is the current top
+       * market product, we need to emit an event to update the stock
+       * of the product in the top market component.
+       */
+      if (order.product.isTopMarketProduct) {
+        const stock = +order.product.stock + +order.quantity;
+        await this.productService.updateProductStock(order.product.id, stock);
+        if (order.product.isCurrentTopMarketProduct)
+          this.appGateway.server.emit('updateTopMarketProduct', stock);
+      }
       await this.orderRepository.delete(orderId);
-
       return { message: 'Order deleted successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -273,12 +303,11 @@ export class OrderService {
           quantity: order.quantity,
           totalPrice: order.totalPrice,
           buyerName: body.buyerName,
-          buyerPhoneNumber: body.buyerPhoneNumber,
+          buyerPhoneNumber: body.phoneNumber,
           shipmentAddress: body.shipmentAddress,
           orderTime: new Date(),
         });
       }
-
       return { message: 'Orders confirmed successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -299,9 +328,9 @@ export class OrderService {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
       });
+
       if (!order) throw new NotFoundException('Order not found');
       await this.orderRepository.update(orderId, { buyConfirmedByAdmin: true });
-
       return { message: 'Order confirmed successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -321,10 +350,23 @@ export class OrderService {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
+        relations: ['product'],
       });
-      if (!order) throw new NotFoundException('Order not found');
-      await this.orderRepository.delete(orderId);
 
+      if (!order) throw new NotFoundException('Order not found');
+      /**
+       * If the order is for a top market product, we update the stock of the product,
+       * and if the product is the current top market product, we emit an event to
+       * update the stock of the product in the top market page.
+       * Finally we delete the order.
+       */
+      if (order.product.isTopMarketProduct) {
+        const stock = +order.product.stock + +order.quantity;
+        await this.productService.updateProductStock(order.product.id, stock);
+        if (order.product.isCurrentTopMarketProduct)
+          this.appGateway.server.emit('updateTopMarketProduct', stock);
+      }
+      await this.orderRepository.delete(orderId);
       return { message: 'Order canceled successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
