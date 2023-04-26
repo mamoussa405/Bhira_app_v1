@@ -42,9 +42,14 @@ export class ProductEntity1681481631543 implements MigrationInterface {
             default: 0.0,
           },
           {
-            name: 'isNormalProduct',
+            name: 'isTopMarketProduct',
             type: 'boolean',
-            default: true,
+            default: false,
+          },
+          {
+            name: 'isCurrentTopMarketProduct',
+            type: 'boolean',
+            default: false,
           },
           {
             name: 'imagesURL',
