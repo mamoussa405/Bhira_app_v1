@@ -22,11 +22,14 @@ export class ProductEntity {
   stock: number;
 
   @Column()
-  isNormalProduct: boolean;
+  isTopMarketProduct: boolean;
+
+  @Column()
+  isCurrentTopMarketProduct: boolean;
 
   @Column({ type: 'varchar', array: true, default: [] })
   imagesURL: string[];
 
-  @OneToMany(() => OrderEntity, (order) => order.product)
+  @OneToMany(() => OrderEntity, (order) => order.product, { cascade: true })
   orders: OrderEntity[];
 }
