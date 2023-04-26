@@ -57,11 +57,6 @@ export class OrderEntity1681663225789 implements MigrationInterface {
             default: false,
           },
           {
-            name: 'buyCanceledByAdmin',
-            type: 'boolean',
-            default: false,
-          },
-          {
             name: 'userId',
             type: 'int',
           },
