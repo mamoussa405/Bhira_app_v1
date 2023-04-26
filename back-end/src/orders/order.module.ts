@@ -5,15 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrderEntity } from './entities/order.entity';
 import { UserEntity } from 'src/users/auth/entities/user.entity';
 import { ProductModule } from 'src/products/product.module';
+import { AppGateway } from 'src/app.gateway';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([OrderEntity]),
-    TypeOrmModule.forFeature([UserEntity]),
-    ProductModule,
-  ],
+  imports: [TypeOrmModule.forFeature([OrderEntity, UserEntity]), ProductModule],
   controllers: [OrderController],
-  providers: [OrderService],
+  providers: [OrderService, AppGateway],
   exports: [OrderService],
 })
 export class OrderModule {}
