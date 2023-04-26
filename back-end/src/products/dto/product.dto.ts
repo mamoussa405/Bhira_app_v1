@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumberString, IsString, Matches } from 'class-validator';
+import { IsNotEmpty, IsNumberString, Matches } from 'class-validator';
 
 export class ProductParamDto {
   @IsNumberString()
@@ -6,11 +6,4 @@ export class ProductParamDto {
   // This regular expression matches only positive integers
   @Matches(/^[1-9][0-9]*$/)
   id: number;
-}
-
-export class ProductQueryDto {
-  @IsString()
-  @IsNotEmpty()
-  @Matches(/^(Fruits|Vegetables|Herbes)$/)
-  category: string;
 }
