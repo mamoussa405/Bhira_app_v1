@@ -1,4 +1,9 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StoryEntity } from './entities/story.entity';
 import { Repository } from 'typeorm';
@@ -6,6 +11,9 @@ import { CreateStoryDto } from 'src/users/admin/dto/create-story.dto';
 import { IFiles } from 'src/types/files.type';
 import { CloudinaryService } from 'nestjs-cloudinary';
 import { IConfirmationMessage } from 'src/types/response.type';
+import { UserEntity } from 'src/users/auth/entities/user.entity';
+import { StoryViewEntity } from 'src/home/entities/story-view.entity';
+import { IStory } from 'src/types/home.type';
 
 /**
  * Service for story related operations.
@@ -17,6 +25,10 @@ export class StoryService {
     @InjectRepository(StoryEntity)
     private readonly storyRepository: Repository<StoryEntity>,
     private readonly cloundinaryService: CloudinaryService,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(StoryViewEntity)
+    private readonly storyViewRepository: Repository<StoryViewEntity>,
   ) {}
 
   /**
@@ -38,6 +50,138 @@ export class StoryService {
     } catch (error) {
       throw new InternalServerErrorException('Error creating story');
     }
+  }
+
+  /**
+   * Find a story by id, and return the story.
+   * @throws {NotFoundException} - If the story is not found.
+   * @throws {InternalServerErrorException} - If an error occurs.
+   * @param {number} id - The id of the story to find.
+   * @returns {Promise<StoryEntity>} The found story.
+   */
+  async findOne(id: number): Promise<StoryEntity> {
+    try {
+      const story = await this.storyRepository.findOne({
+        where: { id },
+      });
+
+      if (!story) throw new NotFoundException('Story not found');
+      return story;
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error finding story');
+    }
+  }
+
+  /**
+   * Find all stories, and return the stories, and whether they are viewed by
+   * the current user or not, it return the stories that are not viewed by the
+   * current user first, and then the viewed stories if the time difference
+   * between the current time and the time the story was viewed is less than 7 days.
+   * @throws {InternalServerErrorException} - If an error occurs.
+   * @throws {NotFoundException} - If no stories are found.
+   * @param {number} userId - The id of the current user.
+   * @returns {Promise<IStory[]>} The found stories.
+   */
+  async getStories(userId: number): Promise<IStory[]> {
+    try {
+      /* Get all stories ordered by id ascending. */
+      const stories = await this.storyRepository.find({
+        order: { id: 'ASC' },
+      });
+      /* Get the current user, and the stories viewed by the current user. */
+      const user = await this.userRepository.findOne({
+        where: { id: userId },
+        relations: ['storyViews'],
+      });
+      const storyViews: StoryViewEntity[] = [];
+
+      /**
+       * load the relations of the stories viewed by the current user, and
+       * push them to the storyViews array.
+       */
+      for (const story of user.storyViews)
+        storyViews.push(
+          await this.storyViewRepository.findOne({
+            where: { id: story.id },
+            relations: ['story'],
+          }),
+        );
+      return this.filterStories(stories, storyViews);
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error getting stories');
+    }
+  }
+
+  /**
+   * Filter the stories, and return the stories, and whether they are viewed by
+   * the current user or not, it return the stories that are not viewed by the
+   * current user first, and then the viewed stories if the time difference
+   * between the current time and the time the story was viewed is less than 7 days.
+   * @param stories
+   * @param storyViews
+   * @returns
+   */
+  private filterStories(
+    stories: StoryEntity[],
+    storyViews: StoryViewEntity[],
+  ): IStory[] {
+    const res: IStory[] = [];
+    let viewedStoriesPtr = 0;
+    let storiesPtr = 0;
+
+    /* If the user has not viewed any stories, return all stories. */
+    if (!storyViews || storyViews.length === 0) {
+      for (const story of stories)
+        res.push({ ...story, viewedByTheCurrentUser: false });
+      return res;
+    }
+    /* Sort the stories by id ascending to reduce the time compexity */
+    storyViews.sort((a, b) => a.story.id - b.story.id);
+    /**
+     * Loop over the viewed stories and push the stories that are not viewed by
+     * the current user to the res array, we use two pointers, one for the
+     * stories array, and the other for the viewed stories array, and we move
+     * the pointers based on the id of the stories, if the id of the story in
+     * the stories array is equal to the id of the story in the viewed stories
+     * array, we move both pointers, otherwise we move the pointer of the stories
+     * array.
+     */
+    while (viewedStoriesPtr < storyViews.length) {
+      if (stories[storiesPtr].id === storyViews[viewedStoriesPtr].story.id) {
+        storiesPtr++;
+        viewedStoriesPtr++;
+      } else {
+        res.push({ ...stories[storiesPtr], viewedByTheCurrentUser: false });
+        storiesPtr++;
+      }
+    }
+    /* Push the remaining stories to the res array. */
+    while (storiesPtr < stories.length)
+      res.push({ ...stories[storiesPtr++], viewedByTheCurrentUser: false });
+
+    /**
+     * Loop over the viewed stories, and push the stories that are viewed by the
+     * current user to the res array if the time difference between the current
+     * time and the time the story was viewed is less than 7 days.
+     */
+    for (const story of storyViews) {
+      const currentTime: Date = new Date();
+      const timeDiff = currentTime.getTime() - story.viewedAt.getTime();
+      /**
+       * Get the difference in days, we divide by 1000 to convert the time
+       * difference from milliseconds to seconds, and then divide by 3600 to
+       * convert the time difference from seconds to hours, and then divide by
+       * 24 to convert the time difference from hours to days.
+       */
+      const diffDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+      if (diffDays < 7)
+        res.push({ ...story.story, viewedByTheCurrentUser: true });
+    }
+    return res;
   }
 
   /**
