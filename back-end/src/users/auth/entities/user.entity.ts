@@ -1,13 +1,7 @@
 import { Exclude } from 'class-transformer';
+import { StoryViewEntity } from 'src/home/entities/story-view.entity';
 import { OrderEntity } from 'src/orders/entities/order.entity';
-import { StoryEntity } from 'src/stories/entities/story.entity';
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UserEntity {
@@ -36,9 +30,11 @@ export class UserEntity {
   @Column()
   avatarURL: string;
 
-  @OneToMany(() => OrderEntity, (order) => order.user)
+  @OneToMany(() => OrderEntity, (order) => order.user, { cascade: true })
   orders: OrderEntity[];
 
-  @ManyToMany(() => StoryEntity, (story) => story.users)
-  stories: StoryEntity[];
+  @OneToMany(() => StoryViewEntity, (storyView) => storyView.user, {
+    cascade: true,
+  })
+  storyViews: StoryViewEntity[];
 }
