@@ -18,6 +18,8 @@ import { IStory } from 'src/types/home.type';
 /**
  * Service for story related operations.
  * @function createStory - Create a new story.
+ * @function findOne - Find a story by id.
+ * @function getStories - Get all stories.
  */
 @Injectable()
 export class StoryService {
