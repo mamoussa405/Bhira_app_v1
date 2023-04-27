@@ -6,6 +6,7 @@ import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuard } from './users/guards/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryModule } from 'nestjs-cloudinary';
+import { HomeModule } from './home/home.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { CloudinaryModule } from 'nestjs-cloudinary';
       inject: [ConfigService],
     }),
     UserModule,
+    HomeModule,
   ],
   providers: [
     {
