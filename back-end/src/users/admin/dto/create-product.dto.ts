@@ -28,7 +28,7 @@ export class CreateProductDto {
 
   @IsBoolean()
   @IsNotEmpty()
-  isNormalProduct: boolean;
+  isTopMarketProduct: boolean;
 
   @IsNumber()
   @IsNotEmpty()
