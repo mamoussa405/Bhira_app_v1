@@ -13,6 +13,7 @@ import { UserEntity } from './entities/user.entity';
 import { TransformPhoneNumberPipe } from 'src/pipes/transform-phone-number.pipe';
 import { Response } from 'express';
 import { Public } from 'src/decorators/public.decorator';
+import { IConfirmationMessage } from 'src/types/response.type';
 
 @Controller('auth')
 @UsePipes(TransformPhoneNumberPipe)
@@ -33,5 +34,11 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<UserEntity> {
     return await this.authService.signIn(user, res);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Post('signout')
+  signOut(@Res({ passthrough: true }) res: Response): IConfirmationMessage {
+    return this.authService.signOut(res);
   }
 }
