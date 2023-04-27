@@ -12,6 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { IConfirmationMessage } from 'src/types/response.type';
 
 /**
  * Service to handle user authentication, sign up and sign in.
@@ -84,6 +85,17 @@ export class AuthService {
       { httpOnly: true },
     );
     return userEntity;
+  }
+
+  /**
+   * Sign out a user, clear cookie and close socket connection.
+   * @param {Response} res response object
+   * @returns {IConfirmationMessage} confirmation message
+   */
+  signOut(res: Response): IConfirmationMessage {
+    res.clearCookie('access_token');
+    // TODO: close the user socket connection
+    return { message: 'Logged out successfully' };
   }
 
   /**
