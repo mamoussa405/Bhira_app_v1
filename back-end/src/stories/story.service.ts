@@ -15,6 +15,7 @@ import { UserEntity } from 'src/users/auth/entities/user.entity';
 import { StoryViewEntity } from 'src/home/entities/story-view.entity';
 import { IStory } from 'src/types/home.type';
 import { AppGateway } from 'src/app.gateway';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Service for story related operations.
@@ -204,7 +205,8 @@ export class StoryService {
    */
   private async uploadImage(image: Express.Multer.File): Promise<string> {
     const result = await this.cloundinaryService.uploadFile(image, {
-      public_id: image.originalname.replace(/\.jpg|\.png|\.jpeg/g, ''),
+      public_id:
+        image.originalname.replace(/\.jpg|\.png|\.jpeg/g, '') + '-' + uuidv4(),
       resource_type: 'image',
     });
     return result.url;
@@ -217,7 +219,8 @@ export class StoryService {
    */
   private async uploadVideo(video: Express.Multer.File): Promise<string> {
     const result = await this.cloundinaryService.uploadFile(video, {
-      public_id: video.originalname.replace(/\.mp4|\.mov/g, ''),
+      public_id:
+        video.originalname.replace(/\.mp4|\.mov/g, '') + '-' + uuidv4(),
       resource_type: 'video',
     });
     return result.url;
