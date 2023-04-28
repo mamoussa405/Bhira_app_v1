@@ -24,13 +24,11 @@ export class StoryEntity1681481655041 implements MigrationInterface {
           },
           {
             name: 'videoURL',
-            type: 'varchar',
-            length: 'text',
+            type: 'text',
           },
           {
             name: 'imageURL',
-            type: 'varchar',
-            length: 'text',
+            type: 'text',
           },
         ],
       }),

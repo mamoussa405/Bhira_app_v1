@@ -22,7 +22,6 @@ export class ProductEntity1681481631543 implements MigrationInterface {
             name: 'category',
             type: 'varchar',
             length: '15',
-            // TODO: test if this is working
           },
           {
             name: 'price',
@@ -54,8 +53,7 @@ export class ProductEntity1681481631543 implements MigrationInterface {
           },
           {
             name: 'imagesURL',
-            type: 'varchar',
-            length: 'text',
+            type: 'text',
             isArray: true,
           },
         ],

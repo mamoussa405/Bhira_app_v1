@@ -46,8 +46,7 @@ export class UserEntity1681279367699 implements MigrationInterface {
           },
           {
             name: 'avatarURL',
-            type: 'varchar',
-            length: '500',
+            type: 'text',
           },
         ],
       }),
