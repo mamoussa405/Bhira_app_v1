@@ -20,4 +20,3 @@ export interface IFoundProducts {
   vegetables: INormalProduct[];
   herbes: INormalProduct[];
 }
-// TODO: Limit the number of images uploaded to 1 if the product is a top market product.
