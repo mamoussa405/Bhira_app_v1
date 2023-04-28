@@ -2,8 +2,10 @@ import {
   IsBoolean,
   IsNotEmpty,
   IsNumber,
+  IsPositive,
   IsString,
   Matches,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateProductDto {
@@ -12,6 +14,7 @@ export class CreateProductDto {
   // This regular expression matches only Arabic, English letters
   // and spaces.
   @Matches(/^[a-zA-Z\s\u0600-\u06FF]+$/)
+  @MaxLength(255)
   name: string;
 
   @IsString()
@@ -21,7 +24,7 @@ export class CreateProductDto {
 
   @IsNumber()
   @IsNotEmpty()
-  // TODO: Add a custom validation to check if the price is a positive number
+  @IsPositive()
   price: number;
 
   @IsString()
@@ -34,6 +37,6 @@ export class CreateProductDto {
 
   @IsNumber()
   @IsNotEmpty()
-  //TODO: Add a custom validation to check if the stock is a positive number
+  @IsPositive()
   stock: number;
 }
