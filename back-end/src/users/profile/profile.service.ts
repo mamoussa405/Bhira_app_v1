@@ -23,6 +23,7 @@ import { UpdatePasswordDto } from './dto/profile.dto';
  * @function updateAvatar - Update the user avatar.
  * @function updatePhoneNumber - Update the user phone number.
  * @function updateAddress - Update the user address.
+ * @function updatePassword - Update the user password, the old password must be provided.
  */
 @Injectable()
 export class ProfileService {
@@ -37,6 +38,8 @@ export class ProfileService {
    * Get the user profile with the orders of the user.
    * @param {number} id - The user id.
    * @returns {Promise<IProfile>} - The user profile.
+   * @throws {NotFoundException} - If user not found.
+   * @throws {InternalServerErrorException} - If error getting profile.
    */
   public async getProfile(id: number): Promise<IProfile> {
     try {
@@ -64,6 +67,8 @@ export class ProfileService {
    * Get the admin profile with the orders of all users.
    * @param {number} id - The admin id.
    * @returns {Promise<IProfile>} - The admin profile.
+   * @throws {NotFoundException} - If admin not found.
+   * @throws {InternalServerErrorException} - If error getting profile.
    */
   public async getAdminProfile(id: number): Promise<IProfile> {
     try {
@@ -71,8 +76,6 @@ export class ProfileService {
         where: { id },
       });
       if (!user) throw new NotFoundException('User not found');
-      if (!user.isAdmin)
-        throw new UnauthorizedException('User is not an admin');
       const orders = await this.orderService.getAdminProfileOrders();
 
       return {
@@ -85,8 +88,6 @@ export class ProfileService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      if (error.status === HttpStatus.UNAUTHORIZED)
-        throw new UnauthorizedException(error.message);
       throw new InternalServerErrorException('Error getting profile');
     }
   }
@@ -96,6 +97,7 @@ export class ProfileService {
    * @param {number} id - The user id.
    * @param {string} name - The new name.
    * @returns {Promise<IConfirmationMessage>} - The confirmation message.
+   * @throws {InternalServerErrorException} - If error updating name.
    */
   public async updateName(
     id: number,
@@ -103,7 +105,6 @@ export class ProfileService {
   ): Promise<IConfirmationMessage> {
     try {
       await this.userRepository.update(id, { name });
-
       return { message: 'Name updated successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error updating name');
@@ -115,6 +116,7 @@ export class ProfileService {
    * @param {number} id - The user id.
    * @param {Express.Multer.File} avatar - The new avatar.
    * @returns {Promise<IConfirmationMessage>} - The confirmation message.
+   * @throws {InternalServerErrorException} - If error updating avatar.
    */
   public async updateAvatar(
     id: number,
@@ -122,8 +124,8 @@ export class ProfileService {
   ): Promise<any> {
     try {
       const avatarURL = await this.uploadAvatar(avatar);
-      await this.userRepository.update(id, { avatarURL });
 
+      await this.userRepository.update(id, { avatarURL });
       return { message: 'Image updated successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error updating image');
@@ -135,6 +137,7 @@ export class ProfileService {
    * @param {number} id - The user id.
    * @param {string} phoneNumber - The new phone number.
    * @returns {Promise<IConfirmationMessage>} - The confirmation message.
+   * @throws {InternalServerErrorException} - If error updating phone number.
    */
   public async updatePhoneNumber(
     id: number,
@@ -142,7 +145,6 @@ export class ProfileService {
   ): Promise<any> {
     try {
       await this.userRepository.update(id, { phoneNumber });
-
       return { message: 'Phone number updated successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error updating phone number');
@@ -154,11 +156,11 @@ export class ProfileService {
    * @param {number} id - The user id.
    * @param {string} address - The new address.
    * @returns {Promise<IConfirmationMessage>} - The confirmation message.
+   * @throws {InternalServerErrorException} - If error updating address.
    */
   public async updateAddress(id: number, address: string): Promise<any> {
     try {
       await this.userRepository.update(id, { address });
-
       return { message: 'Address updated successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error updating address');
@@ -170,8 +172,11 @@ export class ProfileService {
    * @param {number} id - The user id.
    * @param {UpdatePasswordDto} body - The new password.
    * @returns {Promise<IConfirmationMessage>} - The confirmation message.
+   * @throws {NotFoundException} - If user not found.
+   * @throws {UnauthorizedException} - If old password is wrong.
+   * @throws {InternalServerErrorException} - If error updating password.
    */
-  async updatePassword(
+  public async updatePassword(
     id: number,
     body: UpdatePasswordDto,
   ): Promise<IConfirmationMessage> {
@@ -182,8 +187,8 @@ export class ProfileService {
       if (!isMatch) throw new UnauthorizedException('Wong password');
       const salt = await bcrypt.genSalt();
       const password = await bcrypt.hash(body.newPassword, salt);
-      await this.userRepository.update(id, { password });
 
+      await this.userRepository.update(id, { password });
       return { message: 'Password updated successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
