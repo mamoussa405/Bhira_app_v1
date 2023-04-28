@@ -26,6 +26,7 @@ import { AppGateway } from 'src/app.gateway';
  * @function getAddedToCartOrders - Gets all the orders that are not confirmed by the user.
  * @function getAdminProfileOrders - Gets all the orders that are confirmed by the user.
  * @function getUserProfileOrders - Gets all the orders that are confirmed by the user.
+ * @function confirmOrdersBuy - Confirms the buy of the orders by the user.
  * @function confirmOrder - Confirms an order by the admin.
  * @function cancelOrder - Cancels an order by the admin.
  * @function deleteOrder - Deletes an order.
@@ -50,6 +51,8 @@ export class OrderService {
    * @param {number} productId - The id of the product that the user wants to buy.
    * @param {number} userId - The id of the user who created the order.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms that the order was created.
+   * @throws {NotFoundException} - If the product is not found or the user is not found.
+   * @throws {InternalServerErrorException} - If there is an error while saving the order.
    */
   async createOrder(
     order: CreateOrderDto,
@@ -68,16 +71,12 @@ export class OrderService {
        * the current top market product, if it is not we throw a NotFoundException.
        * Then we check if the stock is enough to make the order, if it is not
        * we throw a NotFoundException.
-       * If the stock is enough we update the stock of the product and we emit
-       * an event to the client to update the stock of the product.
        */
+      const stock: number = +product.stock - +order.quantity;
       if (product.isTopMarketProduct) {
         if (!product.isCurrentTopMarketProduct)
           throw new NotFoundException('Product not found');
-        const stock = +product.stock - +order.quantity;
         if (stock < 0) throw new NotFoundException('Not enough stock');
-        await this.productService.updateProductStock(productId, stock);
-        this.appGateway.server.emit('updateTopMarketProduct', stock);
       }
       const user = await this.userRepository.findOne({ where: { id: userId } });
       /**
@@ -89,22 +88,48 @@ export class OrderService {
 
       /* Then we fill the order with the neccessary information.*/
       this.fillOrder(newOrder, order, user, product);
+      // TODO: We should use transactions here.
       await this.orderRepository.save(newOrder);
+      /**
+       * If the product is a top market produt we emit an event to the
+       * clients to update the stock of the product,
+       * if the stock is 0 we emit an event to the clients to set a new
+       * top market product.
+       */
+      if (product.isTopMarketProduct) {
+        await this.productService.updateProductStock(productId, stock);
+        if (!stock) {
+          const newTopMarketProduct =
+            await this.productService.setNewTopMarketProduct(productId);
+          this.appGateway.server.emit('new-top-market-product', {
+            id: newTopMarketProduct.id,
+            name: newTopMarketProduct.name,
+            description: newTopMarketProduct.description,
+            price: newTopMarketProduct.price,
+            stock: newTopMarketProduct.stock,
+            imageURL: newTopMarketProduct.imagesURL[0],
+          });
+        } else
+          this.appGateway.server.emit(
+            'updated-top-market-product-stock',
+            stock,
+          );
+      }
       return { message: 'Order created successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      if (error.status === HttpStatus.UNAUTHORIZED)
-        throw new UnauthorizedException(error.message);
       throw new InternalServerErrorException('Error creating order');
     }
   }
 
   /**
-   *  Gets all the orders that are not confirmed by the user, we use this
-   *  method to get the orders that are in the cart of the user.
+   * Gets all the orders that are not confirmed by the user, we use this
+   * method to get the orders that are in the cart of the user.
    * @param {number} userId - The id of the user who owns the orders.
    * @returns {Promise<ICartOrder[]>} - The orders that are in the cart of the user.
+   * @throws {InternalServerErrorException} - If there is an error while getting the orders.
+   * @throws {NotFoundException} - If there are no orders in the cart of the user.
    */
   async getAddedToCartOrders(userId: number): Promise<ICartOrder[]> {
     try {
@@ -146,6 +171,7 @@ export class OrderService {
    * method to get the orders that should be displayed in the admin's
    * profile page.
    * @returns {Promise<IAdminProfileOrder[]>} - The orders that are confirmed by the user.
+   * @throws {InternalServerErrorException} - If there is an error while getting the orders.
    */
   async getAdminProfileOrders(): Promise<IAdminProfileOrder[]> {
     try {
@@ -189,6 +215,7 @@ export class OrderService {
    * profile page.
    * @param {number} userId - The id of the user that owns the profile page.
    * @returns {Promise<IUserProfileOrder[]>} - The orders that are confirmed by the user.
+   * @throws {InternalServerErrorException} - If there is an error while getting the orders.
    */
   async getUserProfileOrders(userId: number): Promise<IUserProfileOrder[]> {
     try {
@@ -229,6 +256,9 @@ export class OrderService {
    * @param {number} orderId - The id of the order to be deleted.
    * @param {number} userId - The id of the user who owns the order.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms the deletion.
+   * @throws {InternalServerErrorException} - If there is an error while deleting the order.
+   * @throws {NotFoundException} - If the order is not found.
+   * @throws {UnauthorizedException} - If the user is not the owner of the order.
    */
   async deleteOrder(
     orderId: number,
@@ -243,6 +273,8 @@ export class OrderService {
       if (!order) throw new NotFoundException('Order not found');
       if (order.user.id !== userId)
         throw new UnauthorizedException('User is not the owner of the order');
+      // TODO: We should use transactions here.
+      await this.orderRepository.delete(orderId);
       /**
        * If the order is for a top market product, we need to update the
        * stock of the product, and if the product is the current top
@@ -253,9 +285,11 @@ export class OrderService {
         const stock = +order.product.stock + +order.quantity;
         await this.productService.updateProductStock(order.product.id, stock);
         if (order.product.isCurrentTopMarketProduct)
-          this.appGateway.server.emit('updateTopMarketProduct', stock);
+          this.appGateway.server.emit(
+            'updated-top-market-product-stock',
+            stock,
+          );
       }
-      await this.orderRepository.delete(orderId);
       return { message: 'Order deleted successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -273,6 +307,9 @@ export class OrderService {
    * @param {ConfirmOrdersBuyDto} body - The body of the request.
    * @param {number} userId - The id of the user who owns the orders.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms the confirmation.
+   * @throws {InternalServerErrorException} - If there is an error while confirming the orders.
+   * @throws {NotFoundException} - If one of the orders is not found.
+   * @throws {UnauthorizedException} - If one of the orders is not owned by the user.
    */
   async confirmOrdersBuy(
     body: ConfirmOrdersBuyDto,
@@ -322,6 +359,8 @@ export class OrderService {
    * Confirms an order, we use this method to let the admin confirm an order.
    * @param {number} orderId - The id of the order to be confirmed.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms the confirmation.
+   * @throws {InternalServerErrorException} - If there is an error while confirming the order.
+   * @throws {NotFoundException} - If the order is not found.
    */
   async confirmOrder(orderId: number): Promise<IConfirmationMessage> {
     try {
@@ -331,12 +370,12 @@ export class OrderService {
 
       if (!order) throw new NotFoundException('Order not found');
       await this.orderRepository.update(orderId, { buyConfirmedByAdmin: true });
+      // TODO: Emit the event to the user who owns the order, and to the all admins.
+      this.appGateway.server.emit('confirmed-order', orderId);
       return { message: 'Order confirmed successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      if (error.status === HttpStatus.UNAUTHORIZED)
-        throw new UnauthorizedException(error.message);
       throw new InternalServerErrorException('Error confirming order');
     }
   }
@@ -345,6 +384,8 @@ export class OrderService {
    * Cancels an order, we use this method to let the admin cancel an order.
    * @param {number} orderId - The id of the order to be canceled.
    * @returns {Promise<IConfirmationMessage>} - A message that confirms the cancellation.
+   * @throws {InternalServerErrorException} - If there is an error while canceling the order.
+   * @throws {NotFoundException} - If the order is not found.
    */
   async cancelOrder(orderId: number): Promise<IConfirmationMessage> {
     try {
@@ -354,6 +395,8 @@ export class OrderService {
       });
 
       if (!order) throw new NotFoundException('Order not found');
+      // TODO: We should use transactions here.
+      await this.orderRepository.delete(orderId);
       /**
        * If the order is for a top market product, we update the stock of the product,
        * and if the product is the current top market product, we emit an event to
@@ -364,15 +407,17 @@ export class OrderService {
         const stock = +order.product.stock + +order.quantity;
         await this.productService.updateProductStock(order.product.id, stock);
         if (order.product.isCurrentTopMarketProduct)
-          this.appGateway.server.emit('updateTopMarketProduct', stock);
+          this.appGateway.server.emit(
+            'updated-top-market-product-stock',
+            stock,
+          );
       }
-      await this.orderRepository.delete(orderId);
+      // TODO: Emit the event to the user who owns the order, and to the all admins.
+      this.appGateway.server.emit('canceled-order', orderId);
       return { message: 'Order canceled successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      if (error.status === HttpStatus.UNAUTHORIZED)
-        throw new UnauthorizedException(error.message);
       throw new InternalServerErrorException('Error canceling order');
     }
   }
