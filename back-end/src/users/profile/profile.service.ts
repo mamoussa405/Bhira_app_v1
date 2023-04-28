@@ -14,6 +14,7 @@ import { OrderService } from 'src/orders/order.service';
 import { IProfile } from '../types/profile.type';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { UpdatePasswordDto } from './dto/profile.dto';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * The profile service it will be responsible for the user profile operations.
@@ -206,7 +207,8 @@ export class ProfileService {
    */
   private async uploadAvatar(avatar: Express.Multer.File): Promise<string> {
     const result = await this.cloudinaryService.uploadFile(avatar, {
-      public_id: avatar.originalname.replace(/\.jpeg|\.png|\.jpg/g, ''),
+      public_id:
+        avatar.originalname.replace(/\.jpeg|\.png|\.jpg/g, '') + '-' + uuidv4(),
       resource_type: 'image',
     });
 
