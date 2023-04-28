@@ -5,12 +5,16 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { ProductEntity } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/users/admin/dto/create-product.dto';
 import { CloudinaryService } from 'nestjs-cloudinary';
-import { INormalProduct, ITopMarketProduct } from './types/product.type';
+import {
+  INormalProduct,
+  ITopMarketProduct,
+  IFoundProducts,
+} from './types/product.type';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { AppGateway } from 'src/app.gateway';
 
@@ -23,6 +27,7 @@ import { AppGateway } from 'src/app.gateway';
  * @function updateProduct - Update a product by id.
  * @function getTopMarketProduct - Get the top market product.
  * @function setNewTopMarketProduct - Set a new top market product.
+ * @function searchProducts - Search for products by name.
  */
 @Injectable()
 export class ProductService {
@@ -99,6 +104,46 @@ export class ProductService {
       if (error.status === HttpStatus.BAD_REQUEST)
         throw new BadRequestException(error.message);
       throw new InternalServerErrorException('Error creating product');
+    }
+  }
+  /**
+   * Search for products by name.
+   * @param {string} like - The name to search for.
+   * @returns {Promise<IFoundProducts>} The found products.
+   * @throws {NotFoundException} No Products found.
+   * @throws {InternalServerErrorException} Error searching for products.
+   */
+  public async searchProducts(like: string): Promise<IFoundProducts> {
+    try {
+      const products = await this.productRepository.find({
+        where: { name: ILike(`%${like}%`), isTopMarketProduct: false },
+      });
+      if (!products || !products.length)
+        throw new NotFoundException('No Products found');
+      const res: IFoundProducts = {
+        fruits: [],
+        vegetables: [],
+        herbes: [],
+      };
+
+      for (const product of products) {
+        const newProduct = {
+          id: product.id,
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          imagesURL: product.imagesURL[0],
+        };
+        if (product.category === 'Fruits') res.fruits.push(newProduct);
+        else if (product.category === 'Vegetables')
+          res.vegetables.push(newProduct);
+        else res.herbes.push(newProduct);
+      }
+      return res;
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException('Error getting products');
     }
   }
 
