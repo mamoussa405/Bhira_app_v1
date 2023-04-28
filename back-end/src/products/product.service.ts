@@ -10,11 +10,7 @@ import { ProductEntity } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/users/admin/dto/create-product.dto';
 import { CloudinaryService } from 'nestjs-cloudinary';
-import {
-  INormalProduct,
-  ITopMarketProduct,
-  IFoundProducts,
-} from './types/product.type';
+import { ITopMarketProduct, IFoundProducts } from './types/product.type';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { AppGateway } from 'src/app.gateway';
 
@@ -120,26 +116,7 @@ export class ProductService {
       });
       if (!products || !products.length)
         throw new NotFoundException('No Products found');
-      const res: IFoundProducts = {
-        fruits: [],
-        vegetables: [],
-        herbes: [],
-      };
-
-      for (const product of products) {
-        const newProduct = {
-          id: product.id,
-          name: product.name,
-          description: product.description,
-          price: product.price,
-          imagesURL: product.imagesURL[0],
-        };
-        if (product.category === 'Fruits') res.fruits.push(newProduct);
-        else if (product.category === 'Vegetables')
-          res.vegetables.push(newProduct);
-        else res.herbes.push(newProduct);
-      }
-      return res;
+      return this.foundProducts(products);
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -153,7 +130,7 @@ export class ProductService {
    * @throws {NotFoundException} No products found.
    * @throws {InternalServerErrorException} Error getting products.
    */
-  public async getProducts(): Promise<INormalProduct[]> {
+  public async getProducts(): Promise<IFoundProducts> {
     try {
       const products = await this.productRepository.find({
         where: { isTopMarketProduct: false },
@@ -161,13 +138,7 @@ export class ProductService {
 
       if (!products || !products.length)
         throw new NotFoundException('No Products found');
-      return products.map((product) => ({
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        imagesURL: product.imagesURL[0],
-      }));
+      return this.foundProducts(products);
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -324,6 +295,7 @@ export class ProductService {
   private async uploadImages(images: Express.Multer.File[]): Promise<string[]> {
     const imagesURL: string[] = [];
 
+    // TODO: add a unique id to the public_id.
     for (const image of images) {
       const result = await this.cloudinaryService.uploadFile(image, {
         /**
@@ -336,5 +308,28 @@ export class ProductService {
     }
 
     return imagesURL;
+  }
+
+  private foundProducts(products: ProductEntity[]): IFoundProducts {
+    const res: IFoundProducts = {
+      fruits: [],
+      vegetables: [],
+      herbes: [],
+    };
+
+    for (const product of products) {
+      const newProduct = {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        imagesURL: product.imagesURL[0],
+      };
+      if (product.category === 'Fruits') res.fruits.push(newProduct);
+      else if (product.category === 'Vegetables')
+        res.vegetables.push(newProduct);
+      else res.herbes.push(newProduct);
+    }
+    return res;
   }
 }
