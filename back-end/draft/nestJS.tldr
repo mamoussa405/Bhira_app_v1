@@ -1,3290 +1,2483 @@
 {
-  "document": {
-    "id": "doc",
-    "name": "New Document",
-    "version": 15.5,
-    "pages": {
-      "page": {
-        "id": "page",
-        "name": "Page 1",
-        "childIndex": 1,
-        "shapes": {
-          "da8d0ab0-a49f-42cd-1f72-4caa024f8690": {
-            "id": "da8d0ab0-a49f-42cd-1f72-4caa024f8690",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 2,
-            "point": [
-              586.56,
-              -414.19
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": "Anything that can be injected as a dependency",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "7e2bcea2-785c-44ef-2ee2-d4c203158543": {
-            "id": "7e2bcea2-785c-44ef-2ee2-d4c203158543",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 3,
-            "point": [
-              375.02,
-              -622.19
-            ],
-            "size": [
-              157.8,
-              63.4
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "Provider",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "65b80b4b-ec5f-4a66-39ef-cfdb38aacb72": {
-            "id": "65b80b4b-ec5f-4a66-39ef-cfdb38aacb72",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 4,
-            "point": [
-              453.96,
-              -558.79
-            ],
-            "rotation": 0,
-            "bend": 0.00014885738306975578,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "b36f7d8e-5cd3-4bb6-2616-d326f0152f67"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0.1,
-                  80.26
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  0.05,
-                  40.13
-                ]
-              }
-            },
-            "decorations": {},
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "cb810faf-e9ff-4458-0727-1ec3fc9a9bf3": {
-            "id": "cb810faf-e9ff-4458-0727-1ec3fc9a9bf3",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 5,
-            "point": [
-              234.65,
-              -478.7
-            ],
-            "rotation": 0,
-            "bend": -0.00002209455850688901,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  0.17
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  452.77,
-                  0
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  226.39,
-                  0.09
-                ]
-              }
-            },
-            "decorations": {},
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "a66cb63a-c3ac-4339-3d6b-7a4618c8a4ad": {
-            "id": "a66cb63a-c3ac-4339-3d6b-7a4618c8a4ad",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 6,
-            "point": [
-              687.17,
-              -477.9
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0.25,
-                  0
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  47.71
-                ],
-                "canBind": true,
-                "bindingId": "d4c5fc8f-11ae-48e9-3175-11fdf1cf0c24"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  0.13,
-                  23.86
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "dee11f68-9088-4911-201b-ae76fb65add6": {
-            "id": "dee11f68-9088-4911-201b-ae76fb65add6",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 3,
-            "point": [
-              358.62,
-              -414.19
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": " Providers are plain \n TS classes that are declared as providers in modules",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "7c116fbe-39fb-47dc-3c67-3a301a2bef81": {
-            "id": "7c116fbe-39fb-47dc-3c67-3a301a2bef81",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 7,
-            "point": [
-              455.03,
-              -477.5
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  0
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  1.07,
-                  49.31
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  0.54,
-                  24.66
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "a09c0238-d731-49ff-1e44-41e39701ffed": {
-            "id": "a09c0238-d731-49ff-1e44-41e39701ffed",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 4,
-            "point": [
-              122.71,
-              -414.19
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": " CLI to create a service:\n $ nest g service cats",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "4fbca49d-202c-445a-256a-e48c0da7df62": {
-            "id": "4fbca49d-202c-445a-256a-e48c0da7df62",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 8,
-            "point": [
-              234.66,
-              -475.56
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  0
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  1.07,
-                  49.31
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  0.54,
-                  24.66
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "fbe2766d-706d-4b7c-2861-c7c1d8c31a10": {
-            "id": "fbe2766d-706d-4b7c-2861-c7c1d8c31a10",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 9,
-            "point": [
-              -1084.74,
-              448.18
-            ],
-            "size": [
-              138.85,
-              84.49
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "Client",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "0f08cbed-75be-4718-3112-84c04702fe0a": {
-            "id": "0f08cbed-75be-4718-3112-84c04702fe0a",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 10,
-            "point": [
-              -945.89,
-              485.01
-            ],
-            "rotation": 0,
-            "bend": -0.000035027206331788415,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  4.02
-                ],
-                "canBind": true,
-                "bindingId": "f7dc8310-8d52-4ba0-3dac-462125fd80d8"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  200.54,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "82c4fcb4-943e-4b8a-3451-c0a780126381"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  100.27,
-                  2.01
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "64abb8dd-3036-4f87-1c0a-026bb4258b59": {
-            "id": "64abb8dd-3036-4f87-1c0a-026bb4258b59",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 11,
-            "point": [
-              -461.93,
-              440.63
-            ],
-            "size": [
-              410.64,
-              377.29
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "4b8d086f-d85b-4acd-0ae8-d3cfa961d0d0": {
-            "id": "4b8d086f-d85b-4acd-0ae8-d3cfa961d0d0",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 12,
-            "point": [
-              -385.02,
-              387.65
-            ],
-            "rotation": 0,
-            "text": "@Controller(' / ')",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "45df1eec-eea6-4200-2434-2960d1a5e0f0": {
-            "id": "45df1eec-eea6-4200-2434-2960d1a5e0f0",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 13,
-            "point": [
-              -897.99,
-              431.68
-            ],
-            "rotation": 0,
-            "text": "HTTP Request",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "447104ee-0c46-4c72-275a-57cd2dc0d7e5": {
-            "id": "447104ee-0c46-4c72-275a-57cd2dc0d7e5",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 14,
-            "point": [
-              -262.27,
-              649.19
-            ],
-            "size": [
-              183.51,
-              103.9
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "fa41fc31-6a23-48ff-29f1-6a09a1320e74": {
-            "id": "fa41fc31-6a23-48ff-29f1-6a09a1320e74",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 15,
-            "point": [
-              -259.37,
-              477.57
-            ],
-            "size": [
-              183.51,
-              103.9
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "c37ea951-b4e7-4360-386d-9cb3a0454f9e": {
-            "id": "c37ea951-b4e7-4360-386d-9cb3a0454f9e",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 16,
-            "point": [
-              -265.31,
-              439.14
-            ],
-            "rotation": 0,
-            "text": "@Get()",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "8f58b97f-a81a-4248-232c-a2e1fa486c52": {
-            "id": "8f58b97f-a81a-4248-232c-a2e1fa486c52",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 17,
-            "point": [
-              -265.72,
-              606.12
-            ],
-            "rotation": 0,
-            "text": "@Post()",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "dbd9e1cc-644d-4895-156a-5a92e8facf3b": {
-            "id": "dbd9e1cc-644d-4895-156a-5a92e8facf3b",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 18,
-            "point": [
-              -75.86,
-              342.43
-            ],
-            "rotation": 0,
-            "bend": 0.8308739320095534,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  147.83
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  304.79,
-                  107.58
-                ],
-                "canBind": true,
-                "bindingId": "738440dd-229f-48c5-13cf-6fac93db5e05"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  135.67,
-                  1.08
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "7f8a1706-15b4-4d52-1c9f-6b8213adbda1": {
-            "id": "7f8a1706-15b4-4d52-1c9f-6b8213adbda1",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 19,
-            "point": [
-              -34.79,
-              412.91
-            ],
-            "rotation": 0,
-            "text": "Invoke the route handler",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "c7ddfea5-1205-4a14-00af-fd7e0635ff4d": {
-            "id": "c7ddfea5-1205-4a14-00af-fd7e0635ff4d",
-            "type": "ellipse",
-            "name": "Ellipse",
-            "parentId": "page",
-            "childIndex": 20,
-            "point": [
-              236.38,
-              427.29
-            ],
-            "radius": [
-              13.62044221692156,
-              31.58030229484831
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "71c435a6-4eb8-4495-3fff-d096f226d391": {
-            "id": "71c435a6-4eb8-4495-3fff-d096f226d391",
-            "type": "ellipse",
-            "name": "Ellipse",
-            "parentId": "page",
-            "childIndex": 21,
-            "point": [
-              467.49,
-              426.32
-            ],
-            "radius": [
-              13.562048711832517,
-              30.12409742366509
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "72404e1b-7c20-4df3-1f44-d0d076ce6b7e": {
-            "id": "72404e1b-7c20-4df3-1f44-d0d076ce6b7e",
-            "type": "draw",
-            "name": "Draw",
-            "parentId": "page",
-            "childIndex": 22,
-            "point": [
-              250.94,
-              428.26
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "points": [
-              [
-                0,
-                0,
-                0.5
-              ],
-              [
-                0,
-                0,
-                0.5
-              ],
-              [
-                0,
-                0,
-                0.5
-              ],
-              [
-                0,
-                0,
-                0.5
-              ],
-              [
-                0,
-                0,
-                0.5
-              ],
-              [
-                17.7,
-                0,
-                0.5
-              ],
-              [
-                35.4,
-                0,
-                0.5
-              ],
-              [
-                53.1,
-                0,
-                0.5
-              ],
-              [
-                70.8,
-                0,
-                0.5
-              ],
-              [
-                88.49,
-                0,
-                0.5
-              ],
-              [
-                106.19,
-                0,
-                0.5
-              ],
-              [
-                123.89,
-                0,
-                0.5
-              ],
-              [
-                141.59,
-                0,
-                0.5
-              ],
-              [
-                159.29,
-                0,
-                0.5
-              ],
-              [
-                176.99,
-                0,
-                0.5
-              ],
-              [
-                194.69,
-                0,
-                0.5
-              ],
-              [
-                212.39,
-                0,
-                0.5
-              ],
-              [
-                230.08,
-                0,
-                0.5
-              ],
-              [
-                230.08,
-                0,
-                0.5
-              ]
-            ],
-            "isComplete": true
-          },
-          "899f27af-57b5-4459-30c4-fd9bb1dd67f7": {
-            "id": "899f27af-57b5-4459-30c4-fd9bb1dd67f7",
-            "type": "draw",
-            "name": "Draw",
-            "parentId": "page",
-            "childIndex": 23,
-            "point": [
-              249,
-              482.63
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "points": [
-              [
-                0,
-                4.85,
-                0.5
-              ],
-              [
-                0,
-                4.85,
-                0.5
-              ],
-              [
-                0,
-                4.85,
-                0.5
-              ],
-              [
-                0,
-                4.85,
-                0.5
-              ],
-              [
-                0,
-                4.85,
-                0.5
-              ],
-              [
-                17.77,
-                4.48,
-                0.5
-              ],
-              [
-                35.55,
-                4.1,
-                0.5
-              ],
-              [
-                53.32,
-                3.73,
-                0.5
-              ],
-              [
-                71.09,
-                3.36,
-                0.5
-              ],
-              [
-                88.87,
-                2.99,
-                0.5
-              ],
-              [
-                106.64,
-                2.61,
-                0.5
-              ],
-              [
-                124.41,
-                2.24,
-                0.5
-              ],
-              [
-                142.19,
-                1.87,
-                0.5
-              ],
-              [
-                159.96,
-                1.49,
-                0.5
-              ],
-              [
-                177.73,
-                1.12,
-                0.5
-              ],
-              [
-                195.51,
-                0.75,
-                0.5
-              ],
-              [
-                213.28,
-                0.37,
-                0.5
-              ],
-              [
-                231.05,
-                0,
-                0.5
-              ],
-              [
-                231.05,
-                0,
-                0.5
-              ]
-            ],
-            "isComplete": true
-          },
-          "1bba47cb-2155-47ad-04e2-d191371cab18": {
-            "id": "1bba47cb-2155-47ad-04e2-d191371cab18",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 24,
-            "point": [
-              342.94,
-              489.84
-            ],
-            "rotation": 0,
-            "text": "Pipe",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "a19cf9d4-5582-4bab-0009-764891ebfd71": {
-            "id": "a19cf9d4-5582-4bab-0009-764891ebfd71",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 25,
-            "point": [
-              621.09,
-              438.53
-            ],
-            "size": [
-              200,
-              416
-            ],
-            "text": " Pipes are classes with @Injectable decorator, which are responsable for:\n -Transformation:\n transform data from a form to a desire form (e.i string to int)\n -Validation:\nevaluate input data and if valid, simply pass it through unchanged; otherwise, throw an exception",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "bdfd0ba6-eeec-4592-271e-a5cb34fe4ed2": {
-            "id": "bdfd0ba6-eeec-4592-271e-a5cb34fe4ed2",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 26,
-            "point": [
-              486.17,
-              323.67
-            ],
-            "rotation": 0,
-            "bend": 0.8345177664974619,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  98.32
-                ],
-                "canBind": true,
-                "bindingId": "41360b8b-4c11-4ef2-2e90-73a14c9f8855"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  236.4,
-                  98.32
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  118.2,
-                  -0.32
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "c8f7cd1d-acad-40d6-1c6a-fcf5a0a87900": {
-            "id": "c8f7cd1d-acad-40d6-1c6a-fcf5a0a87900",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 27,
-            "point": [
-              893.29,
-              436.55
-            ],
-            "size": [
-              200,
-              248
-            ],
-            "text": "Pipes takes the arguments of the route handler before it receives them,  and operates on them.  Any transformation or validation operation takes place at that time.",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "c22aa079-c522-46d7-2def-5c32e9d39d32": {
-            "id": "c22aa079-c522-46d7-2def-5c32e9d39d32",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 28,
-            "point": [
-              481.52,
-              326.24
-            ],
-            "rotation": 0,
-            "bend": 0.49278037214822507,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  91.83
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  395.77,
-                  103.32
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  200.72,
-                  0.06
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "81e3cfdb-bf08-4779-3b51-90246b5c9700": {
-            "id": "81e3cfdb-bf08-4779-3b51-90246b5c9700",
-            "type": "ellipse",
-            "name": "Ellipse",
-            "parentId": "page",
-            "childIndex": 29,
-            "point": [
-              -932.83,
-              512.68
-            ],
-            "radius": [
-              89.03908635072224,
-              81.63392955486705
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "exceptions filter",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "86362501-47e3-4bcf-0641-e59dc1b82a19": {
-            "id": "86362501-47e3-4bcf-0641-e59dc1b82a19",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 31,
-            "point": [
-              -729.35,
-              420.19
-            ],
-            "size": [
-              128.41,
-              126.41
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "Middleware",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "af61232c-a16e-41a7-1b83-3771c329320f": {
-            "id": "af61232c-a16e-41a7-1b83-3771c329320f",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 33,
-            "point": [
-              -780.16,
-              13.2
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": "Middleware is a function which is called before the route handler and it has access to request and the response objects.",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "39c73d45-0525-48de-34c3-da5fdd1335d6": {
-            "id": "39c73d45-0525-48de-34c3-da5fdd1335d6",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 34,
-            "point": [
-              -684.42,
-              213.2
-            ],
-            "rotation": 0,
-            "bend": 0.08238390077223215,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  2.8,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "ac2409ea-e93a-4e42-1804-b5fa6cf201a2"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  190.99
-                ],
-                "canBind": true,
-                "bindingId": "be588faf-9644-416d-32eb-c89f5432d62d"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  1.4,
-                  95.5
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "08b9c768-5694-47d2-2ac1-8b3fd16db1dd": {
-            "id": "08b9c768-5694-47d2-2ac1-8b3fd16db1dd",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 35,
-            "point": [
-              -59.86,
-              486.36
-            ],
-            "rotation": 0,
-            "bend": 0.41565865295647286,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  539.34,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "0cacd606-4a96-4969-3eb4-3c5cecc14ada"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  68.37
-                ],
-                "canBind": true,
-                "bindingId": "9c777e6e-ef2f-40a9-0766-60bd4bffbb51"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  283.88,
-                  146.28
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dashed",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "f3ff48bc-21bb-47ba-23df-da779d0c3415": {
-            "id": "f3ff48bc-21bb-47ba-23df-da779d0c3415",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 36,
-            "point": [
-              -1722.27,
-              -507.1
-            ],
-            "size": [
-              365.99,
-              88.03
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "cyan",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1
-            },
-            "label": "Some SOLID principales  to respect",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "34b3f08d-402c-4fe0-2964-e9c4adbbf317": {
-            "id": "34b3f08d-402c-4fe0-2964-e9c4adbbf317",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 37,
-            "point": [
-              -1102.67,
-              -484.99
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": " Single responsibility rule (SRP):\n each class or method should be responsible for one single thing, no multi tasking.",
-            "rotation": 0,
-            "style": {
-              "color": "blue",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "7c6d2b1b-aae5-46f6-06aa-6efae33eb156": {
-            "id": "7c6d2b1b-aae5-46f6-06aa-6efae33eb156",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 38,
-            "point": [
-              -1356.28,
-              -638.85
-            ],
-            "rotation": 0,
-            "bend": 0.99,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  161.28
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  300.81,
-                  137.46
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  138.61,
-                  0.47
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "cyan",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "9922310c-581b-46a6-2b38-938d28ca99c7": {
-            "id": "9922310c-581b-46a6-2b38-938d28ca99c7",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 28,
-            "point": [
-              1165.29,
-              436.55
-            ],
-            "size": [
-              200,
-              272
-            ],
-            "text": " Usually we use Pipes to not break the SRP rule, for example in case of input validation, we could do it inside the route handler method. But to maintain the SRP rule we do a pipe responsable for that.",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "c3d94135-c4ff-4317-1ede-ee7da7c08593": {
-            "id": "c3d94135-c4ff-4317-1ede-ee7da7c08593",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 28,
-            "point": [
-              478.09,
-              289.88
-            ],
-            "rotation": 0,
-            "bend": 0.32805429194218544,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  131.87
-                ],
-                "canBind": true,
-                "bindingId": "85aeabf3-5703-4618-1ffd-9ab9a5fb3dcb"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  828.8,
-                  139.68
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  415.68,
-                  -0.17
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "d3955912-4d52-4b08-3e3c-06a286c630c6": {
-            "id": "d3955912-4d52-4b08-3e3c-06a286c630c6",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 39,
-            "point": [
-              1446.09,
-              491.35
-            ],
-            "size": [
-              200,
-              296
-            ],
-            "text": "Another approach could be to create a validator class and delegate the task there. This has the disadvantage that we would have to remember to call this validator at the beginning of each method.",
-            "rotation": 0,
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "03ff9aa9-8132-4938-02c8-cfee4d5bb184": {
-            "id": "03ff9aa9-8132-4938-02c8-cfee4d5bb184",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 40,
-            "point": [
-              1381.29,
-              501.03
-            ],
-            "rotation": 0,
-            "bend": 0.00010365379632041689,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  64.8,
-                  2.28
-                ],
-                "canBind": true,
-                "bindingId": "ee228025-623e-4ec8-1465-242b3fc6e500"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "71396e36-ee27-409e-3822-df125a754685"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  32.4,
-                  1.14
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "bfd221eb-3300-4a83-2ef5-d38b99a3b962": {
-            "id": "bfd221eb-3300-4a83-2ef5-d38b99a3b962",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 40,
-            "point": [
-              1683.72,
-              492.15
-            ],
-            "size": [
-              200,
-              224
-            ],
-            "text": " The other approach it use middlewares, it could work but the problem is that we can't create generic middleware that'll work with the whole application.",
-            "rotation": 0,
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "ba9aea3a-7724-4888-03ea-434cba0ce2b7": {
-            "id": "ba9aea3a-7724-4888-03ea-434cba0ce2b7",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 41,
-            "point": [
-              1381.29,
-              417.05
-            ],
-            "rotation": 0,
-            "bend": -0.31174349160584824,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  381.6,
-                  69.9
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  49.85
-                ],
-                "canBind": true,
-                "bindingId": "4bcd766b-d254-4b03-17eb-2e57f5f54808"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  193.93,
-                  0.39
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "da3d53ba-acd4-4b42-300d-5e06461b63b1": {
-            "id": "da3d53ba-acd4-4b42-300d-5e06461b63b1",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 41,
-            "point": [
-              1918.12,
-              491.35
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": " In case the pipe should process just one parameter, we should use Parameter-scoped pipes.",
-            "rotation": 0,
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "f52c4c16-62ac-4ec0-213d-72e16f3a11de": {
-            "id": "f52c4c16-62ac-4ec0-213d-72e16f3a11de",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 42,
-            "point": [
-              1381.29,
-              425.65
-            ],
-            "rotation": 0,
-            "bend": -0.21002963642688688,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  558.43,
-                  62.9
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  54.51
-                ],
-                "canBind": true,
-                "bindingId": "6dd2eaae-3cfd-4c51-3b9f-9e9f53247ff8"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  280.1,
-                  0.06
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "084403e1-6a65-4dfc-2fe1-b513ccd9649e": {
-            "id": "084403e1-6a65-4dfc-2fe1-b513ccd9649e",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 43,
-            "point": [
-              -22.39,
-              640.82
-            ],
-            "rotation": 0,
-            "text": "returns the value if all good, or throws an exception",
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "4d448e1a-4275-4185-2cdc-3a598e56f82a": {
-            "id": "4d448e1a-4275-4185-2cdc-3a598e56f82a",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 38,
-            "point": [
-              -1349.87,
-              -297.79
-            ],
-            "size": [
-              200,
-              248
-            ],
-            "text": " Don't repeat yourself (DRY):\n Aimed at reducing repetition of software patterns, replacing it with abstractions or using data normalization to avoid redundancy.",
-            "rotation": 0,
-            "style": {
-              "color": "blue",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "16a9c919-fa2c-4126-09d0-14ea5701dc6c": {
-            "id": "16a9c919-fa2c-4126-09d0-14ea5701dc6c",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 38,
-            "point": [
-              -1356.28,
-              -462.88
-            ],
-            "rotation": 0,
-            "bend": 0.9899679996832637,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  26.65
-                ],
-                "canBind": true,
-                "bindingId": "1ee3ab2b-56f0-4a95-1312-e60390296dae"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  127.9,
-                  149.09
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  124.56,
-                  24.56
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "cyan",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "0fe4e54f-c7e7-46ff-36ab-d2a0ebaefe88": {
-            "id": "0fe4e54f-c7e7-46ff-36ab-d2a0ebaefe88",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 44,
-            "point": [
-              -264.75,
-              441.8
-            ],
-            "size": [
-              195.4,
-              146.6
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "red",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "c34a94b4-b76e-4193-3de6-73e32f654de0": {
-            "id": "c34a94b4-b76e-4193-3de6-73e32f654de0",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 45,
-            "point": [
-              -264.75,
-              605
-            ],
-            "size": [
-              195.4,
-              159.4
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "red",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "048376d8-5d0f-4875-2737-2792ed7dc0e2": {
-            "id": "048376d8-5d0f-4875-2737-2792ed7dc0e2",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 46,
-            "point": [
-              -436.65,
-              618.3
-            ],
-            "rotation": 0,
-            "text": "Guards",
-            "style": {
-              "color": "red",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "25828d94-2ee3-4785-1319-b3bc71a70a07": {
-            "id": "25828d94-2ee3-4785-1319-b3bc71a70a07",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 47,
-            "point": [
-              -360,
-              572.01
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  61.49
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  90.45,
-                  0
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  45.23,
-                  30.75
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "red",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "eb00e418-c6a1-4f70-2abf-e8df8f3f32ae": {
-            "id": "eb00e418-c6a1-4f70-2abf-e8df8f3f32ae",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 48,
-            "point": [
-              -354.45,
-              635.02
-            ],
-            "rotation": 0,
-            "bend": -0.00007675375375447495,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  0
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  80.9,
-                  8.89
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  40.45,
-                  4.45
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "red",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "564a47bb-5dc9-43bf-1eff-61815871e573": {
-            "id": "564a47bb-5dc9-43bf-1eff-61815871e573",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 49,
-            "point": [
-              -700.75,
-              828.5
-            ],
-            "size": [
-              200,
-              224
-            ],
-            "text": " Guards are classes with @Injectable decorator, its single responsability is to authorize requests to be handled by route handlers depending on certain conditions.",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "b6589d64-2a53-420c-04f4-5be61c611176": {
-            "id": "b6589d64-2a53-420c-04f4-5be61c611176",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 50,
-            "point": [
-              -538.35,
-              695.42
-            ],
-            "rotation": 0,
-            "bend": 0.3937084113439169,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  128.38
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  257.6,
-                  10.63
-                ],
-                "canBind": true,
-                "bindingId": "7260eca4-6cea-4c5a-2c27-6078bc8f0e1f"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  105.62,
-                  18.8
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "2c91b968-8734-41c5-3e3c-1c3a7ec2f78b": {
-            "id": "2c91b968-8734-41c5-3e3c-1c3a7ec2f78b",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 51,
-            "point": [
-              -957.55,
-              909.5
-            ],
-            "size": [
-              200,
-              272
-            ],
-            "text": " We could use Middlewares to do the same work as in Express, but the problem is that Middlewares don't know which handler will be excuted next after calling the next() function.",
-            "rotation": 0,
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "ef882591-2d68-4788-3b37-4d5c6bf87dff": {
-            "id": "ef882591-2d68-4788-3b37-4d5c6bf87dff",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 52,
-            "point": [
-              -836.09,
-              850.78
-            ],
-            "rotation": 0,
-            "bend": 0.2601897271225856,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  58.72
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  126.54,
-                  0.38
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  55.68,
-                  13.09
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "indigo",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "89710fb7-95e8-489b-35c1-6d592f5483dc": {
-            "id": "89710fb7-95e8-489b-35c1-6d592f5483dc",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 50,
-            "point": [
-              -363.15,
-              878.9
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": "Guards are executed after all Middleware, but before any interceptor or pipe.",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "3b1cf03b-fb24-415c-22e6-29e10ec1c55b": {
-            "id": "3b1cf03b-fb24-415c-22e6-29e10ec1c55b",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 53,
-            "point": [
-              -247.15,
-              780.4
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  85.2
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  9.48,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "a45ec8c1-ad17-4705-2d03-99f22649f106"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  4.74,
-                  42.6
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "serif"
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "0000dedb-aa29-416e-173b-c318eb29389c": {
-            "id": "0000dedb-aa29-416e-173b-c318eb29389c",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 58,
-            "point": [
-              -600.94,
-              480.38
-            ],
-            "rotation": 0,
-            "bend": 1.7086679203894197e-7,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  2.51
-                ],
-                "canBind": true,
-                "bindingId": "d8e3a915-53aa-4dbc-3c2c-7e60a8c6044e"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  320.19,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "44cc83bf-ff8f-43ad-1bdc-322c614ae40a"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  160.1,
-                  1.25
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "serif"
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "227593eb-4b18-4f79-0d82-5b42924bbe57": {
-            "id": "227593eb-4b18-4f79-0d82-5b42924bbe57",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 59,
-            "point": [
-              -456.42,
-              540.42
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  181.6,
-                  0
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  1.6
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  90.8,
-                  0.8
-                ]
-              }
-            },
-            "decorations": {},
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "serif"
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "4d5e02ee-eb28-4efc-27d7-f87f23d073cb": {
-            "id": "4d5e02ee-eb28-4efc-27d7-f87f23d073cb",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 60,
-            "point": [
-              -584.94,
-              541.42
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  120.52,
-                  0
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  0.34
-                ],
-                "canBind": true,
-                "bindingId": "83522781-665b-4f42-3441-5bcaac7eb8e0"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  60.26,
-                  0.17
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "serif"
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "543495a5-5c06-44f3-374f-4e6ec9710c40": {
-            "id": "543495a5-5c06-44f3-374f-4e6ec9710c40",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 61,
-            "point": [
-              -448.42,
-              462.82
-            ],
-            "size": [
-              105,
-              37
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": true,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script"
-            },
-            "label": "Intercept",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "e704555b-a762-40d6-0d9f-967ab9b9d1d5": {
-            "id": "e704555b-a762-40d6-0d9f-967ab9b9d1d5",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 62,
-            "point": [
-              -448.42,
-              523.62
-            ],
-            "size": [
-              105,
-              37
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": true,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script"
-            },
-            "label": "Intercept",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "f0cefe0f-04d8-49e4-115c-07e76b8fdf05": {
-            "id": "f0cefe0f-04d8-49e4-115c-07e76b8fdf05",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 63,
-            "point": [
-              -570.4200000000001,
-              435.02
-            ],
-            "rotation": 0,
-            "text": "Req",
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": true,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "197aa54c-bced-4aaf-1ed0-ff8036692744": {
-            "id": "197aa54c-bced-4aaf-1ed0-ff8036692744",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 64,
-            "point": [
-              -565.72,
-              545.42
-            ],
-            "rotation": 0,
-            "text": "Res",
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": true,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "4958fad5-3d1b-42b9-22e5-ed6369243f2a": {
-            "id": "4958fad5-3d1b-42b9-22e5-ed6369243f2a",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 34,
-            "point": [
-              -482.72,
-              13.2
-            ],
-            "size": [
-              200,
-              272
-            ],
-            "text": " Interceptors are classes with @Injectable decorator, they have acces to the request and the response objects, and the can controle either the route handler will be called or not.",
-            "rotation": 0,
-            "style": {
-              "color": "green",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "484b16cd-9c6d-499a-1ac7-93146f82508e": {
-            "id": "484b16cd-9c6d-499a-1ac7-93146f82508e",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 65,
-            "point": [
-              -411.55,
-              285.2
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "63b33d41-6954-47a6-3faa-06de376b6846"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  1.54,
-                  161.62
-                ],
-                "canBind": true,
-                "bindingId": "439659fb-2949-4ed2-0a18-ef87ecba1ce7"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  0.77,
-                  80.81
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": true,
-              "dash": "dotted",
-              "scale": 1,
-              "font": "script"
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "c883ec0a-b0b0-47c5-2c0b-7678acb6fede": {
-            "id": "c883ec0a-b0b0-47c5-2c0b-7678acb6fede",
-            "type": "sticky",
-            "name": "Sticky",
-            "parentId": "page",
-            "childIndex": 38,
-            "point": [
-              -1659.47,
-              -244.19
-            ],
-            "size": [
-              200,
-              200
-            ],
-            "text": " Inversion of Controle (IoC):\n Is a design pattern aimes to give a part of a software the privileges to manage the other parts.",
-            "rotation": 0,
-            "style": {
-              "color": "blue",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "51193935-1fb4-4395-39d7-ccff9b6f1d79": {
-            "id": "51193935-1fb4-4395-39d7-ccff9b6f1d79",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 38,
-            "point": [
-              -1561.13,
-              -419.07
-            ],
-            "rotation": 0,
-            "bend": 0.42418501712279666,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  0,
-                  0
-                ],
-                "canBind": true,
-                "bindingId": "ac4cdde8-2da3-4e32-3e43-a8cccde6c772"
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  92.71,
-                  158.88
-                ],
-                "canBind": true,
-                "bindingId": "2d608cba-61aa-43bb-1630-9f577bb17560"
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  80.05,
-                  59.78
-                ]
-              }
-            },
-            "decorations": {
-              "end": "arrow"
-            },
-            "style": {
-              "color": "cyan",
-              "size": "small",
-              "isFilled": false,
-              "dash": "dotted",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "71bcb2cb-f15a-450f-3f39-b844bc3de0ff": {
-            "id": "71bcb2cb-f15a-450f-3f39-b844bc3de0ff",
-            "type": "rectangle",
-            "name": "Rectangle",
-            "parentId": "page",
-            "childIndex": 66,
-            "point": [
-              1049.63,
-              -421.64
-            ],
-            "size": [
-              633.32,
-              179.08
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script"
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "4ee38317-f851-4c44-0b42-2c5204b3a227": {
-            "id": "4ee38317-f851-4c44-0b42-2c5204b3a227",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 67,
-            "point": [
-              1294.68,
-              -489.1
-            ],
-            "rotation": 0,
-            "text": "DI Container",
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "fb93f0a9-5e14-41d3-3c9d-c4d57f0b27d4": {
-            "id": "fb93f0a9-5e14-41d3-3c9d-c4d57f0b27d4",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 68,
-            "point": [
-              1153.48,
-              -356.3
-            ],
-            "rotation": 0,
-            "text": "instances of the injectable providers",
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1.3578947368421046,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "1fb55f3b-e128-4ae9-1f82-c4b37d0ea847": {
-            "id": "1fb55f3b-e128-4ae9-1f82-c4b37d0ea847",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 69,
-            "point": [
-              1526.59,
-              -490.7
-            ],
-            "rotation": 0,
-            "text": "singlton-scoped",
-            "style": {
-              "color": "lightGray",
-              "size": "small",
-              "isFilled": false,
-              "dash": "solid",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          }
-        },
-        "bindings": {
-          "d4c5fc8f-11ae-48e9-3175-11fdf1cf0c24": {
-            "id": "d4c5fc8f-11ae-48e9-3175-11fdf1cf0c24",
-            "type": "arrow",
-            "fromId": "a66cb63a-c3ac-4339-3d6b-7a4618c8a4ad",
-            "toId": "da8d0ab0-a49f-42cd-1f72-4caa024f8690",
-            "handleId": "end",
-            "point": [
-              0.5,
-              0.5
-            ],
-            "distance": 16
-          },
-          "b36f7d8e-5cd3-4bb6-2616-d326f0152f67": {
-            "id": "b36f7d8e-5cd3-4bb6-2616-d326f0152f67",
-            "type": "arrow",
-            "fromId": "65b80b4b-ec5f-4a66-39ef-cfdb38aacb72",
-            "toId": "7e2bcea2-785c-44ef-2ee2-d4c203158543",
-            "handleId": "start",
-            "point": [
-              0.5,
-              0.5
-            ],
-            "distance": 16
-          },
-          "f7dc8310-8d52-4ba0-3dac-462125fd80d8": {
-            "id": "f7dc8310-8d52-4ba0-3dac-462125fd80d8",
-            "type": "arrow",
-            "fromId": "0f08cbed-75be-4718-3112-84c04702fe0a",
-            "toId": "fbe2766d-706d-4b7c-2861-c7c1d8c31a10",
-            "handleId": "start",
-            "point": [
-              0.5,
-              0.5
-            ],
-            "distance": 16
-          },
-          "ac2409ea-e93a-4e42-1804-b5fa6cf201a2": {
-            "id": "ac2409ea-e93a-4e42-1804-b5fa6cf201a2",
-            "type": "arrow",
-            "fromId": "39c73d45-0525-48de-34c3-da5fdd1335d6",
-            "toId": "af61232c-a16e-41a7-1b83-3771c329320f",
-            "handleId": "start",
-            "point": [
-              0.5,
-              0.5
-            ],
-            "distance": 16
-          },
-          "be588faf-9644-416d-32eb-c89f5432d62d": {
-            "id": "be588faf-9644-416d-32eb-c89f5432d62d",
-            "type": "arrow",
-            "fromId": "39c73d45-0525-48de-34c3-da5fdd1335d6",
-            "toId": "86362501-47e3-4bcf-0641-e59dc1b82a19",
-            "handleId": "end",
-            "point": [
-              0.37,
-              0.68
-            ],
-            "distance": 16
-          },
-          "41360b8b-4c11-4ef2-2e90-73a14c9f8855": {
-            "id": "41360b8b-4c11-4ef2-2e90-73a14c9f8855",
-            "type": "arrow",
-            "fromId": "bdfd0ba6-eeec-4592-271e-a5cb34fe4ed2",
-            "toId": "71c435a6-4eb8-4495-3fff-d096f226d391",
-            "handleId": "start",
-            "point": [
-              0.58,
-              0.16
-            ],
-            "distance": 8
-          },
-          "0cacd606-4a96-4969-3eb4-3c5cecc14ada": {
-            "id": "0cacd606-4a96-4969-3eb4-3c5cecc14ada",
-            "type": "arrow",
-            "fromId": "08b9c768-5694-47d2-2ac1-8b3fd16db1dd",
-            "toId": "71c435a6-4eb8-4495-3fff-d096f226d391",
-            "handleId": "start",
-            "point": [
-              0.65,
-              0.81
-            ],
-            "distance": 8.716651454516645
-          },
-          "806fd7a8-413f-4605-1235-f1ad91040da8": {
-            "id": "806fd7a8-413f-4605-1235-f1ad91040da8",
-            "type": "arrow",
-            "fromId": "c22aa079-c522-46d7-2def-5c32e9d39d32",
-            "toId": "c8f7cd1d-acad-40d6-1c6a-fcf5a0a87900",
-            "handleId": "end",
-            "point": [
-              0.74,
-              0.05
-            ],
-            "distance": 16
-          },
-          "85aeabf3-5703-4618-1ffd-9ab9a5fb3dcb": {
-            "id": "85aeabf3-5703-4618-1ffd-9ab9a5fb3dcb",
-            "type": "arrow",
-            "fromId": "c3d94135-c4ff-4317-1ede-ee7da7c08593",
-            "toId": "71c435a6-4eb8-4495-3fff-d096f226d391",
-            "handleId": "start",
-            "point": [
-              0.45,
-              0.15
-            ],
-            "distance": 8
-          },
-          "71396e36-ee27-409e-3822-df125a754685": {
-            "id": "71396e36-ee27-409e-3822-df125a754685",
-            "type": "arrow",
-            "fromId": "03ff9aa9-8132-4938-02c8-cfee4d5bb184",
-            "toId": "9922310c-581b-46a6-2b38-938d28ca99c7",
-            "handleId": "end",
-            "point": [
-              0.45,
-              0.25
-            ],
-            "distance": 16
-          },
-          "ee228025-623e-4ec8-1465-242b3fc6e500": {
-            "id": "ee228025-623e-4ec8-1465-242b3fc6e500",
-            "type": "arrow",
-            "fromId": "03ff9aa9-8132-4938-02c8-cfee4d5bb184",
-            "toId": "d3955912-4d52-4b08-3e3c-06a286c630c6",
-            "handleId": "start",
-            "point": [
-              0.26,
-              0.09
-            ],
-            "distance": 16
-          },
-          "4bcd766b-d254-4b03-17eb-2e57f5f54808": {
-            "id": "4bcd766b-d254-4b03-17eb-2e57f5f54808",
-            "type": "arrow",
-            "fromId": "ba9aea3a-7724-4888-03ea-434cba0ce2b7",
-            "toId": "9922310c-581b-46a6-2b38-938d28ca99c7",
-            "handleId": "end",
-            "point": [
-              0.44,
-              0.13
-            ],
-            "distance": 16
-          },
-          "6dd2eaae-3cfd-4c51-3b9f-9e9f53247ff8": {
-            "id": "6dd2eaae-3cfd-4c51-3b9f-9e9f53247ff8",
-            "type": "arrow",
-            "fromId": "f52c4c16-62ac-4ec0-213d-72e16f3a11de",
-            "toId": "9922310c-581b-46a6-2b38-938d28ca99c7",
-            "handleId": "end",
-            "point": [
-              0.47,
-              0.19
-            ],
-            "distance": 16
-          },
-          "543d384d-9ea5-4f4e-3815-98da11c31d34": {
-            "id": "543d384d-9ea5-4f4e-3815-98da11c31d34",
-            "type": "arrow",
-            "fromId": "7c6d2b1b-aae5-46f6-06aa-6efae33eb156",
-            "toId": "f3ff48bc-21bb-47ba-23df-da779d0c3415",
-            "handleId": "start",
-            "point": [
-              0.5,
-              0.5
-            ],
-            "distance": 16
-          },
-          "7260eca4-6cea-4c5a-2c27-6078bc8f0e1f": {
-            "id": "7260eca4-6cea-4c5a-2c27-6078bc8f0e1f",
-            "type": "arrow",
-            "fromId": "b6589d64-2a53-420c-04f4-5be61c611176",
-            "toId": "c34a94b4-b76e-4193-3de6-73e32f654de0",
-            "handleId": "end",
-            "point": [
-              0.5,
-              0.34
-            ],
-            "distance": 16
-          },
-          "a45ec8c1-ad17-4705-2d03-99f22649f106": {
-            "id": "a45ec8c1-ad17-4705-2d03-99f22649f106",
-            "type": "arrow",
-            "fromId": "3b1cf03b-fb24-415c-22e6-29e10ec1c55b",
-            "toId": "c34a94b4-b76e-4193-3de6-73e32f654de0",
-            "handleId": "end",
-            "point": [
-              0.24,
-              0.46
-            ],
-            "distance": 16
-          },
-          "738440dd-229f-48c5-13cf-6fac93db5e05": {
-            "id": "738440dd-229f-48c5-13cf-6fac93db5e05",
-            "type": "arrow",
-            "fromId": "dbd9e1cc-644d-4895-156a-5a92e8facf3b",
-            "toId": "c7ddfea5-1205-4a14-00af-fd7e0635ff4d",
-            "handleId": "end",
-            "point": [
-              0.35,
-              0.39
-            ],
-            "distance": 8
-          },
-          "9c777e6e-ef2f-40a9-0766-60bd4bffbb51": {
-            "id": "9c777e6e-ef2f-40a9-0766-60bd4bffbb51",
-            "type": "arrow",
-            "fromId": "08b9c768-5694-47d2-2ac1-8b3fd16db1dd",
-            "toId": "fa41fc31-6a23-48ff-29f1-6a09a1320e74",
-            "handleId": "end",
-            "point": [
-              0.48,
-              0.79
-            ],
-            "distance": 16
-          },
-          "44cc83bf-ff8f-43ad-1bdc-322c614ae40a": {
-            "id": "44cc83bf-ff8f-43ad-1bdc-322c614ae40a",
-            "type": "arrow",
-            "fromId": "0000dedb-aa29-416e-173b-c318eb29389c",
-            "toId": "0fe4e54f-c7e7-46ff-36ab-d2a0ebaefe88",
-            "handleId": "end",
-            "point": [
-              0.56,
-              0.3
-            ],
-            "distance": 16
-          },
-          "82c4fcb4-943e-4b8a-3451-c0a780126381": {
-            "id": "82c4fcb4-943e-4b8a-3451-c0a780126381",
-            "type": "arrow",
-            "fromId": "0f08cbed-75be-4718-3112-84c04702fe0a",
-            "toId": "86362501-47e3-4bcf-0641-e59dc1b82a19",
-            "handleId": "end",
-            "point": [
-              0.5,
-              0.5
-            ],
-            "distance": 16
-          },
-          "83522781-665b-4f42-3441-5bcaac7eb8e0": {
-            "id": "83522781-665b-4f42-3441-5bcaac7eb8e0",
-            "type": "arrow",
-            "fromId": "4d5e02ee-eb28-4efc-27d7-f87f23d073cb",
-            "toId": "86362501-47e3-4bcf-0641-e59dc1b82a19",
-            "handleId": "end",
-            "point": [
-              0.46,
-              0.87
-            ],
-            "distance": 16
-          },
-          "d8e3a915-53aa-4dbc-3c2c-7e60a8c6044e": {
-            "id": "d8e3a915-53aa-4dbc-3c2c-7e60a8c6044e",
-            "type": "arrow",
-            "fromId": "0000dedb-aa29-416e-173b-c318eb29389c",
-            "toId": "86362501-47e3-4bcf-0641-e59dc1b82a19",
-            "handleId": "start",
-            "point": [
-              0.5,
-              0.5
-            ],
-            "distance": 16
-          },
-          "439659fb-2949-4ed2-0a18-ef87ecba1ce7": {
-            "id": "439659fb-2949-4ed2-0a18-ef87ecba1ce7",
-            "type": "arrow",
-            "fromId": "484b16cd-9c6d-499a-1ac7-93146f82508e",
-            "toId": "543495a5-5c06-44f3-374f-4e6ec9710c40",
-            "handleId": "end",
-            "point": [
-              0.4,
-              0.6
-            ],
-            "distance": 16
-          },
-          "63b33d41-6954-47a6-3faa-06de376b6846": {
-            "id": "63b33d41-6954-47a6-3faa-06de376b6846",
-            "type": "arrow",
-            "fromId": "484b16cd-9c6d-499a-1ac7-93146f82508e",
-            "toId": "4958fad5-3d1b-42b9-22e5-ed6369243f2a",
-            "handleId": "start",
-            "point": [
-              0.37,
-              0.49
-            ],
-            "distance": 16
-          },
-          "1ee3ab2b-56f0-4a95-1312-e60390296dae": {
-            "id": "1ee3ab2b-56f0-4a95-1312-e60390296dae",
-            "type": "arrow",
-            "fromId": "16a9c919-fa2c-4126-09d0-14ea5701dc6c",
-            "toId": "f3ff48bc-21bb-47ba-23df-da779d0c3415",
-            "handleId": "start",
-            "point": [
-              0.82,
-              0.28
-            ],
-            "distance": 16
-          },
-          "005943fd-d15e-4fcf-2c2e-89f42597aea8": {
-            "id": "005943fd-d15e-4fcf-2c2e-89f42597aea8",
-            "type": "arrow",
-            "fromId": "16a9c919-fa2c-4126-09d0-14ea5701dc6c",
-            "toId": "4d448e1a-4275-4185-2cdc-3a598e56f82a",
-            "handleId": "end",
-            "point": [
-              0.87,
-              0.22
-            ],
-            "distance": 16
-          },
-          "ac4cdde8-2da3-4e32-3e43-a8cccde6c772": {
-            "id": "ac4cdde8-2da3-4e32-3e43-a8cccde6c772",
-            "type": "arrow",
-            "fromId": "51193935-1fb4-4395-39d7-ccff9b6f1d79",
-            "toId": "f3ff48bc-21bb-47ba-23df-da779d0c3415",
-            "handleId": "start",
-            "point": [
-              0.37,
-              0.44
-            ],
-            "distance": 16
-          },
-          "2d608cba-61aa-43bb-1630-9f577bb17560": {
-            "id": "2d608cba-61aa-43bb-1630-9f577bb17560",
-            "type": "arrow",
-            "fromId": "51193935-1fb4-4395-39d7-ccff9b6f1d79",
-            "toId": "c883ec0a-b0b0-47c5-2c0b-7678acb6fede",
-            "handleId": "end",
-            "point": [
-              0.98,
-              0.15
-            ],
-            "distance": 16
-          }
+  "tldrawFileFormatVersion": 1,
+  "schema": {
+    "schemaVersion": 1,
+    "storeVersion": 1,
+    "recordVersions": {
+      "asset": {
+        "version": 0,
+        "subTypeKey": "type",
+        "subTypeVersions": {
+          "image": 2,
+          "video": 2,
+          "bookmark": 0
         }
-      }
-    },
-    "pageStates": {
+      },
+      "camera": {
+        "version": 0
+      },
+      "document": {
+        "version": 0
+      },
+      "instance": {
+        "version": 7
+      },
+      "instance_page_state": {
+        "version": 1
+      },
       "page": {
-        "id": "page",
-        "selectedIds": [],
-        "camera": {
-          "point": [
-            0,
-            0
-          ],
-          "zoom": 1
+        "version": 0
+      },
+      "shape": {
+        "version": 1,
+        "subTypeKey": "type",
+        "subTypeVersions": {
+          "draw": 1,
+          "text": 1,
+          "line": 0,
+          "arrow": 1,
+          "image": 2,
+          "video": 1,
+          "geo": 3,
+          "note": 2,
+          "group": 0,
+          "bookmark": 1,
+          "embed": 1,
+          "frame": 0
         }
+      },
+      "user": {
+        "version": 0
+      },
+      "user_document": {
+        "version": 2
+      },
+      "user_presence": {
+        "version": 1
       }
-    },
-    "assets": {}
+    }
   },
-  "assets": {}
+  "records": [
+    {
+      "gridSize": 10,
+      "id": "document:document",
+      "typeName": "document"
+    },
+    {
+      "isReadOnly": false,
+      "isPenMode": false,
+      "isGridMode": false,
+      "isDarkMode": false,
+      "isMobileMode": false,
+      "isSnapMode": false,
+      "lastUpdatedPageId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "lastUsedTabId": "instance:TbAu02A2qOy6FXfi6f3MA",
+      "id": "user_document:Vca0L06b9fuTnYN_m12HS",
+      "userId": "user:FsIdsdQmcRFRTTTHH2EIr",
+      "typeName": "user_document"
+    },
+    {
+      "id": "page:305HD5x_-yvsv4k6Dq1eR",
+      "name": "Page 1",
+      "index": "a1",
+      "typeName": "page"
+    },
+    {
+      "followingUserId": null,
+      "propsForNextShape": {
+        "opacity": "1",
+        "color": "black",
+        "labelColor": "black",
+        "dash": "draw",
+        "fill": "none",
+        "size": "m",
+        "icon": "file",
+        "font": "draw",
+        "align": "middle",
+        "geo": "rectangle",
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "spline": "line"
+      },
+      "brush": null,
+      "scribble": null,
+      "cursor": {
+        "type": "default",
+        "color": "black",
+        "rotation": 0
+      },
+      "isFocusMode": false,
+      "exportBackground": true,
+      "isDebugMode": false,
+      "isToolLocked": false,
+      "screenBounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1243.2000732421875,
+        "h": 749.6000366210938
+      },
+      "id": "instance:TbAu02A2qOy6FXfi6f3MA",
+      "userId": "user:FsIdsdQmcRFRTTTHH2EIr",
+      "currentPageId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "typeName": "instance"
+    },
+    {
+      "name": "New User",
+      "locale": "en",
+      "id": "user:FsIdsdQmcRFRTTTHH2EIr",
+      "typeName": "user"
+    },
+    {
+      "lastUsedInstanceId": "instance:TbAu02A2qOy6FXfi6f3MA",
+      "lastActivityTimestamp": 1682713739673,
+      "cursor": {
+        "x": 1463.4323628092657,
+        "y": -153.2450038073191,
+        "z": 0
+      },
+      "viewportPageBounds": {
+        "x": -2470.225695031714,
+        "y": -1228.512232790807,
+        "w": 5238.136025911907,
+        "h": 3158.3870057292975
+      },
+      "color": "#39B178",
+      "id": "user_presence:omr2oy6UYnsRVj3g7VLiH",
+      "userId": "user:FsIdsdQmcRFRTTTHH2EIr",
+      "typeName": "user_presence"
+    },
+    {
+      "x": 2470.225695031714,
+      "y": 1228.512232790807,
+      "z": 0.2373363477184155,
+      "id": "camera:Q7WPrlgLXj2nn2drLeO_h",
+      "typeName": "camera"
+    },
+    {
+      "editingId": null,
+      "croppingId": null,
+      "selectedIds": [],
+      "hoveredId": null,
+      "erasingIds": [],
+      "hintingIds": [],
+      "focusLayerId": null,
+      "id": "instance_page_state:yRiS05HG-gC5ZyJnOo85t",
+      "pageId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "instanceId": "instance:TbAu02A2qOy6FXfi6f3MA",
+      "cameraId": "camera:Q7WPrlgLXj2nn2drLeO_h",
+      "typeName": "instance_page_state"
+    },
+    {
+      "x": 586.56,
+      "y": -414.19,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:zCIL4RPVpREL06kMx6In1",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": "Anything that can be injected as a dependency",
+        "font": "draw",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "a1",
+      "typeName": "shape"
+    },
+    {
+      "x": 375.02,
+      "y": -622.19,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:Mf6CdTHp_wnXh2qz-C5pL",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 157.8,
+        "h": 63.4,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "draw",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "Provider",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "a2",
+      "typeName": "shape"
+    },
+    {
+      "x": 358.62,
+      "y": -414.19,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:eFrNB_msLIlOenzaKlBMV",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": " Providers are plain \n TS classes that are declared as providers in modules",
+        "font": "draw",
+        "align": "middle",
+        "growY": 41.90000915527344,
+        "url": ""
+      },
+      "index": "a3",
+      "typeName": "shape"
+    },
+    {
+      "x": 453.96,
+      "y": -558.79,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:CniNHjbssdOrzXmZ1a_Jb",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "draw",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": -0.0059736514193113694,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:Mf6CdTHp_wnXh2qz-C5pL",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "point",
+          "x": 0.1,
+          "y": 80.26
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "none",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "a2V",
+      "typeName": "shape"
+    },
+    {
+      "x": 122.71,
+      "y": -414.19,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:w_iTSJqI73Gvm7ngdskte",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": " CLI to create a service:\n $ nest g service cats",
+        "font": "draw",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "a5",
+      "typeName": "shape"
+    },
+    {
+      "x": 234.65,
+      "y": -478.7,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:UP9pyUwhZZclU3c7wiYLg",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "draw",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": 0.005001876980152203,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 0.17
+        },
+        "end": {
+          "type": "point",
+          "x": 452.77,
+          "y": 0
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "none",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "a6",
+      "typeName": "shape"
+    },
+    {
+      "x": 687.17,
+      "y": -477.9,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:rIZO5jUhw3ybeb3Rfgu5a",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "draw",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": 0,
+        "start": {
+          "type": "point",
+          "x": 0.25,
+          "y": 0
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:zCIL4RPVpREL06kMx6In1",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "a1V",
+      "typeName": "shape"
+    },
+    {
+      "x": 455.03,
+      "y": -477.5,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:gAQGngou6W8Q-nAjTOfcT",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "draw",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": 0,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 0
+        },
+        "end": {
+          "type": "point",
+          "x": 1.07,
+          "y": 49.31
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "a8",
+      "typeName": "shape"
+    },
+    {
+      "x": 234.66,
+      "y": -475.56,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:YYJ0pYIbdsMuV2k1vTCUV",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "draw",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": 0,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 0
+        },
+        "end": {
+          "type": "point",
+          "x": 1.07,
+          "y": 49.31
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "a9",
+      "typeName": "shape"
+    },
+    {
+      "x": -1084.74,
+      "y": 448.18,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:_Vc9wol-_3CTs02mTNxes",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 138.85,
+        "h": 84.49,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "draw",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "Client",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aA",
+      "typeName": "shape"
+    },
+    {
+      "x": -945.89,
+      "y": 485.01,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:XXQWJIFfE87eTgMR5cTrg",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": 0.003512883569807042,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:_Vc9wol-_3CTs02mTNxes",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:4zRs00an2iE608eLpO9fF",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aXV",
+      "typeName": "shape"
+    },
+    {
+      "x": -461.93,
+      "y": 440.63,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:qi0zjRWvWjdpjJ52dyy9H",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 410.64,
+        "h": 377.29,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aC",
+      "typeName": "shape"
+    },
+    {
+      "x": -385.02,
+      "y": 387.65,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:Cp5sUrXKLF--WnWimWCjj",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "black",
+        "size": "s",
+        "w": 8,
+        "text": "@Controller(' / ')",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "aD",
+      "typeName": "shape"
+    },
+    {
+      "x": -897.99,
+      "y": 431.68,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:blj1KeVqkMckj19fVUOn9",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "black",
+        "size": "s",
+        "w": 8,
+        "text": "HTTP Request",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "aE",
+      "typeName": "shape"
+    },
+    {
+      "x": -262.27,
+      "y": 649.19,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:YbqIwNHlMEax5r_RT37Yk",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 183.51,
+        "h": 103.9,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aF",
+      "typeName": "shape"
+    },
+    {
+      "x": -259.37,
+      "y": 477.57,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:SxX395ekKcpPVYt1l79Gb",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 183.51,
+        "h": 103.9,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aG",
+      "typeName": "shape"
+    },
+    {
+      "x": -265.31,
+      "y": 439.14,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:YAyqnXqYIbpQJEY2le3Fl",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "black",
+        "size": "s",
+        "w": 8,
+        "text": "@Get()",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "aH",
+      "typeName": "shape"
+    },
+    {
+      "x": -265.72,
+      "y": 606.12,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:RDv2Cl0rYqv7O8iqcHp_9",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "black",
+        "size": "s",
+        "w": 8,
+        "text": "@Post()",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "aI",
+      "typeName": "shape"
+    },
+    {
+      "x": -75.86,
+      "y": 342.43,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:uE-OHS4vy_L8yTzzdm8Qd",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dashed",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": -127.72035509371152,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 147.83
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:11xXAUidme994gBG2E-70",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aLV",
+      "typeName": "shape"
+    },
+    {
+      "x": -34.79,
+      "y": 412.91,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:vFyeGObrq0s5s7diK_EcF",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "black",
+        "size": "s",
+        "w": 8,
+        "text": "Invoke the route handler",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "aK",
+      "typeName": "shape"
+    },
+    {
+      "x": 236.38,
+      "y": 427.29,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:11xXAUidme994gBG2E-70",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 27.24088443384312,
+        "h": 63.16060458969662,
+        "geo": "ellipse",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aL",
+      "typeName": "shape"
+    },
+    {
+      "x": 467.49,
+      "y": 426.32,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:2aOm49mrgdkgrVqyqcXTb",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 27.124097423665035,
+        "h": 60.24819484733018,
+        "geo": "ellipse",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aM",
+      "typeName": "shape"
+    },
+    {
+      "x": 250.94,
+      "y": 428.26,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:1GFZpauqyEp_iv_F28tUt",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "draw",
+      "props": {
+        "segments": [
+          {
+            "type": "free",
+            "points": [
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 17.7,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 35.4,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 53.1,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 70.8,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 88.49,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 106.19,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 123.89,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 141.59,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 159.29,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 176.99,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 194.69,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 212.39,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 230.08,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 230.08,
+                "y": 0,
+                "z": 0.5
+              }
+            ]
+          }
+        ],
+        "color": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "isComplete": true,
+        "isClosed": false,
+        "isPen": false
+      },
+      "index": "aN",
+      "typeName": "shape"
+    },
+    {
+      "x": 249,
+      "y": 482.63,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:SO-morMrr86g0-ZvipK15",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "draw",
+      "props": {
+        "segments": [
+          {
+            "type": "free",
+            "points": [
+              {
+                "x": 0,
+                "y": 4.85,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 4.85,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 4.85,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 4.85,
+                "z": 0.5
+              },
+              {
+                "x": 0,
+                "y": 4.85,
+                "z": 0.5
+              },
+              {
+                "x": 17.77,
+                "y": 4.48,
+                "z": 0.5
+              },
+              {
+                "x": 35.55,
+                "y": 4.1,
+                "z": 0.5
+              },
+              {
+                "x": 53.32,
+                "y": 3.73,
+                "z": 0.5
+              },
+              {
+                "x": 71.09,
+                "y": 3.36,
+                "z": 0.5
+              },
+              {
+                "x": 88.87,
+                "y": 2.99,
+                "z": 0.5
+              },
+              {
+                "x": 106.64,
+                "y": 2.61,
+                "z": 0.5
+              },
+              {
+                "x": 124.41,
+                "y": 2.24,
+                "z": 0.5
+              },
+              {
+                "x": 142.19,
+                "y": 1.87,
+                "z": 0.5
+              },
+              {
+                "x": 159.96,
+                "y": 1.49,
+                "z": 0.5
+              },
+              {
+                "x": 177.73,
+                "y": 1.12,
+                "z": 0.5
+              },
+              {
+                "x": 195.51,
+                "y": 0.75,
+                "z": 0.5
+              },
+              {
+                "x": 213.28,
+                "y": 0.37,
+                "z": 0.5
+              },
+              {
+                "x": 231.05,
+                "y": 0,
+                "z": 0.5
+              },
+              {
+                "x": 231.05,
+                "y": 0,
+                "z": 0.5
+              }
+            ]
+          }
+        ],
+        "color": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "isComplete": true,
+        "isClosed": false,
+        "isPen": false
+      },
+      "index": "aO",
+      "typeName": "shape"
+    },
+    {
+      "x": 342.94,
+      "y": 489.84,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:HVNCNgFZvD0anLQhF-cX8",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "black",
+        "size": "s",
+        "w": 8,
+        "text": "Pipe",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "aP",
+      "typeName": "shape"
+    },
+    {
+      "x": 621.09,
+      "y": 438.53,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:Ge-WmMjSV3XKBMJv_XVb4",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": " Pipes are classes with @Injectable decorator, which are responsable for:\n -Transformation:\n transform data from a form to a desire form (e.i string to int)\n -Validation:\nevaluate input data and if valid, simply pass it through unchanged; otherwise, throw an exception",
+        "font": "draw",
+        "align": "middle",
+        "growY": 606.2000122070312,
+        "url": ""
+      },
+      "index": "aQ",
+      "typeName": "shape"
+    },
+    {
+      "x": 486.17,
+      "y": 323.67,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:z9SNLQCXLfZrz5ZSFMymd",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": -98.64,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:2aOm49mrgdkgrVqyqcXTb",
+          "normalizedAnchor": {
+            "x": 0.5399999999999996,
+            "y": 0.32999999999999985
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "point",
+          "x": 236.4,
+          "y": 98.32
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aMV",
+      "typeName": "shape"
+    },
+    {
+      "x": 893.29,
+      "y": 436.55,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:ETdigpkL64ytICtK-_-vr",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": "Pipes takes the arguments of the route handler before it receives them,  and operates on them.  Any transformation or validation operation takes place at that time.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 249.80001831054688,
+        "url": ""
+      },
+      "index": "aS",
+      "typeName": "shape"
+    },
+    {
+      "x": 481.52,
+      "y": 326.24,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:2praap9B4IzqdoG_HvKV0",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": -97.55493043934959,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 91.83
+        },
+        "end": {
+          "type": "point",
+          "x": 395.77,
+          "y": 103.32
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aT",
+      "typeName": "shape"
+    },
+    {
+      "x": 1165.29,
+      "y": 436.55,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:oAUFmtpMaiujlFzuTm-GN",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": " Usually we use Pipes to not break the SRP rule, for example in case of input validation, we could do it inside the route handler method. But to maintain the SRP rule we do a pipe responsable for that.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 309.20001220703125,
+        "url": ""
+      },
+      "index": "aU",
+      "typeName": "shape"
+    },
+    {
+      "x": 478.09,
+      "y": 289.88,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:g8_GAuOxjIy3eAEurmwDO",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "black",
+        "labelColor": "black",
+        "bend": -135.9517342915693,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:2aOm49mrgdkgrVqyqcXTb",
+          "normalizedAnchor": {
+            "x": 0.474999999999999,
+            "y": 0.3250000000000001
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "point",
+          "x": 828.8,
+          "y": 139.68
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aMG",
+      "typeName": "shape"
+    },
+    {
+      "x": -932.83,
+      "y": 512.68,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:26oupQW28QaXgkkiZWmkd",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 179,
+        "h": 163.2678591097341,
+        "geo": "ellipse",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "dashed",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "exceptions filter",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aW",
+      "typeName": "shape"
+    },
+    {
+      "x": -729.35,
+      "y": 420.19,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:4zRs00an2iE608eLpO9fF",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 128.41,
+        "h": 126.41,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "dotted",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "Middleware",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aX",
+      "typeName": "shape"
+    },
+    {
+      "x": -780.16,
+      "y": 13.2,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:GhR6wn7oht1TITQYeuCTp",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": "Middleware is a function which is called before the route handler and it has access to request and the response objects.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 131,
+        "url": ""
+      },
+      "index": "aY",
+      "typeName": "shape"
+    },
+    {
+      "x": -684.42,
+      "y": 213.2,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:I1vGEyzrX-Emt4Hq0Z39e",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": -7.868096008559573,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:GhR6wn7oht1TITQYeuCTp",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:4zRs00an2iE608eLpO9fF",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aZ",
+      "typeName": "shape"
+    },
+    {
+      "x": -482.72,
+      "y": 13.2,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:0ZgperUk9Hhrr7sb1vX4R",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": " Interceptors are classes with @Injectable decorator, they have acces to the request and the response objects, and the can controle either the route handler will be called or not.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 309.20001220703125,
+        "url": ""
+      },
+      "index": "aa",
+      "typeName": "shape"
+    },
+    {
+      "x": -59.86,
+      "y": 486.36,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:_Hi7Bh3t99jH20nAhU1h0",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dashed",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": -112.98770736774493,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:2aOm49mrgdkgrVqyqcXTb",
+          "normalizedAnchor": {
+            "x": 0.574999999999999,
+            "y": 0.655
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:SxX395ekKcpPVYt1l79Gb",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aM8",
+      "typeName": "shape"
+    },
+    {
+      "x": -1722.27,
+      "y": -507.1,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:MJ8UJ3Xj05bg55KclfxOo",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 365.99,
+        "h": 88.03,
+        "geo": "rectangle",
+        "color": "green",
+        "labelColor": "green",
+        "fill": "none",
+        "dash": "solid",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "Some SOLID principales  to respect",
+        "align": "middle",
+        "growY": 3.370001525878905,
+        "url": ""
+      },
+      "index": "ac",
+      "typeName": "shape"
+    },
+    {
+      "x": -1102.67,
+      "y": -484.99,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:74of_ipBFfARSaXAHL5Wi",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-blue",
+        "size": "m",
+        "text": " Single responsibility rule (SRP):\n each class or method should be responsible for one single thing, no multi tasking.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 131,
+        "url": ""
+      },
+      "index": "ad",
+      "typeName": "shape"
+    },
+    {
+      "x": -1356.28,
+      "y": -638.85,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:VaQCAG5aas_Y-zKkN_tLE",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "green",
+        "labelColor": "green",
+        "bend": -149.367058730205,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 161.28
+        },
+        "end": {
+          "type": "point",
+          "x": 300.81,
+          "y": 137.46
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "ae",
+      "typeName": "shape"
+    },
+    {
+      "x": -1349.87,
+      "y": -297.79,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:3a13FFbECliKPptP1L1z-",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-blue",
+        "size": "m",
+        "text": " Don't repeat yourself (DRY):\n Aimed at reducing repetition of software patterns, replacing it with abstractions or using data normalization to avoid redundancy.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 279.5,
+        "url": ""
+      },
+      "index": "af",
+      "typeName": "shape"
+    },
+    {
+      "x": -1356.28,
+      "y": -462.88,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:YX83hgVc1pdxnqruBiCjx",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "green",
+        "labelColor": "green",
+        "bend": -87.64147563098842,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:MJ8UJ3Xj05bg55KclfxOo",
+          "normalizedAnchor": {
+            "x": 0.66,
+            "y": 0.3900000000000003
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "point",
+          "x": 127.9,
+          "y": 149.09
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "acV",
+      "typeName": "shape"
+    },
+    {
+      "x": -1659.47,
+      "y": -244.19,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:HFrcdUwuGzPUhozqg4sJG",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-blue",
+        "size": "m",
+        "text": " Inversion of Controle (IoC):\n Is a design pattern aimes to give a part of a software the privileges to manage the other parts.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 160.70001220703125,
+        "url": ""
+      },
+      "index": "ah",
+      "typeName": "shape"
+    },
+    {
+      "x": -1561.13,
+      "y": -419.07,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:24bD7zAyczjra_q_0EH9c",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "green",
+        "labelColor": "green",
+        "bend": -39.01464524121922,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:MJ8UJ3Xj05bg55KclfxOo",
+          "normalizedAnchor": {
+            "x": 0.43499999999999966,
+            "y": 0.47000000000000003
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:HFrcdUwuGzPUhozqg4sJG",
+          "normalizedAnchor": {
+            "x": 0.74,
+            "y": 0.32499999999999996
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "ai",
+      "typeName": "shape"
+    },
+    {
+      "x": 1446.09,
+      "y": 491.35,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:dSW3p65XChKGoP_9UvAqe",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "blue",
+        "size": "m",
+        "text": "Another approach could be to create a validator class and delegate the task there. This has the disadvantage that we would have to remember to call this validator at the beginning of each method.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 368.60003662109375,
+        "url": ""
+      },
+      "index": "aj",
+      "typeName": "shape"
+    },
+    {
+      "x": 1381.29,
+      "y": 501.03,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:UjorUxI2jcoQmsrDZBF0H",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "blue",
+        "labelColor": "blue",
+        "bend": -0.003360461192252268,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:dSW3p65XChKGoP_9UvAqe",
+          "normalizedAnchor": {
+            "x": 0.38,
+            "y": 0.2949999999999999
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:oAUFmtpMaiujlFzuTm-GN",
+          "normalizedAnchor": {
+            "x": 0.475,
+            "y": 0.3749999999999999
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "ak",
+      "typeName": "shape"
+    },
+    {
+      "x": 1683.72,
+      "y": 492.15,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:vKKbRRZMrzBGn6srcEMN8",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "blue",
+        "size": "m",
+        "text": " The other approach it use middlewares, it could work but the problem is that we can't create generic middleware that'll work with the whole application.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 249.80001831054688,
+        "url": ""
+      },
+      "index": "al",
+      "typeName": "shape"
+    },
+    {
+      "x": 1381.29,
+      "y": 417.05,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:lPnkPXGMIYLKEwFJqn6ej",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "blue",
+        "labelColor": "blue",
+        "bend": 59.562704378768245,
+        "start": {
+          "type": "point",
+          "x": 381.6,
+          "y": 69.9
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:oAUFmtpMaiujlFzuTm-GN",
+          "normalizedAnchor": {
+            "x": 0.47,
+            "y": 0.31499999999999984
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aV",
+      "typeName": "shape"
+    },
+    {
+      "x": 1918.12,
+      "y": 491.35,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:GZhIiOmUtBsvEI-c7yAOU",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "blue",
+        "size": "m",
+        "text": " In case the pipe should process just one parameter, we should use Parameter-scoped pipes.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 71.60000610351562,
+        "url": ""
+      },
+      "index": "an",
+      "typeName": "shape"
+    },
+    {
+      "x": 1381.29,
+      "y": 425.65,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:gK4gMR_8wIocFSf_OY-_I",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "blue",
+        "labelColor": "blue",
+        "bend": 58.650043308295935,
+        "start": {
+          "type": "point",
+          "x": 558.43,
+          "y": 62.9
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:oAUFmtpMaiujlFzuTm-GN",
+          "normalizedAnchor": {
+            "x": 0.485,
+            "y": 0.34499999999999986
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "aUV",
+      "typeName": "shape"
+    },
+    {
+      "x": -22.39,
+      "y": 640.82,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:T3F_w-SzZFAN4HAlFrlY9",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "grey",
+        "size": "s",
+        "w": 8,
+        "text": "returns the value if all good, or throws an exception",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "ap",
+      "typeName": "shape"
+    },
+    {
+      "x": -264.75,
+      "y": 441.8,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:henQoDP0_RCuILa6xjbP7",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 195.4,
+        "h": 146.6,
+        "geo": "rectangle",
+        "color": "red",
+        "labelColor": "red",
+        "fill": "none",
+        "dash": "solid",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "aq",
+      "typeName": "shape"
+    },
+    {
+      "x": -264.75,
+      "y": 605,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:YExxfnjYoe5yAgVPD-xXj",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 195.4,
+        "h": 159.4,
+        "geo": "rectangle",
+        "color": "red",
+        "labelColor": "red",
+        "fill": "none",
+        "dash": "solid",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "ar",
+      "typeName": "shape"
+    },
+    {
+      "x": -436.65,
+      "y": 618.3,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:tfOcfSNWxqwcJI1wjwkbN",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "red",
+        "size": "s",
+        "w": 8,
+        "text": "Guards",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "as",
+      "typeName": "shape"
+    },
+    {
+      "x": -360,
+      "y": 572.01,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:N597W4FTl5HX18B3WeooS",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "solid",
+        "size": "m",
+        "fill": "none",
+        "color": "red",
+        "labelColor": "red",
+        "bend": 0,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 61.49
+        },
+        "end": {
+          "type": "point",
+          "x": 90.45,
+          "y": 0
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "at",
+      "typeName": "shape"
+    },
+    {
+      "x": -354.45,
+      "y": 635.02,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:dKNQxwR7BSn4blRDPP-zL",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "solid",
+        "size": "m",
+        "fill": "none",
+        "color": "red",
+        "labelColor": "red",
+        "bend": 0.003123378484911151,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 0
+        },
+        "end": {
+          "type": "point",
+          "x": 80.9,
+          "y": 8.89
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "au",
+      "typeName": "shape"
+    },
+    {
+      "x": -700.75,
+      "y": 828.5,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:qrBhGxm58gEGHrC1vKtA2",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": " Guards are classes with @Injectable decorator, its single responsability is to authorize requests to be handled by route handlers depending on certain conditions.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 249.80001831054688,
+        "url": ""
+      },
+      "index": "av",
+      "typeName": "shape"
+    },
+    {
+      "x": -538.35,
+      "y": 695.42,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:l56_2yyL3g3O8UjqJr6yu",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": -55.75626410380008,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 128.38
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:YExxfnjYoe5yAgVPD-xXj",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "arV",
+      "typeName": "shape"
+    },
+    {
+      "x": -363.15,
+      "y": 878.9,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:-QOX_G51EXwrEZDcmmq23",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "light-green",
+        "size": "m",
+        "text": "Guards are executed after all Middleware, but before any interceptor or pipe.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 41.90000915527344,
+        "url": ""
+      },
+      "index": "ax",
+      "typeName": "shape"
+    },
+    {
+      "x": -957.55,
+      "y": 909.5,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:2hoz3lbYDeAteUinx6O1j",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "note",
+      "props": {
+        "opacity": "1",
+        "color": "blue",
+        "size": "m",
+        "text": " We could use Middlewares to do the same work as in Express, but the problem is that Middlewares don't know which handler will be excuted next after calling the next() function.",
+        "font": "draw",
+        "align": "middle",
+        "growY": 279.5,
+        "url": ""
+      },
+      "index": "ay",
+      "typeName": "shape"
+    },
+    {
+      "x": -836.09,
+      "y": 850.78,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:-r96tfkiymX7FVajXpx8H",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "blue",
+        "labelColor": "blue",
+        "bend": -18.127554414365353,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 58.72
+        },
+        "end": {
+          "type": "point",
+          "x": 126.54,
+          "y": 0.38
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "az",
+      "typeName": "shape"
+    },
+    {
+      "x": -247.15,
+      "y": 780.4,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:XpGhH5dxRfNcjbbpoW_tt",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": 0,
+        "start": {
+          "type": "point",
+          "x": 0,
+          "y": 85.2
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:YExxfnjYoe5yAgVPD-xXj",
+          "normalizedAnchor": {
+            "x": 0.37,
+            "y": 0.47999999999999965
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "serif"
+      },
+      "index": "arG",
+      "typeName": "shape"
+    },
+    {
+      "x": -600.94,
+      "y": 480.38,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:BfV9_q9MhqZKdKHU1Ay-k",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": -0.000027355759557856923,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:4zRs00an2iE608eLpO9fF",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:henQoDP0_RCuILa6xjbP7",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "serif"
+      },
+      "index": "aqV",
+      "typeName": "shape"
+    },
+    {
+      "x": -456.42,
+      "y": 540.42,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:Hrx1H8aWcpVDdvoL47wZt",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": 0,
+        "start": {
+          "type": "point",
+          "x": 181.6,
+          "y": 0
+        },
+        "end": {
+          "type": "point",
+          "x": 0,
+          "y": 1.6
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "none",
+        "text": "",
+        "font": "serif"
+      },
+      "index": "b02",
+      "typeName": "shape"
+    },
+    {
+      "x": -584.94,
+      "y": 541.42,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:lMiNopRkvMr_H5RnsjbpC",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": 0,
+        "start": {
+          "type": "point",
+          "x": 120.52,
+          "y": 0
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:4zRs00an2iE608eLpO9fF",
+          "normalizedAnchor": {
+            "x": 0.48,
+            "y": 0.6849999999999999
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "serif"
+      },
+      "index": "aXG",
+      "typeName": "shape"
+    },
+    {
+      "x": -448.42,
+      "y": 462.82,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:iHBepRXsQTPqSR9QlE95b",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 105,
+        "h": 37,
+        "geo": "rectangle",
+        "color": "grey",
+        "labelColor": "grey",
+        "fill": "solid",
+        "dash": "dotted",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "Intercept",
+        "align": "middle",
+        "growY": 54.400001525878906,
+        "url": ""
+      },
+      "index": "b04",
+      "typeName": "shape"
+    },
+    {
+      "x": -448.42,
+      "y": 523.62,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:ZB7coCEW9tCTr7FaMplny",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 105,
+        "h": 37,
+        "geo": "rectangle",
+        "color": "grey",
+        "labelColor": "grey",
+        "fill": "solid",
+        "dash": "dotted",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "Intercept",
+        "align": "middle",
+        "growY": 54.400001525878906,
+        "url": ""
+      },
+      "index": "b05",
+      "typeName": "shape"
+    },
+    {
+      "x": -570.4200000000001,
+      "y": 435.02,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:KGfWHXZoJN0VTM_qpswdu",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "grey",
+        "size": "s",
+        "w": 8,
+        "text": "Req",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "b06",
+      "typeName": "shape"
+    },
+    {
+      "x": -565.72,
+      "y": 545.42,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:dUakNKuDNKdUhnUaIalrl",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "grey",
+        "size": "s",
+        "w": 8,
+        "text": "Res",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "b07",
+      "typeName": "shape"
+    },
+    {
+      "x": -411.55,
+      "y": 285.2,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:DMa4dU0PBequg3Uexi6sQ",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "arrow",
+      "props": {
+        "opacity": "1",
+        "dash": "dotted",
+        "size": "m",
+        "fill": "none",
+        "color": "grey",
+        "labelColor": "grey",
+        "bend": 0,
+        "start": {
+          "type": "binding",
+          "boundShapeId": "shape:0ZgperUk9Hhrr7sb1vX4R",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "end": {
+          "type": "binding",
+          "boundShapeId": "shape:iHBepRXsQTPqSR9QlE95b",
+          "normalizedAnchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "isExact": false
+        },
+        "arrowheadStart": "none",
+        "arrowheadEnd": "arrow",
+        "text": "",
+        "font": "draw"
+      },
+      "index": "b04V",
+      "typeName": "shape"
+    },
+    {
+      "x": 1049.63,
+      "y": -421.64,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:M-MqxZMFXZOlxU65WxkAe",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "geo",
+      "props": {
+        "w": 633.32,
+        "h": 179.08,
+        "geo": "rectangle",
+        "color": "grey",
+        "labelColor": "grey",
+        "fill": "none",
+        "dash": "solid",
+        "size": "m",
+        "opacity": "1",
+        "font": "draw",
+        "text": "",
+        "align": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "index": "b09",
+      "typeName": "shape"
+    },
+    {
+      "x": 1294.68,
+      "y": -489.1,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:D2Rxy_G90E1CjaDQMPBNZ",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "grey",
+        "size": "s",
+        "w": 8,
+        "text": "DI Container",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "b0A",
+      "typeName": "shape"
+    },
+    {
+      "x": 1153.48,
+      "y": -356.3,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:0GyTj3VV-7YQmwSN0Vn9H",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "grey",
+        "size": "s",
+        "w": 8,
+        "text": "instances of the injectable providers",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1.3578947368421046
+      },
+      "index": "b0B",
+      "typeName": "shape"
+    },
+    {
+      "x": 1526.59,
+      "y": -490.7,
+      "rotation": 0,
+      "isLocked": false,
+      "id": "shape:UMNG1xlYOV3VyB4YceoPH",
+      "parentId": "page:305HD5x_-yvsv4k6Dq1eR",
+      "type": "text",
+      "props": {
+        "opacity": "1",
+        "color": "grey",
+        "size": "s",
+        "w": 8,
+        "text": "singlton-scoped",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "index": "b0C",
+      "typeName": "shape"
+    }
+  ]
 }
