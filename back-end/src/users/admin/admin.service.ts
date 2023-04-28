@@ -17,11 +17,19 @@ import { IClient } from '../types/client.type';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../auth/entities/user.entity';
+import { AppGateway } from 'src/app.gateway';
 
 /**
  * Service for admin related operations.
  * @function createProduct - Create a new product.
  * @function createStory - Create a new story.
+ * @function confirmOrder - Confirm an order.
+ * @function cancelOrder - Cancel an order.
+ * @function confirmClient - Confirm a client.
+ * @function cancelClient - Cancel a client.
+ * @function deleteProduct - Delete a product.
+ * @function getProfile - Get the profile of the admin.
+ * @function getClients - Get all the clients that are not confirmed by the admin.
  */
 @Injectable()
 export class AdminService {
@@ -32,6 +40,7 @@ export class AdminService {
     private readonly orderService: OrderService,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    private readonly appGateway: AppGateway,
   ) {}
 
   /**
@@ -46,6 +55,8 @@ export class AdminService {
   /**
    * Get all the clients that are not confirmed by the admin.
    * @returns {Promise<IClient[]>} The clients.
+   * @throws {NotFoundException} - If no clients are found.
+   * @throws {InternalServerErrorException} - If an error occurs.
    */
   async getClients(): Promise<IClient[]> {
     try {
@@ -64,7 +75,6 @@ export class AdminService {
           avatarURL: client.avatarURL,
         });
       }
-
       return clientsArray;
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -110,6 +120,7 @@ export class AdminService {
 
   /**
    * Confirm an order by id.
+   * it uses the OrderService to confirm the order.
    * @param {number} id - The id of the order to confirm.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
@@ -121,15 +132,19 @@ export class AdminService {
    * Confirm a client by id.
    * @param {number} id - The id of the client to confirm.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   * @throws {NotFoundException} - If the client is not found.
+   * @throws {InternalServerErrorException} - If an error occurs.
    */
   async confirmClient(id: number): Promise<IConfirmationMessage> {
     try {
       const client = await this.userRepository.findOne({
         where: { id },
       });
+
       if (!client) throw new NotFoundException('Client not found');
       await this.userRepository.update(id, { confirmedByAdmin: true });
-
+      // TODO: Emit the event to the all admins.
+      this.appGateway.server.emit('updated-clients-list', id);
       return { message: 'Client confirmed' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -140,6 +155,7 @@ export class AdminService {
 
   /**
    * Cancel an order by id.
+   * it uses the OrderService to cancel the order.
    * @param {number} id - The id of the order to cancel.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
@@ -151,15 +167,19 @@ export class AdminService {
    * Cancel a client by id.
    * @param {number} id - The id of the client to cancel.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   * @throws {NotFoundException} - If the client is not found.
+   * @throws {InternalServerErrorException} - If an error occurs.
    */
   async cancelClient(id: number): Promise<IConfirmationMessage> {
     try {
       const client = await this.userRepository.findOne({
         where: { id },
       });
+
       if (!client) throw new NotFoundException('Client not found');
       await this.userRepository.delete(id);
-
+      // TODO: Emit the event to the all admins.
+      this.appGateway.server.emit('updated-clients-list', id);
       return { message: 'Client canceled' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
