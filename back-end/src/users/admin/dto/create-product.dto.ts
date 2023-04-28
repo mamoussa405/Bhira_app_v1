@@ -11,7 +11,7 @@ export class CreateProductDto {
   @IsNotEmpty()
   // This regular expression matches only Arabic, English letters
   // and spaces.
-  @Matches(/^[a-zA-Z \u0600-\u06FF]+$/)
+  @Matches(/^[a-zA-Z\s\u0600-\u06FF]+$/)
   name: string;
 
   @IsString()
