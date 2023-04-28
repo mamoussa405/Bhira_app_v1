@@ -14,6 +14,7 @@ import { IConfirmationMessage } from 'src/types/response.type';
 import { UserEntity } from 'src/users/auth/entities/user.entity';
 import { StoryViewEntity } from 'src/home/entities/story-view.entity';
 import { IStory } from 'src/types/home.type';
+import { AppGateway } from 'src/app.gateway';
 
 /**
  * Service for story related operations.
@@ -31,12 +32,14 @@ export class StoryService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(StoryViewEntity)
     private readonly storyViewRepository: Repository<StoryViewEntity>,
+    private readonly appGateway: AppGateway,
   ) {}
 
   /**
    * Create a new story, and return the created story.
    * @param {CreateStoryDto} story - The story to create.
    * @returns {Promise<IConfirmationMessage>} The created story.
+   * @throws {InternalServerErrorException} - If an error occurs.
    */
   async createStory(
     story: CreateStoryDto,
@@ -46,8 +49,16 @@ export class StoryService {
       const storyEntity = this.storyRepository.create(story);
       storyEntity.imageURL = await this.uploadImage(files.image[0]);
       storyEntity.videoURL = await this.uploadVideo(files.video[0]);
-      await this.storyRepository.save(storyEntity);
+      const newStory = await this.storyRepository.save(storyEntity);
 
+      this.appGateway.server.emit('new-story', {
+        id: newStory.id,
+        title: newStory.title,
+        description: newStory.description,
+        videoURL: newStory.videoURL,
+        imageURL: newStory.imageURL,
+        viewedByTheCurrentUser: false,
+      });
       return { message: 'Story created successfully' };
     } catch (error) {
       throw new InternalServerErrorException('Error creating story');
@@ -56,10 +67,10 @@ export class StoryService {
 
   /**
    * Find a story by id, and return the story.
-   * @throws {NotFoundException} - If the story is not found.
-   * @throws {InternalServerErrorException} - If an error occurs.
    * @param {number} id - The id of the story to find.
    * @returns {Promise<StoryEntity>} The found story.
+   * @throws {NotFoundException} - If the story is not found.
+   * @throws {InternalServerErrorException} - If an error occurs.
    */
   async findOne(id: number): Promise<StoryEntity> {
     try {
@@ -81,10 +92,10 @@ export class StoryService {
    * the current user or not, it return the stories that are not viewed by the
    * current user first, and then the viewed stories if the time difference
    * between the current time and the time the story was viewed is less than 7 days.
-   * @throws {InternalServerErrorException} - If an error occurs.
-   * @throws {NotFoundException} - If no stories are found.
    * @param {number} userId - The id of the current user.
    * @returns {Promise<IStory[]>} The found stories.
+   * @throws {InternalServerErrorException} - If an error occurs.
+   * @throws {NotFoundException} - If no stories are found.
    */
   async getStories(userId: number): Promise<IStory[]> {
     try {
