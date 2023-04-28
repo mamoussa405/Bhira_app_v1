@@ -1,5 +1,5 @@
 import {
-  INormalProduct,
+  IFoundProducts,
   ITopMarketProduct,
 } from 'src/products/types/product.type';
 
@@ -23,5 +23,5 @@ export interface IStory {
 export interface IHome {
   stories: IStory[];
   topMarketProduct: ITopMarketProduct;
-  products: INormalProduct[];
+  products: IFoundProducts;
 }
