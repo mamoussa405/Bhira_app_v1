@@ -12,6 +12,6 @@ export class ProductQueryDto {
   @IsNotEmpty()
   @IsString()
   // This regular expression matches only Arabic letters
-  @Matches(/^[\u0600-\u06FF]+$/)
+  @Matches(/^[a-zA-Z \u0600-\u06FF]+$/)
   like: string;
 }
