@@ -14,4 +14,10 @@ export interface ITopMarketProduct {
   stock: number;
   imageURL: string;
 }
+
+export interface IFoundProducts {
+  fruits: INormalProduct[];
+  vegetables: INormalProduct[];
+  herbes: INormalProduct[];
+}
 // TODO: Limit the number of images uploaded to 1 if the product is a top market product.
