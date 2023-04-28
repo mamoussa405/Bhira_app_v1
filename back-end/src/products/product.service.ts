@@ -12,6 +12,7 @@ import { CreateProductDto } from 'src/users/admin/dto/create-product.dto';
 import { CloudinaryService } from 'nestjs-cloudinary';
 import { INormalProduct, ITopMarketProduct } from './types/product.type';
 import { IConfirmationMessage } from 'src/types/response.type';
+import { AppGateway } from 'src/app.gateway';
 
 /**
  * Service for product related operations.
@@ -19,7 +20,9 @@ import { IConfirmationMessage } from 'src/types/response.type';
  * @function getProducts - Get all products.
  * @function getProduct - Get a product by id.
  * @function deleteProduct - Delete a product by id.
- * @function uploadImages - Upload images to cloudinary.
+ * @function updateProduct - Update a product by id.
+ * @function getTopMarketProduct - Get the top market product.
+ * @function setNewTopMarketProduct - Set a new top market product.
  */
 @Injectable()
 export class ProductService {
@@ -27,12 +30,15 @@ export class ProductService {
     @InjectRepository(ProductEntity)
     private readonly productRepository: Repository<ProductEntity>,
     private readonly cloudinaryService: CloudinaryService,
+    private readonly appGateway: AppGateway,
   ) {}
 
   /**
    * Create a new product, and return the created product.
    * @param {CreateProductDto} product - The product to create.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   * @throws {BadRequestException} Stock is required for top market product.
+   * @throws {InternalServerErrorException} Error creating product.
    */
   async createProduct(
     product: CreateProductDto,
@@ -55,6 +61,7 @@ export class ProductService {
        * to false.
        * Set the new product as the current top market product.
        */
+      // TODO: WE should use a transaction here.
       if (productEntity.isTopMarketProduct) {
         const currentTopMarketProduct = await this.productRepository.findOne({
           where: { isCurrentTopMarketProduct: true },
@@ -66,9 +73,31 @@ export class ProductService {
         }
         productEntity.isCurrentTopMarketProduct = true;
       }
-      await this.productRepository.save(productEntity);
+      const newProduct = await this.productRepository.save(productEntity);
+      /**
+       * After the product is created, emit the product to the clients,
+       * depending on if it is a top market product or not.
+       */
+      !productEntity.isTopMarketProduct
+        ? this.appGateway.server.emit('new-product', {
+            id: newProduct.id,
+            name: newProduct.name,
+            description: newProduct.description,
+            price: newProduct.price,
+            imagesURL: newProduct.imagesURL[0],
+          })
+        : this.appGateway.server.emit('new-top-market-product', {
+            id: newProduct.id,
+            name: newProduct.name,
+            description: newProduct.description,
+            price: newProduct.price,
+            stock: newProduct.stock,
+            imageURL: newProduct.imagesURL[0],
+          });
       return { message: 'Product created successfully' };
     } catch (error) {
+      if (error.status === HttpStatus.BAD_REQUEST)
+        throw new BadRequestException(error.message);
       throw new InternalServerErrorException('Error creating product');
     }
   }
@@ -76,15 +105,17 @@ export class ProductService {
   /**
    * Get all products.
    * @returns {Promise<INormalProduct[]>} The products.
+   * @throws {NotFoundException} No products found.
+   * @throws {InternalServerErrorException} Error getting products.
    */
   async getProducts(): Promise<INormalProduct[]> {
     try {
       const products = await this.productRepository.find({
         where: { isTopMarketProduct: false },
       });
+
       if (!products || !products.length)
         throw new NotFoundException('No Products found');
-
       return products.map((product) => ({
         id: product.id,
         name: product.name,
@@ -101,9 +132,9 @@ export class ProductService {
 
   /**
    * Get the top market product, if there is one.
+   * @returns {Promise<ITopMarketProduct>} The top market product.
    * @throws {NotFoundException} Product not found.
    * @throws {InternalServerErrorException} Error finding product.
-   * @returns {Promise<ITopMarketProduct>} The top market product.
    */
   async getTopMarketProduct(): Promise<ITopMarketProduct> {
     try {
@@ -128,19 +159,66 @@ export class ProductService {
   }
 
   /**
+   * Sets a new top market product to be the top market product
+   * white the most stock.
+   * @param {number} productId - The id of the old top market product.
+   * @returns {Promise<ProductEntity>} The new top market product.
+   * @throws {InternalServerErrorException} Error setting new top market product.
+   */
+  async setNewTopMarketProduct(productId: number): Promise<ProductEntity> {
+    try {
+      /**
+       * Get all top market products, and order them by stock in descending order,
+       * meaning the product with the most stock will be first.
+       */
+      const topMarketProducts = await this.productRepository.find({
+        where: { isTopMarketProduct: true },
+        order: { stock: 'DESC' },
+      });
+
+      if (
+        !topMarketProducts ||
+        !topMarketProducts.length ||
+        !topMarketProducts[0].stock
+      )
+        throw new NotFoundException('No top market products found');
+      /**
+       * Set the first product in the array as the new top market product,
+       * and set the old top market product to false.
+       */
+      // TODO: We should use a transaction here.
+      await this.productRepository.update(topMarketProducts[0].id, {
+        isCurrentTopMarketProduct: true,
+      });
+      await this.productRepository.update(productId, {
+        isCurrentTopMarketProduct: false,
+      });
+      return topMarketProducts[0];
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException(
+        'Error setting new top market product',
+      );
+    }
+  }
+
+  /**
    * Get a product by id.
    * @param {number} id - The id of the product to get.
    * @returns {Promise<ProductEntity>} The product.
+   * @throws {NotFoundException} Product not found.
+   * @throws {InternalServerErrorException} Error finding product.
    */
   async getProduct(id: number): Promise<ProductEntity> {
     try {
       const product = await this.productRepository.findOne({
         where: { id },
       });
+
       if (!product) {
         throw new NotFoundException('Product not found');
       }
-
       return product;
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -153,17 +231,20 @@ export class ProductService {
    * Delete a product by id.
    * @param {number} id - The id of the product to delete.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
+   * @throws {NotFoundException} Product not found.
+   * @throws {InternalServerErrorException} Error deleting product.
    */
   async deleteProduct(id: number): Promise<IConfirmationMessage> {
     try {
       const product = await this.productRepository.findOne({
         where: { id },
       });
+
       if (!product) {
         throw new NotFoundException('Product not found');
       }
       await this.productRepository.delete({ id });
-
+      this.appGateway.server.emit('deleted-product', id);
       return { message: 'Product deleted successfully' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -176,9 +257,9 @@ export class ProductService {
    * Update a product stock by id, this method will be used when a user
    * buys a top market product or when an admin cancels an order that
    * contains a top market product.
-   * @throws {InternalServerErrorException} Error updating product stock.
    * @param {number} id - The id of the product to update.
    * @param {number} stock - The new stock.
+   * @throws {InternalServerErrorException} Error updating product stock.
    */
   async updateProductStock(id: number, stock: number): Promise<void> {
     try {
