@@ -36,7 +36,7 @@ export class AuthService {
    * @returns {Promise<UserEntity>} user entity
    * @throws {InternalServerErrorException} if could not create user
    */
-  async signUp(user: SignUpDto): Promise<UserEntity> {
+  public async signUp(user: SignUpDto): Promise<UserEntity> {
     try {
       user.password = await this.hashPassword(user.password);
       const userEntity = this.userRepository.create(user);
@@ -67,7 +67,7 @@ export class AuthService {
    * @throws {UnauthorizedException} if user not confirmed or wrong password
    * @throws {InternalServerErrorException} if could not sign in
    */
-  async signIn(
+  public async signIn(
     { phoneNumber, password }: SignInDto,
     res: Response,
   ): Promise<UserEntity> {
@@ -116,7 +116,7 @@ export class AuthService {
    * @param {Response} res response object
    * @returns {IConfirmationMessage} confirmation message
    */
-  signOut(res: Response): IConfirmationMessage {
+  public signOut(res: Response): IConfirmationMessage {
     res.clearCookie('access_token');
     // TODO: close the user socket connection
     return { message: 'Logged out successfully' };

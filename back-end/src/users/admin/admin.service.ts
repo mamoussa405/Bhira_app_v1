@@ -48,7 +48,7 @@ export class AdminService {
    * @param {number} id - The id of the admin.
    * @returns {Promise<IProfile>} The profile of the admin.
    */
-  async getProfile(id: number): Promise<IProfile> {
+  public async getProfile(id: number): Promise<IProfile> {
     return await this.profileService.getAdminProfile(id);
   }
 
@@ -58,7 +58,7 @@ export class AdminService {
    * @throws {NotFoundException} - If no clients are found.
    * @throws {InternalServerErrorException} - If an error occurs.
    */
-  async getClients(): Promise<IClient[]> {
+  public async getClients(): Promise<IClient[]> {
     try {
       const clients = await this.userRepository.find({
         where: { confirmedByAdmin: false },
@@ -89,7 +89,7 @@ export class AdminService {
    * @param {CreateProductDto} product - The product to create.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
-  async createProduct(
+  public async createProduct(
     product: CreateProductDto,
     images: Express.Multer.File[],
   ): Promise<IConfirmationMessage> {
@@ -101,7 +101,7 @@ export class AdminService {
    * @param {number} id - The id of the product to delete.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
-  async deleteProduct(id: number): Promise<IConfirmationMessage> {
+  public async deleteProduct(id: number): Promise<IConfirmationMessage> {
     return await this.productService.deleteProduct(id);
   }
 
@@ -111,7 +111,7 @@ export class AdminService {
    * @param {CreateStoryDto} story - The story to create.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
-  async createStory(
+  public async createStory(
     story: CreateStoryDto,
     files: IFiles,
   ): Promise<IConfirmationMessage> {
@@ -124,7 +124,7 @@ export class AdminService {
    * @param {number} id - The id of the order to confirm.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
-  async confirmOrder(id: number): Promise<IConfirmationMessage> {
+  public async confirmOrder(id: number): Promise<IConfirmationMessage> {
     return await this.orderService.confirmOrder(id);
   }
 
@@ -135,7 +135,7 @@ export class AdminService {
    * @throws {NotFoundException} - If the client is not found.
    * @throws {InternalServerErrorException} - If an error occurs.
    */
-  async confirmClient(id: number): Promise<IConfirmationMessage> {
+  public async confirmClient(id: number): Promise<IConfirmationMessage> {
     try {
       const client = await this.userRepository.findOne({
         where: { id },
@@ -159,7 +159,7 @@ export class AdminService {
    * @param {number} id - The id of the order to cancel.
    * @returns {Promise<IConfirmationMessage>} The confirmation message.
    */
-  async cancelOrder(id: number): Promise<IConfirmationMessage> {
+  public async cancelOrder(id: number): Promise<IConfirmationMessage> {
     return await this.orderService.cancelOrder(id);
   }
 
@@ -170,7 +170,7 @@ export class AdminService {
    * @throws {NotFoundException} - If the client is not found.
    * @throws {InternalServerErrorException} - If an error occurs.
    */
-  async cancelClient(id: number): Promise<IConfirmationMessage> {
+  public async cancelClient(id: number): Promise<IConfirmationMessage> {
     try {
       const client = await this.userRepository.findOne({
         where: { id },

@@ -41,7 +41,7 @@ export class StoryService {
    * @returns {Promise<IConfirmationMessage>} The created story.
    * @throws {InternalServerErrorException} - If an error occurs.
    */
-  async createStory(
+  public async createStory(
     story: CreateStoryDto,
     files: IFiles,
   ): Promise<IConfirmationMessage> {
@@ -72,7 +72,7 @@ export class StoryService {
    * @throws {NotFoundException} - If the story is not found.
    * @throws {InternalServerErrorException} - If an error occurs.
    */
-  async findOne(id: number): Promise<StoryEntity> {
+  public async findOne(id: number): Promise<StoryEntity> {
     try {
       const story = await this.storyRepository.findOne({
         where: { id },
@@ -97,7 +97,7 @@ export class StoryService {
    * @throws {InternalServerErrorException} - If an error occurs.
    * @throws {NotFoundException} - If no stories are found.
    */
-  async getStories(userId: number): Promise<IStory[]> {
+  public async getStories(userId: number): Promise<IStory[]> {
     try {
       /* Get all stories ordered by id ascending. */
       const stories = await this.storyRepository.find({

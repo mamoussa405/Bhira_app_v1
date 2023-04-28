@@ -40,7 +40,7 @@ export class ProductService {
    * @throws {BadRequestException} Stock is required for top market product.
    * @throws {InternalServerErrorException} Error creating product.
    */
-  async createProduct(
+  public async createProduct(
     product: CreateProductDto,
     images: Express.Multer.File[],
   ): Promise<IConfirmationMessage> {
@@ -108,7 +108,7 @@ export class ProductService {
    * @throws {NotFoundException} No products found.
    * @throws {InternalServerErrorException} Error getting products.
    */
-  async getProducts(): Promise<INormalProduct[]> {
+  public async getProducts(): Promise<INormalProduct[]> {
     try {
       const products = await this.productRepository.find({
         where: { isTopMarketProduct: false },
@@ -136,7 +136,7 @@ export class ProductService {
    * @throws {NotFoundException} Product not found.
    * @throws {InternalServerErrorException} Error finding product.
    */
-  async getTopMarketProduct(): Promise<ITopMarketProduct> {
+  public async getTopMarketProduct(): Promise<ITopMarketProduct> {
     try {
       const product = await this.productRepository.findOne({
         where: { isCurrentTopMarketProduct: true },
@@ -165,7 +165,9 @@ export class ProductService {
    * @returns {Promise<ProductEntity>} The new top market product.
    * @throws {InternalServerErrorException} Error setting new top market product.
    */
-  async setNewTopMarketProduct(productId: number): Promise<ProductEntity> {
+  public async setNewTopMarketProduct(
+    productId: number,
+  ): Promise<ProductEntity> {
     try {
       /**
        * Get all top market products, and order them by stock in descending order,
@@ -210,7 +212,7 @@ export class ProductService {
    * @throws {NotFoundException} Product not found.
    * @throws {InternalServerErrorException} Error finding product.
    */
-  async getProduct(id: number): Promise<ProductEntity> {
+  public async getProduct(id: number): Promise<ProductEntity> {
     try {
       const product = await this.productRepository.findOne({
         where: { id },
@@ -234,7 +236,7 @@ export class ProductService {
    * @throws {NotFoundException} Product not found.
    * @throws {InternalServerErrorException} Error deleting product.
    */
-  async deleteProduct(id: number): Promise<IConfirmationMessage> {
+  public async deleteProduct(id: number): Promise<IConfirmationMessage> {
     try {
       const product = await this.productRepository.findOne({
         where: { id },
@@ -261,7 +263,7 @@ export class ProductService {
    * @param {number} stock - The new stock.
    * @throws {InternalServerErrorException} Error updating product stock.
    */
-  async updateProductStock(id: number, stock: number): Promise<void> {
+  public async updateProductStock(id: number, stock: number): Promise<void> {
     try {
       await this.productRepository.update(id, { stock });
     } catch (error) {

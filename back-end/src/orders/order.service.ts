@@ -54,7 +54,7 @@ export class OrderService {
    * @throws {NotFoundException} - If the product is not found or the user is not found.
    * @throws {InternalServerErrorException} - If there is an error while saving the order.
    */
-  async createOrder(
+  public async createOrder(
     order: CreateOrderDto,
     productId: number,
     userId: number,
@@ -131,7 +131,7 @@ export class OrderService {
    * @throws {InternalServerErrorException} - If there is an error while getting the orders.
    * @throws {NotFoundException} - If there are no orders in the cart of the user.
    */
-  async getAddedToCartOrders(userId: number): Promise<ICartOrder[]> {
+  public async getAddedToCartOrders(userId: number): Promise<ICartOrder[]> {
     try {
       /**
        * First we get all the orders that are not confirmed by the user,
@@ -173,7 +173,7 @@ export class OrderService {
    * @returns {Promise<IAdminProfileOrder[]>} - The orders that are confirmed by the user.
    * @throws {InternalServerErrorException} - If there is an error while getting the orders.
    */
-  async getAdminProfileOrders(): Promise<IAdminProfileOrder[]> {
+  public async getAdminProfileOrders(): Promise<IAdminProfileOrder[]> {
     try {
       /**
        * First we get all the orders that are confirmed by the user,
@@ -217,7 +217,9 @@ export class OrderService {
    * @returns {Promise<IUserProfileOrder[]>} - The orders that are confirmed by the user.
    * @throws {InternalServerErrorException} - If there is an error while getting the orders.
    */
-  async getUserProfileOrders(userId: number): Promise<IUserProfileOrder[]> {
+  public async getUserProfileOrders(
+    userId: number,
+  ): Promise<IUserProfileOrder[]> {
     try {
       /**
        * First we get all the orders that are confirmed by the user,
@@ -260,7 +262,7 @@ export class OrderService {
    * @throws {NotFoundException} - If the order is not found.
    * @throws {UnauthorizedException} - If the user is not the owner of the order.
    */
-  async deleteOrder(
+  public async deleteOrder(
     orderId: number,
     userId: number,
   ): Promise<IConfirmationMessage> {
@@ -311,7 +313,7 @@ export class OrderService {
    * @throws {NotFoundException} - If one of the orders is not found.
    * @throws {UnauthorizedException} - If one of the orders is not owned by the user.
    */
-  async confirmOrdersBuy(
+  public async confirmOrdersBuy(
     body: ConfirmOrdersBuyDto,
     userId: number,
   ): Promise<IConfirmationMessage> {
@@ -362,7 +364,7 @@ export class OrderService {
    * @throws {InternalServerErrorException} - If there is an error while confirming the order.
    * @throws {NotFoundException} - If the order is not found.
    */
-  async confirmOrder(orderId: number): Promise<IConfirmationMessage> {
+  public async confirmOrder(orderId: number): Promise<IConfirmationMessage> {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
@@ -387,7 +389,7 @@ export class OrderService {
    * @throws {InternalServerErrorException} - If there is an error while canceling the order.
    * @throws {NotFoundException} - If the order is not found.
    */
-  async cancelOrder(orderId: number): Promise<IConfirmationMessage> {
+  public async cancelOrder(orderId: number): Promise<IConfirmationMessage> {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
