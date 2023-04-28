@@ -9,8 +9,9 @@ import {
 export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
-  // This regular expression matches only Arabic letters
-  @Matches(/^[\u0600-\u06FF]+$/)
+  // This regular expression matches only Arabic, English letters
+  // and spaces.
+  @Matches(/^[a-zA-Z \u0600-\u06FF]+$/)
   name: string;
 
   @IsString()
@@ -20,6 +21,7 @@ export class CreateProductDto {
 
   @IsNumber()
   @IsNotEmpty()
+  // TODO: Add a custom validation to check if the price is a positive number
   price: number;
 
   @IsString()
@@ -32,5 +34,6 @@ export class CreateProductDto {
 
   @IsNumber()
   @IsNotEmpty()
+  //TODO: Add a custom validation to check if the stock is a positive number
   stock: number;
 }
