@@ -1,7 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { ProductParamDto } from './dto/product.dto';
-import { INormalProduct } from './types/product.type';
+import { ProductParamDto, ProductQueryDto } from './dto/product.dto';
+import { IFoundProducts, INormalProduct } from './types/product.type';
 
 @Controller('products')
 export class ProductController {
@@ -18,5 +18,12 @@ export class ProductController {
       price: product.price,
       imagesURL: product.imagesURL,
     };
+  }
+
+  @Get('search')
+  async searchProducts(
+    @Query() query: ProductQueryDto,
+  ): Promise<IFoundProducts> {
+    return await this.productService.searchProducts(query.like);
   }
 }
