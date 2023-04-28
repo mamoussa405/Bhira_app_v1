@@ -8,6 +8,7 @@ import { ProfileModule } from '../profile/profile.module';
 import { OrderModule } from 'src/orders/order.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../auth/entities/user.entity';
+import { AppGateway } from 'src/app.gateway';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { UserEntity } from '../auth/entities/user.entity';
     TypeOrmModule.forFeature([UserEntity]),
   ],
   controllers: [AdminController],
-  providers: [AdminService],
+  providers: [AdminService, AppGateway],
 })
 export class AdminModule {}
