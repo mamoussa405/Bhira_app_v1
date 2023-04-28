@@ -13,6 +13,7 @@ import { CloudinaryService } from 'nestjs-cloudinary';
 import { ITopMarketProduct, IFoundProducts } from './types/product.type';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { AppGateway } from 'src/app.gateway';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Service for product related operations.
@@ -53,6 +54,14 @@ export class ProductService {
       if (product.isTopMarketProduct && !product.stock)
         throw new BadRequestException(
           'Stock is required for top market product',
+        );
+      /**
+       * Check if the product is a top market product and if it is, check
+       * if more than one image is provided.
+       */
+      if (product.isTopMarketProduct && images.length > 1)
+        throw new BadRequestException(
+          'Only one image is allowed for top market product',
         );
       const productEntity = this.productRepository.create(product);
       productEntity.imagesURL = await this.uploadImages(images);
@@ -295,14 +304,16 @@ export class ProductService {
   private async uploadImages(images: Express.Multer.File[]): Promise<string[]> {
     const imagesURL: string[] = [];
 
-    // TODO: add a unique id to the public_id.
     for (const image of images) {
       const result = await this.cloudinaryService.uploadFile(image, {
         /**
          * Here we remove the file extension from the file original name
          * because it will be added automatically by cloudinary.
          */
-        public_id: image.originalname.replace(/\.jpg|\.png|\.jpeg/g, ''),
+        public_id:
+          image.originalname.replace(/\.jpg|\.png|\.jpeg/g, '') +
+          '-' +
+          uuidv4(),
       });
       imagesURL.push(result.url);
     }
