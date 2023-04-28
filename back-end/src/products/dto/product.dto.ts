@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsNumberString, IsString, Matches } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumberString,
+  IsString,
+  Matches,
+  MaxLength,
+} from 'class-validator';
 
 export class ProductParamDto {
   @IsNumberString()
@@ -13,5 +19,6 @@ export class ProductQueryDto {
   @IsString()
   // This regular expression matches only Arabic letters
   @Matches(/^[a-zA-Z\s\u0600-\u06FF]+$/)
+  @MaxLength(255)
   like: string;
 }
