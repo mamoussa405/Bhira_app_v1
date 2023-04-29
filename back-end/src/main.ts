@@ -25,6 +25,6 @@ async function bootstrap() {
    * and set them to the request object.
    */
   app.use(cookieParser());
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || 3000, '0.0.0.0');
 }
 bootstrap();
