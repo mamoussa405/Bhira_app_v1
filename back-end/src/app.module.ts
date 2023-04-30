@@ -7,6 +7,7 @@ import { AuthGuard } from './users/guards/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryModule } from 'nestjs-cloudinary';
 import { HomeModule } from './home/home.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -67,5 +68,6 @@ import { HomeModule } from './home/home.module';
       useClass: AuthGuard,
     },
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
