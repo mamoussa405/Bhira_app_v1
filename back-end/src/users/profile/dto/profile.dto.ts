@@ -2,9 +2,9 @@ import {
   IsNotEmpty,
   IsPhoneNumber,
   IsString,
-  IsStrongPassword,
   Matches,
   MaxLength,
+  MinLength,
 } from 'class-validator';
 
 export class UpdateNameDto {
@@ -29,7 +29,7 @@ export class UpdateAddressDto {
   @MaxLength(255)
   address: string;
 }
-
+// TODO: Remember to add messages for the user in arabic
 export class UpdatePasswordDto {
   @IsString()
   @IsNotEmpty()
@@ -38,7 +38,7 @@ export class UpdatePasswordDto {
 
   @IsString()
   @IsNotEmpty()
-  @IsStrongPassword()
-  @MaxLength(255)
+  @MaxLength(255, { message: 'Password is too long (255 characters max)' })
+  @MinLength(6, { message: 'Password is too short (6 characters min)' })
   newPassword: string;
 }

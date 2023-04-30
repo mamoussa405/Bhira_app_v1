@@ -1,10 +1,11 @@
 import {
   IsNotEmpty,
+  IsOptional,
   IsPhoneNumber,
   IsString,
-  IsStrongPassword,
   Matches,
   MaxLength,
+  MinLength,
 } from 'class-validator';
 
 export class SignUpDto {
@@ -15,9 +16,10 @@ export class SignUpDto {
   @MaxLength(255)
   name: string;
 
+  @MaxLength(255)
   @IsString()
   @IsNotEmpty()
-  @MaxLength(255)
+  @IsOptional()
   address: string;
 
   @IsPhoneNumber('MA')
@@ -26,9 +28,9 @@ export class SignUpDto {
   phoneNumber: string;
 
   @IsString()
-  @IsStrongPassword()
   @IsNotEmpty()
-  @MaxLength(255)
+  @MaxLength(255, { message: 'Password is too long (255 characters max)' })
+  @MinLength(6, { message: 'Password is too short (6 characters min)' })
   password: string;
 }
 
@@ -40,6 +42,7 @@ export class SignInDto {
 
   @IsString()
   @IsNotEmpty()
-  @MaxLength(255)
+  @MaxLength(255, { message: 'Password is too long (255 characters max)' })
+  @MinLength(6, { message: 'Password is too short (6 characters min)' })
   password: string;
 }
