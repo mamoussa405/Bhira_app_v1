@@ -38,7 +38,13 @@ export class AuthService {
    */
   public async signUp(user: SignUpDto): Promise<UserEntity> {
     try {
+      const existedUser = await this.userRepository.findOne({
+        where: { phoneNumber: user.phoneNumber },
+      });
+      if (existedUser)
+        throw new InternalServerErrorException('Phone number already exists');
       user.password = await this.hashPassword(user.password);
+      if (!user.address) user.address = '';
       const userEntity = this.userRepository.create(user);
 
       userEntity.avatarURL = this.configService.get<string>(
@@ -46,13 +52,7 @@ export class AuthService {
       );
       return await this.userRepository.save(userEntity);
     } catch (error) {
-      /**
-       * If the error is due to duplicate phone number throw
-       * InternalServerErrorException with message.
-       * the contraint name should be changed if the database table name
-       * of the column name is changed.
-       */
-      if (error.constraint === 'user_entity_phoneNumber_key')
+      if (error.message === 'Phone number already exists')
         throw new InternalServerErrorException('Phone number already exists');
       throw new InternalServerErrorException('Could not create user');
     }
