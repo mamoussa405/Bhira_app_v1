@@ -145,7 +145,7 @@ export class AdminService {
       await this.userRepository.update(id, { confirmedByAdmin: true });
       // TODO: Emit the event to the all admins.
       this.appGateway.server.emit('updated-clients-list', id);
-      return { message: 'Client confirmed' };
+      return { message: 'تم تأكيد العميل بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -180,7 +180,7 @@ export class AdminService {
       await this.userRepository.delete(id);
       // TODO: Emit the event to the all admins.
       this.appGateway.server.emit('updated-clients-list', id);
-      return { message: 'Client canceled' };
+      return { message: 'تم إلغاء العميل بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);

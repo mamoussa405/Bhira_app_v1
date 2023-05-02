@@ -106,7 +106,7 @@ export class ProfileService {
   ): Promise<IConfirmationMessage> {
     try {
       await this.userRepository.update(id, { name });
-      return { message: 'Name updated successfully' };
+      return { message: 'تم تحديث الاسم بنجاح' };
     } catch (error) {
       throw new InternalServerErrorException('خطأ في تحديث الاسم');
     }
@@ -127,7 +127,7 @@ export class ProfileService {
       const avatarURL = await this.uploadAvatar(avatar);
 
       await this.userRepository.update(id, { avatarURL });
-      return { message: 'Image updated successfully' };
+      return { message: 'تم تحديث الصورة بنجاح' };
     } catch (error) {
       throw new InternalServerErrorException('خطأ في تحديث الصورة');
     }
@@ -146,7 +146,7 @@ export class ProfileService {
   ): Promise<any> {
     try {
       await this.userRepository.update(id, { phoneNumber });
-      return { message: 'Phone number updated successfully' };
+      return { message: 'تم تحديث رقم الهاتف بنجاح' };
     } catch (error) {
       throw new InternalServerErrorException('خطأ في تحديث رقم الهاتف');
     }
@@ -162,7 +162,7 @@ export class ProfileService {
   public async updateAddress(id: number, address: string): Promise<any> {
     try {
       await this.userRepository.update(id, { address });
-      return { message: 'Address updated successfully' };
+      return { message: 'تم تحديث العنوان بنجاح' };
     } catch (error) {
       throw new InternalServerErrorException('خطأ في تحديث العنوان');
     }
@@ -190,7 +190,7 @@ export class ProfileService {
       const password = await bcrypt.hash(body.newPassword, salt);
 
       await this.userRepository.update(id, { password });
-      return { message: 'Password updated successfully' };
+      return { message: 'تم تحديث كلمة السر بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);

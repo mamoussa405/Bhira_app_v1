@@ -29,8 +29,8 @@ export class SignUpDto {
 
   @IsString()
   @IsNotEmpty()
-  @MaxLength(255, { message: 'Password is too long (255 characters max)' })
-  @MinLength(6, { message: 'Password is too short (6 characters min)' })
+  @MaxLength(255, { message: 'كلمة المرور طويلة جدًا (بحد أقصى 255 حرفًا)' })
+  @MinLength(6, { message: 'كلمة المرور قصيرة جدًا (6 أحرف على الأقل)' })
   password: string;
 }
 
@@ -42,7 +42,7 @@ export class SignInDto {
 
   @IsString()
   @IsNotEmpty()
-  @MaxLength(255, { message: 'Password is too long (255 characters max)' })
-  @MinLength(6, { message: 'Password is too short (6 characters min)' })
+  @MaxLength(255, { message: 'كلمة المرور طويلة جدًا (بحد أقصى 255 حرفًا)' })
+  @MinLength(6, { message: 'كلمة المرور قصيرة جدًا (6 أحرف على الأقل)' })
   password: string;
 }

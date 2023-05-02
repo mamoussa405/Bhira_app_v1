@@ -131,7 +131,7 @@ export class AuthService {
   public signOut(res: Response): IConfirmationMessage {
     res.clearCookie('access_token');
     // TODO: close the user socket connection
-    return { message: 'Logged out successfully' };
+    return { message: 'تم تسجيل الخروج بنجاح' };
   }
 
   /**

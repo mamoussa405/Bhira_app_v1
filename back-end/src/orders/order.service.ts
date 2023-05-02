@@ -117,7 +117,7 @@ export class OrderService {
             stock,
           );
       }
-      return { message: 'Order created successfully' };
+      return { message: 'تم إنشاء الطلب بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -295,7 +295,7 @@ export class OrderService {
             stock,
           );
       }
-      return { message: 'Order deleted successfully' };
+      return { message: 'تم حذف الطلب بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -348,7 +348,7 @@ export class OrderService {
           orderTime: new Date(),
         });
       }
-      return { message: 'Orders confirmed successfully' };
+      return { message: 'تم تأكيد الطلبات بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -375,7 +375,7 @@ export class OrderService {
       await this.orderRepository.update(orderId, { buyConfirmedByAdmin: true });
       // TODO: Emit the event to the user who owns the order, and to the all admins.
       this.appGateway.server.emit('confirmed-order', orderId);
-      return { message: 'Order confirmed successfully' };
+      return { message: 'تم تأكيد الطلب بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -417,7 +417,7 @@ export class OrderService {
       }
       // TODO: Emit the event to the user who owns the order, and to the all admins.
       this.appGateway.server.emit('canceled-order', orderId);
-      return { message: 'Order canceled successfully' };
+      return { message: 'تم إلغاء الطلب بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);

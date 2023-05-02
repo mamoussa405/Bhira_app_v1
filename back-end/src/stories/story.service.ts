@@ -60,7 +60,7 @@ export class StoryService {
         imageURL: newStory.imageURL,
         viewedByTheCurrentUser: false,
       });
-      return { message: 'Story created successfully' };
+      return { message: 'تم إنشاء الستوري بنجاح' };
     } catch (error) {
       throw new InternalServerErrorException('خطأ في إضافة الستوري');
     }

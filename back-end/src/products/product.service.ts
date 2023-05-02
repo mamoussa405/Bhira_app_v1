@@ -102,7 +102,7 @@ export class ProductService {
             stock: newProduct.stock,
             imageURL: newProduct.imagesURL[0],
           });
-      return { message: 'Product created successfully' };
+      return { message: 'تم إنشاء المنتج بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.BAD_REQUEST)
         throw new BadRequestException(error.message);
@@ -270,7 +270,7 @@ export class ProductService {
       }
       await this.productRepository.delete({ id });
       this.appGateway.server.emit('deleted-product', id);
-      return { message: 'Product deleted successfully' };
+      return { message: 'تم حذف المنتج بنجاح' };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
