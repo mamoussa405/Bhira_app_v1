@@ -79,7 +79,10 @@ export class HomeService {
         where: { id: userId },
       });
       const story = await this.storyService.findOne(storyId);
-      if (!story) throw new NotFoundException('Story not found');
+      if (!story)
+        throw new NotFoundException(
+          'الستوري غير موجودة، المرجوا الاتصال بصاحب التطبيق',
+        );
       const storyView = await this.storyViewRepository.findOne({
         where: { user: { id: userId }, story: { id: storyId } },
       });

@@ -47,7 +47,7 @@ export class ProfileService {
       const user = await this.userRepository.findOne({
         where: { id },
       });
-      if (!user) throw new NotFoundException('User not found');
+      if (!user) throw new NotFoundException('لم يتم العثور على المستخدم');
       const orders = await this.orderService.getUserProfileOrders(id);
 
       return {
@@ -76,7 +76,7 @@ export class ProfileService {
       const user = await this.userRepository.findOne({
         where: { id },
       });
-      if (!user) throw new NotFoundException('User not found');
+      if (!user) throw new NotFoundException('لم يتم العثور على المستخدم');
       const orders = await this.orderService.getAdminProfileOrders();
 
       return {
@@ -183,9 +183,9 @@ export class ProfileService {
   ): Promise<IConfirmationMessage> {
     try {
       const user = await this.userRepository.findOne({ where: { id } });
-      if (!user) throw new NotFoundException('User not found');
+      if (!user) throw new NotFoundException('لم يتم العثور على المستخدم');
       const isMatch = await bcrypt.compare(body.oldPassword, user.password);
-      if (!isMatch) throw new UnauthorizedException('Wong password');
+      if (!isMatch) throw new UnauthorizedException('كلمة مرور خاطئة');
       const salt = await bcrypt.genSalt();
       const password = await bcrypt.hash(body.newPassword, salt);
 

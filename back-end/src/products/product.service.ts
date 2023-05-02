@@ -52,16 +52,14 @@ export class ProductService {
        * if the stock is provided.
        */
       if (product.isTopMarketProduct && !product.stock)
-        throw new BadRequestException(
-          'Stock is required for top market product',
-        );
+        throw new BadRequestException('المخزون مطلوب لأفضل منتج في السوق');
       /**
        * Check if the product is a top market product and if it is, check
        * if more than one image is provided.
        */
       if (product.isTopMarketProduct && images.length > 1)
         throw new BadRequestException(
-          'Only one image is allowed for top market product',
+          'يُسمح بصورة واحدة فقط لأفضل منتج في السوق',
         );
       const productEntity = this.productRepository.create(product);
       productEntity.imagesURL = await this.uploadImages(images);
@@ -124,7 +122,7 @@ export class ProductService {
         where: { name: ILike(`%${like}%`), isTopMarketProduct: false },
       });
       if (!products || !products.length)
-        throw new NotFoundException('No Products found');
+        throw new NotFoundException('لا توجد منتجات');
       return this.foundProducts(products);
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -146,7 +144,7 @@ export class ProductService {
       });
 
       if (!products || !products.length)
-        throw new NotFoundException('No Products found');
+        throw new NotFoundException('لا توجد منتجات');
       return this.foundProducts(products);
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -167,7 +165,7 @@ export class ProductService {
         where: { isCurrentTopMarketProduct: true },
       });
 
-      if (!product) throw new NotFoundException('Product not found');
+      if (!product) throw new NotFoundException('الصنف غير موجود');
       return {
         id: product.id,
         name: product.name,
@@ -208,7 +206,7 @@ export class ProductService {
         !topMarketProducts.length ||
         !topMarketProducts[0].stock
       )
-        throw new NotFoundException('No top market products found');
+        throw new NotFoundException('الصنف غير موجود');
       /**
        * Set the first product in the array as the new top market product,
        * and set the old top market product to false.
@@ -244,7 +242,7 @@ export class ProductService {
       });
 
       if (!product) {
-        throw new NotFoundException('Product not found');
+        throw new NotFoundException('الصنف غير موجود');
       }
       return product;
     } catch (error) {
@@ -268,7 +266,7 @@ export class ProductService {
       });
 
       if (!product) {
-        throw new NotFoundException('Product not found');
+        throw new NotFoundException('الصنف غير موجود');
       }
       await this.productRepository.delete({ id });
       this.appGateway.server.emit('deleted-product', id);

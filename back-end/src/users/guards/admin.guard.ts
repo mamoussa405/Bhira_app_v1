@@ -29,8 +29,8 @@ export class AdminGuard implements CanActivate {
       const user = await this.userRepository.findOne({
         where: { id: req['user'].sub },
       });
-      if (!user) throw new NotFoundException('User not found');
-      if (!user.isAdmin) throw new UnauthorizedException('User is not admin');
+      if (!user) throw new NotFoundException('لم يتم العثور على المستخدم');
+      if (!user.isAdmin) throw new UnauthorizedException('المستخدم ليس مشرفًا');
 
       return true;
     } catch (error) {

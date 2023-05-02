@@ -39,10 +39,10 @@ export class ValidateFilesPipe implements PipeTransform {
     images = images as Express.Multer.File[];
 
     if (!images || !images.length || images.length > 3)
-      throw new BadRequestException('You must upload 1 to 3 images!');
+      throw new BadRequestException('يجب تحميل 1 إلى 3 صور!');
     for (const image of images) {
       if (image.size > imageSize)
-        throw new BadRequestException('Image too large!');
+        throw new BadRequestException('حجم الصورة كبير جدا');
       /**
        * Here we are checking if the image is in the correct format,
        * in this case we are only allowing jpg, jpeg and png files.
@@ -52,7 +52,7 @@ export class ValidateFilesPipe implements PipeTransform {
           .toLowerCase()
           .match(/^(image\/jpg|image\/jpeg|image\/png)$/)
       ) {
-        throw new BadRequestException('Only image files are allowed!');
+        throw new BadRequestException('يسمح فقط بملفات الصور!');
       }
     }
   }
@@ -72,12 +72,12 @@ export class ValidateFilesPipe implements PipeTransform {
     files = files as IFiles;
 
     if (!files.image || !files.image.length || files.image.length > 1)
-      throw new BadRequestException('You must upload 1 image!');
+      throw new BadRequestException('يجب تحميل صورة واحدة!');
     if (!files.video || !files.video.length || files.video.length > 1)
-      throw new BadRequestException('You must upload 1 video!');
+      throw new BadRequestException('يجب تحميل فيديو واحد!');
 
     if (files.image[0].size > imageSize)
-      throw new BadRequestException('Image too large!');
+      throw new BadRequestException('حجم الصورة كبير جدا');
     /**
      * Here we are checking if the image is in the correct format,
      * in this case we are only allowing jpg, jpeg and png files.
@@ -87,11 +87,11 @@ export class ValidateFilesPipe implements PipeTransform {
         .toLowerCase()
         .match(/^(image\/jpg|image\/jpeg|image\/png)$/)
     ) {
-      throw new BadRequestException('Only image files are allowed!');
+      throw new BadRequestException('يسمح فقط بملفات الصور!');
     }
 
     if (files.video[0].size > videoSize)
-      throw new BadRequestException('Video too large!');
+      throw new BadRequestException('حجم الفيديو كبير جدا');
     /**
      * Here we are checking if the video is in the correct format,
      * in this case we are only allowing mp4 and mov files.
@@ -99,7 +99,7 @@ export class ValidateFilesPipe implements PipeTransform {
     if (
       !files.video[0].mimetype.toLowerCase().match(/^(video\/mp4|video\/mov)$/)
     ) {
-      throw new BadRequestException('Only video files are allowed!');
+      throw new BadRequestException('يسمح فقط لملفات الفيديو!');
     }
   }
 
@@ -116,9 +116,9 @@ export class ValidateFilesPipe implements PipeTransform {
     image = image as Express.Multer.File[];
 
     if (!image || !image.length || image.length > 1)
-      throw new BadRequestException('You must upload 1 image!');
+      throw new BadRequestException('يجب تحميل صورة واحدة!');
     if (image[0].size > imageSize)
-      throw new BadRequestException('Image too large!');
+      throw new BadRequestException('حجم الصورة كبير جدا');
     /**
      * Here we are checking if the image is in the correct format,
      * in this case we are only allowing jpg, jpeg and png files.
@@ -128,7 +128,7 @@ export class ValidateFilesPipe implements PipeTransform {
         .toLowerCase()
         .match(/^(image\/jpg|image\/jpeg|image\/png)$/)
     ) {
-      throw new BadRequestException('Only image files are allowed!');
+      throw new BadRequestException('يسمح فقط بملفات الصور!');
     }
   }
 }
