@@ -79,7 +79,7 @@ export class StoryService {
         where: { id },
       });
 
-      if (!story) throw new NotFoundException('Story not found');
+      if (!story) throw new NotFoundException('الستوري غير موجودة');
       return story;
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)

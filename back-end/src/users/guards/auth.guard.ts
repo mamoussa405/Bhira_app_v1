@@ -46,7 +46,7 @@ export class AuthGuard implements CanActivate {
 
     // If there is no access_token, we throw an UnauthorizedException
     if (!accessToken) {
-      throw new UnauthorizedException('Unauthorized');
+      throw new UnauthorizedException('غير مصرح لك بالدخول');
     }
     try {
       /**
@@ -58,7 +58,7 @@ export class AuthGuard implements CanActivate {
       });
       request['user'] = payload;
     } catch (error) {
-      throw new UnauthorizedException('Unauthorized');
+      throw new UnauthorizedException('غير مصرح لك بالدخول');
     }
     return true;
   }

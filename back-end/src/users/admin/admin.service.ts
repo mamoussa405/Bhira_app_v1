@@ -64,7 +64,7 @@ export class AdminService {
         where: { confirmedByAdmin: false },
       });
       if (!clients || clients.length === 0)
-        throw new NotFoundException('No clients found');
+        throw new NotFoundException('لم يتم العثور على عملاء');
       const clientsArray: IClient[] = [];
 
       for (const client of clients) {
@@ -141,7 +141,7 @@ export class AdminService {
         where: { id },
       });
 
-      if (!client) throw new NotFoundException('Client not found');
+      if (!client) throw new NotFoundException('العميل غير موجود');
       await this.userRepository.update(id, { confirmedByAdmin: true });
       // TODO: Emit the event to the all admins.
       this.appGateway.server.emit('updated-clients-list', id);
@@ -176,7 +176,7 @@ export class AdminService {
         where: { id },
       });
 
-      if (!client) throw new NotFoundException('Client not found');
+      if (!client) throw new NotFoundException('العميل غير موجود');
       await this.userRepository.delete(id);
       // TODO: Emit the event to the all admins.
       this.appGateway.server.emit('updated-clients-list', id);

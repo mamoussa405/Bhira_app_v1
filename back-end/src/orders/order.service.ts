@@ -75,15 +75,17 @@ export class OrderService {
       const stock: number = +product.stock - +order.quantity;
       if (product.isTopMarketProduct) {
         if (!product.isCurrentTopMarketProduct)
-          throw new NotFoundException('Product not found');
-        if (stock < 0) throw new NotFoundException('Not enough stock');
+          throw new NotFoundException(
+            'المنتوج غير موجود، المرجوا الاتصال بصاحب التطبيق',
+          );
+        if (stock < 0) throw new NotFoundException('لا يوجد مخزون كاف');
       }
       const user = await this.userRepository.findOne({ where: { id: userId } });
       /**
        * If the user is not found or the user is not confirmed by the admin
        * we throw a NotFoundException.
        */
-      if (!user) throw new NotFoundException('User not found');
+      if (!user) throw new NotFoundException('لم يتم العثور على المستخدم');
       const newOrder = this.orderRepository.create(order);
 
       /* Then we fill the order with the neccessary information.*/
@@ -157,7 +159,8 @@ export class OrderService {
             },
           });
       }
-      if (!res.length) throw new NotFoundException('No orders found');
+      if (!res.length)
+        throw new NotFoundException('لم يتم العثور على أية طلبات');
       return res;
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -272,9 +275,9 @@ export class OrderService {
         relations: ['user', 'product'],
       });
 
-      if (!order) throw new NotFoundException('Order not found');
+      if (!order) throw new NotFoundException('الطلب غير موجود');
       if (order.user.id !== userId)
-        throw new UnauthorizedException('User is not the owner of the order');
+        throw new UnauthorizedException('المستخدم ليس صاحب الطلب');
       // TODO: We should use transactions here.
       await this.orderRepository.delete(orderId);
       /**
@@ -330,11 +333,9 @@ export class OrderService {
           where: { id: order.id },
           relations: ['user'],
         });
-        if (!orderToConfirm) throw new NotFoundException('Order not found');
+        if (!orderToConfirm) throw new NotFoundException('الطلب غير موجود');
         if (orderToConfirm.user.id !== userId)
-          throw new UnauthorizedException(
-            'User is not the owner of the orders',
-          );
+          throw new UnauthorizedException('المستخدم ليس صاحب الطلبات');
       }
       for (const order of body.orders) {
         await this.orderRepository.update(order.id, {
@@ -370,7 +371,7 @@ export class OrderService {
         where: { id: orderId },
       });
 
-      if (!order) throw new NotFoundException('Order not found');
+      if (!order) throw new NotFoundException('الطلب غير موجود');
       await this.orderRepository.update(orderId, { buyConfirmedByAdmin: true });
       // TODO: Emit the event to the user who owns the order, and to the all admins.
       this.appGateway.server.emit('confirmed-order', orderId);
@@ -396,7 +397,7 @@ export class OrderService {
         relations: ['product'],
       });
 
-      if (!order) throw new NotFoundException('Order not found');
+      if (!order) throw new NotFoundException('الطلب غير موجود');
       // TODO: We should use transactions here.
       await this.orderRepository.delete(orderId);
       /**

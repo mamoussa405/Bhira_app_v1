@@ -91,18 +91,18 @@ export class AuthService {
 
       /* If user not found throw NotFoundException */
       if (!userEntity) {
-        throw new NotFoundException('User not found');
+        throw new NotFoundException('لم يتم العثور على المستخدم');
       }
       /* Check if the user is not confirmed by the admin */
       if (!userEntity.confirmedByAdmin) {
-        throw new UnauthorizedException('User not confirmed');
+        throw new UnauthorizedException('المستخدم غير مؤكد');
       }
       /* Compare password with hashed password */
       const isMatch = await bcrypt.compare(password, userEntity.password);
 
       /* If password does not match throw UnauthorizedException */
       if (!isMatch) {
-        throw new UnauthorizedException('Wrong password');
+        throw new UnauthorizedException('كلمة مرور خاطئة');
       }
       /**
        * Set cookie with jwt access token with httpOnly flag to
@@ -149,7 +149,7 @@ export class AuthService {
         where: { id: userId },
       });
 
-      if (!user) throw new NotFoundException('User not found');
+      if (!user) throw new NotFoundException('لم يتم العثور على المستخدم');
       return { userConfirmed: user.confirmedByAdmin };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
