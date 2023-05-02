@@ -1,9 +1,11 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
+  Req,
   Res,
   UsePipes,
 } from '@nestjs/common';
@@ -14,6 +16,7 @@ import { TransformPhoneNumberPipe } from 'src/pipes/transform-phone-number.pipe'
 import { Response } from 'express';
 import { Public } from 'src/decorators/public.decorator';
 import { IConfirmationMessage } from 'src/types/response.type';
+import { IUserConfirmation } from '../types/user.type';
 
 @Controller('auth')
 @UsePipes(TransformPhoneNumberPipe)
@@ -22,8 +25,11 @@ export class AuthController {
 
   @Public()
   @Post('signup')
-  async signUp(@Body() user: SignUpDto): Promise<UserEntity> {
-    return await this.authService.signUp(user);
+  async signUp(
+    @Body() user: SignUpDto,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<UserEntity> {
+    return await this.authService.signUp(user, res);
   }
 
   @Public()
@@ -40,5 +46,10 @@ export class AuthController {
   @Post('signout')
   signOut(@Res({ passthrough: true }) res: Response): IConfirmationMessage {
     return this.authService.signOut(res);
+  }
+
+  @Get('user-confirmed')
+  async checkUserConfirmation(@Req() req: Request): Promise<IUserConfirmation> {
+    return await this.authService.checkUserConfirmation(req['user'].sub);
   }
 }
