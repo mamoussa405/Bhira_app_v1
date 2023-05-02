@@ -108,7 +108,7 @@ export class ProductService {
     } catch (error) {
       if (error.status === HttpStatus.BAD_REQUEST)
         throw new BadRequestException(error.message);
-      throw new InternalServerErrorException('Error creating product');
+      throw new InternalServerErrorException('خطأ في إنشاء المنتج');
     }
   }
   /**
@@ -129,7 +129,7 @@ export class ProductService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting products');
+      throw new InternalServerErrorException('خطأ في الحصول على المنتجات');
     }
   }
 
@@ -151,7 +151,7 @@ export class ProductService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting products');
+      throw new InternalServerErrorException('خطأ في الحصول على المنتجات');
     }
   }
 
@@ -179,7 +179,7 @@ export class ProductService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error finding product');
+      throw new InternalServerErrorException('خطأ في العثور على المنتج');
     }
   }
 
@@ -225,7 +225,7 @@ export class ProductService {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
       throw new InternalServerErrorException(
-        'Error setting new top market product',
+        'خطأ في تعيين أفضل منتج جديد في السوق',
       );
     }
   }
@@ -250,7 +250,7 @@ export class ProductService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error finding product');
+      throw new InternalServerErrorException('خطأ في العثور على المنتج');
     }
   }
 
@@ -276,7 +276,7 @@ export class ProductService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error deleting product');
+      throw new InternalServerErrorException('خطأ في حذف المنتج');
     }
   }
 
@@ -292,7 +292,7 @@ export class ProductService {
     try {
       await this.productRepository.update(id, { stock });
     } catch (error) {
-      throw new InternalServerErrorException('Error updating product stock');
+      throw new InternalServerErrorException('خطأ في تحديث مخزون المنتج');
     }
   }
 

@@ -62,7 +62,7 @@ export class StoryService {
       });
       return { message: 'Story created successfully' };
     } catch (error) {
-      throw new InternalServerErrorException('Error creating story');
+      throw new InternalServerErrorException('خطأ في إضافة الستوري');
     }
   }
 
@@ -79,12 +79,12 @@ export class StoryService {
         where: { id },
       });
 
-      if (!story) throw new NotFoundException('Story not found');
+      if (!story) throw new NotFoundException('الستوري غير موجودة');
       return story;
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error finding story');
+      throw new InternalServerErrorException('خطأ في العثور على الستوري');
     }
   }
 
@@ -126,7 +126,7 @@ export class StoryService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting stories');
+      throw new InternalServerErrorException('خطأ في الحصول على الستوري');
     }
   }
 

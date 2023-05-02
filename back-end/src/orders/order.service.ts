@@ -119,7 +119,7 @@ export class OrderService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error creating order');
+      throw new InternalServerErrorException('خطأ في إنشاء الطلب');
     }
   }
 
@@ -162,7 +162,7 @@ export class OrderService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting orders');
+      throw new InternalServerErrorException('خطأ في الحصول على الطلبات');
     }
   }
 
@@ -205,7 +205,7 @@ export class OrderService {
       }
       return res;
     } catch (error) {
-      throw new InternalServerErrorException('Error getting orders');
+      throw new InternalServerErrorException('خطأ في الحصول على الطلبات');
     }
   }
 
@@ -249,7 +249,7 @@ export class OrderService {
       }
       return res;
     } catch (error) {
-      throw new InternalServerErrorException('Error getting orders');
+      throw new InternalServerErrorException('خطأ في الحصول على الطلبات');
     }
   }
 
@@ -298,7 +298,7 @@ export class OrderService {
         throw new NotFoundException(error.message);
       if (error.status === HttpStatus.UNAUTHORIZED)
         throw new UnauthorizedException(error.message);
-      throw new InternalServerErrorException('Error deleting order');
+      throw new InternalServerErrorException('خطأ في حذف الطلب');
     }
   }
 
@@ -353,7 +353,7 @@ export class OrderService {
         throw new NotFoundException(error.message);
       if (error.status === HttpStatus.UNAUTHORIZED)
         throw new UnauthorizedException(error.message);
-      throw new InternalServerErrorException('Error confirming orders');
+      throw new InternalServerErrorException('خطأ في تأكيد الطلبات');
     }
   }
 
@@ -378,7 +378,7 @@ export class OrderService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error confirming order');
+      throw new InternalServerErrorException('خطأ في تأكيد الطلب');
     }
   }
 
@@ -420,7 +420,7 @@ export class OrderService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error canceling order');
+      throw new InternalServerErrorException('خطأ في إلغاء الطلب');
     }
   }
 

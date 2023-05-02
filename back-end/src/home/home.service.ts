@@ -54,7 +54,7 @@ export class HomeService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting home data');
+      throw new InternalServerErrorException('خطأ في الحصول على البيانات');
     }
   }
 
@@ -100,7 +100,7 @@ export class HomeService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error viewing story');
+      throw new InternalServerErrorException('خطأ في عرض الستوري');
     }
   }
 }

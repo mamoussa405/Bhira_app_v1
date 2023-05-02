@@ -60,7 +60,7 @@ export class ProfileService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting profile');
+      throw new InternalServerErrorException('خطأ في الحصول على الملف الشخصي');
     }
   }
 
@@ -89,7 +89,7 @@ export class ProfileService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting profile');
+      throw new InternalServerErrorException('خطأ في الحصول على الملف الشخصي');
     }
   }
 
@@ -108,7 +108,7 @@ export class ProfileService {
       await this.userRepository.update(id, { name });
       return { message: 'Name updated successfully' };
     } catch (error) {
-      throw new InternalServerErrorException('Error updating name');
+      throw new InternalServerErrorException('خطأ في تحديث الاسم');
     }
   }
 
@@ -129,7 +129,7 @@ export class ProfileService {
       await this.userRepository.update(id, { avatarURL });
       return { message: 'Image updated successfully' };
     } catch (error) {
-      throw new InternalServerErrorException('Error updating image');
+      throw new InternalServerErrorException('خطأ في تحديث الصورة');
     }
   }
 
@@ -148,7 +148,7 @@ export class ProfileService {
       await this.userRepository.update(id, { phoneNumber });
       return { message: 'Phone number updated successfully' };
     } catch (error) {
-      throw new InternalServerErrorException('Error updating phone number');
+      throw new InternalServerErrorException('خطأ في تحديث رقم الهاتف');
     }
   }
 
@@ -164,7 +164,7 @@ export class ProfileService {
       await this.userRepository.update(id, { address });
       return { message: 'Address updated successfully' };
     } catch (error) {
-      throw new InternalServerErrorException('Error updating address');
+      throw new InternalServerErrorException('خطأ في تحديث العنوان');
     }
   }
 
@@ -196,7 +196,7 @@ export class ProfileService {
         throw new NotFoundException(error.message);
       if (error.status === HttpStatus.UNAUTHORIZED)
         throw new UnauthorizedException(error.message);
-      throw new InternalServerErrorException('Error updating password');
+      throw new InternalServerErrorException('خطأ في تحديث كلمة المرور');
     }
   }
 

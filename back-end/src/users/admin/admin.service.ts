@@ -79,7 +79,7 @@ export class AdminService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error getting clients');
+      throw new InternalServerErrorException('خطأ في الحصول على العملاء');
     }
   }
 
@@ -149,7 +149,7 @@ export class AdminService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error confirming client');
+      throw new InternalServerErrorException('خطأ في تأكيد العميل');
     }
   }
 
@@ -184,7 +184,7 @@ export class AdminService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException('Error canceling client');
+      throw new InternalServerErrorException('خطأ في إلغاء العميل');
     }
   }
 }

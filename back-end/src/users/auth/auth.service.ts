@@ -65,8 +65,8 @@ export class AuthService {
       return newUser;
     } catch (error) {
       if (error.message === 'Phone number already exists')
-        throw new InternalServerErrorException('Phone number already exists');
-      throw new InternalServerErrorException('Could not create user');
+        throw new InternalServerErrorException('رقم الهاتف موجود');
+      throw new InternalServerErrorException('تعذر إنشاء المستخدم');
     }
   }
 
@@ -119,7 +119,7 @@ export class AuthService {
         throw new NotFoundException(error.message);
       if (error.status === HttpStatus.UNAUTHORIZED)
         throw new UnauthorizedException(error.message);
-      throw new InternalServerErrorException('Could not sign in user');
+      throw new InternalServerErrorException('تعذر تسجيل دخول المستخدم');
     }
   }
 
@@ -154,9 +154,7 @@ export class AuthService {
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
-      throw new InternalServerErrorException(
-        'Could not check user confirmation',
-      );
+      throw new InternalServerErrorException('تعذر التحقق من تأكيد المستخدم');
     }
   }
 
