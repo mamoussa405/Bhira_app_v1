@@ -14,12 +14,14 @@ import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { IConfirmationMessage } from 'src/types/response.type';
+import { IUserConfirmation } from '../types/user.type';
 
 /**
  * Service to handle user authentication, sign up and sign in.
  * @function signUp sign up a new user
  * @function signIn sign in a user
  * @function signOut sign out a user
+ * @function checkUserConfirmation check if the user is confirmed by the admin
  */
 @Injectable()
 export class AuthService {
@@ -36,7 +38,7 @@ export class AuthService {
    * @returns {Promise<UserEntity>} user entity
    * @throws {InternalServerErrorException} if could not create user
    */
-  public async signUp(user: SignUpDto): Promise<UserEntity> {
+  public async signUp(user: SignUpDto, res: Response): Promise<UserEntity> {
     try {
       const existedUser = await this.userRepository.findOne({
         where: { phoneNumber: user.phoneNumber },
@@ -46,11 +48,21 @@ export class AuthService {
       user.password = await this.hashPassword(user.password);
       if (!user.address) user.address = '';
       const userEntity = this.userRepository.create(user);
-
       userEntity.avatarURL = this.configService.get<string>(
         'USER_DEFAULT_AVATAR',
       );
-      return await this.userRepository.save(userEntity);
+      const newUser = await this.userRepository.save(userEntity);
+
+      /**
+       * Set cookie with jwt access token with httpOnly flag to
+       * disable access from client side.
+       */
+      res.cookie(
+        'access_token',
+        await this.jwtAccessToken(userEntity.phoneNumber, userEntity.id),
+        { httpOnly: true },
+      );
+      return newUser;
     } catch (error) {
       if (error.message === 'Phone number already exists')
         throw new InternalServerErrorException('Phone number already exists');
@@ -120,6 +132,32 @@ export class AuthService {
     res.clearCookie('access_token');
     // TODO: close the user socket connection
     return { message: 'Logged out successfully' };
+  }
+
+  /**
+   * Check if the user is confirmed by the admin.
+   * @param {number} userId user id
+   * @returns {Promise<IUserConfirmation>} user confirmation
+   * @throws {NotFoundException} if user not found
+   * @throws {InternalServerErrorException} if could not check user confirmation
+   */
+  public async checkUserConfirmation(
+    userId: number,
+  ): Promise<IUserConfirmation> {
+    try {
+      const user = await this.userRepository.findOne({
+        where: { id: userId },
+      });
+
+      if (!user) throw new NotFoundException('User not found');
+      return { userConfirmed: user.confirmedByAdmin };
+    } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND)
+        throw new NotFoundException(error.message);
+      throw new InternalServerErrorException(
+        'Could not check user confirmation',
+      );
+    }
   }
 
   /**
