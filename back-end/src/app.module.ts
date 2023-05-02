@@ -42,7 +42,7 @@ import { AppController } from './app.controller';
       useFactory: (configService: ConfigService) => ({
         global: true,
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '40m' },
+        signOptions: { expiresIn: '5d' },
       }),
       inject: [ConfigService],
     }),
