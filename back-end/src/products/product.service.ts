@@ -143,12 +143,9 @@ export class ProductService {
         where: { isTopMarketProduct: false },
       });
 
-      if (!products || !products.length)
-        throw new NotFoundException('لا توجد منتجات');
+      if (!products || !products.length) return null;
       return this.foundProducts(products);
     } catch (error) {
-      if (error.status === HttpStatus.NOT_FOUND)
-        throw new NotFoundException(error.message);
       throw new InternalServerErrorException('خطأ في الحصول على المنتجات');
     }
   }
@@ -165,18 +162,17 @@ export class ProductService {
         where: { isCurrentTopMarketProduct: true },
       });
 
-      if (!product) throw new NotFoundException('الصنف غير موجود');
-      return {
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        stock: product.stock,
-        imageURL: product.imagesURL[0],
-      };
+      return !product
+        ? null
+        : {
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            stock: product.stock,
+            imageURL: product.imagesURL[0],
+          };
     } catch (error) {
-      if (error.status === HttpStatus.NOT_FOUND)
-        throw new NotFoundException(error.message);
       throw new InternalServerErrorException('خطأ في العثور على المنتج');
     }
   }
