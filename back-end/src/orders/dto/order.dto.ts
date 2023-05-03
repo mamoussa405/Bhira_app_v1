@@ -13,68 +13,70 @@ import {
 } from 'class-validator';
 
 export class CreateOrderDto {
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
+  @IsNumber({}, { message: 'الثمن يجب أن يكون رقمًا' })
+  @IsNotEmpty({ message: 'الثمن مطلوب' })
+  @IsPositive({ message: 'الثمن يجب أن يكون رقما موجبًا' })
   totalPrice: number;
 
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
+  @IsNumber({}, { message: 'الكمية يجب أن تكون رقمًا' })
+  @IsNotEmpty({ message: 'الكمية مطلوبة' })
+  @IsPositive({ message: 'الكمية يجب أن تكون رقما موجبًا' })
   quantity: number;
 }
 
 export class CreateOrderQueryDto {
-  @IsNotEmpty()
-  @IsNumberString()
-  @Matches(/^[1-9][0-9]*$/)
+  @IsNotEmpty({ message: 'معرف المنتج مطلوب' })
+  @IsNumberString({}, { message: 'معرف المنتج يجب أن يكون رقمًا' })
+  @Matches(/^[1-9][0-9]*$/, { message: 'معرف المنتج يجب أن يكون رقمًا موجبًا' })
   productId: number;
 }
 
 export class CreateOrderParamDto {
-  @IsNotEmpty()
-  @IsNumberString()
-  @Matches(/^[1-9][0-9]*$/)
+  @IsNotEmpty({ message: 'معرف الطلب مطلوب' })
+  @IsNumberString({}, { message: 'معرف الطلب يجب أن يكون رقمًا' })
+  @Matches(/^[1-9][0-9]*$/, { message: 'معرف الطلب يجب أن يكون رقمًا موجبًا' })
   id: number;
 }
 
 export class ItemDto {
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
+  @IsNumber({}, { message: 'معرف الطلب يجب أن يكون رقمًا' })
+  @IsNotEmpty({ message: 'معرف الطلب مطلوب' })
+  @IsPositive({ message: 'معرف الطلب يجب أن يكون رقمًا موجبًا' })
   id: number;
 
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
+  @IsNumber({}, { message: 'كمية الطلب يجب أن تكون رقمًا' })
+  @IsNotEmpty({ message: 'كمية الطلب مطلوبة' })
+  @IsPositive({ message: 'كمية الطلب يجب أن تكون رقمًا موجبًا' })
   quantity: number;
 
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
+  @IsNumber({}, { message: 'ثمن الطلب يجب أن يكون رقمًا' })
+  @IsNotEmpty({ message: 'ثمن الطلب مطلوب' })
+  @IsPositive({ message: 'ثمن الطلب يجب أن يكون رقمًا موجبًا' })
   totalPrice: number;
 }
 
 export class ConfirmOrdersBuyDto {
-  @IsString()
-  @IsNotEmpty()
-  @MaxLength(255)
+  @IsString({ message: 'اسم المشتري يجب أن يكون نصًا' })
+  @IsNotEmpty({ message: 'اسم المشتري مطلوب' })
+  @MaxLength(255, { message: 'اسم المشتري يجب أن يكون أقل من 255 حرفًا' })
   // This regular expression matches only English and Arabic letters
-  @Matches(/^[a-zA-Z\s\u0600-\u06FF]+$/)
+  @Matches(/^[a-zA-Z\s\u0600-\u06FF]+$/, {
+    message: 'اسم المشتري يجب أن يتكون من حروف عربية أو إنجليزية فقط',
+  })
   buyerName: string;
 
-  @IsPhoneNumber('MA')
-  @IsNotEmpty()
-  @MaxLength(255)
+  @IsPhoneNumber('MA', { message: 'رقم الهاتف يجب أن يكون رقم هاتف مغربي' })
+  @IsNotEmpty({ message: 'رقم الهاتف مطلوب' })
+  @MaxLength(255, { message: 'رقم الهاتف يجب أن يكون أقل من 255 حرفًا' })
   phoneNumber: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @MaxLength(255)
+  @IsString({ message: 'عنوان الشحن يجب أن يكون نصًا' })
+  @IsNotEmpty({ message: 'عنوان الشحن مطلوب' })
+  @MaxLength(255, { message: 'عنوان الشحن يجب أن يكون أقل من 255 حرفًا' })
   shipmentAddress: string;
 
-  @IsNotEmpty()
-  @IsArray()
+  @IsNotEmpty({ message: 'الطلبات مطلوبة' })
+  @IsArray({ message: 'الطلبات يجب أن تكون مصفوفة' })
   @ValidateNested({ each: true })
   @Type(() => ItemDto)
   orders: ItemDto[];
