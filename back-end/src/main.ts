@@ -2,9 +2,17 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
+import { HttpExceptionFilter } from './exception-filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  /**
+   * Enable global exception filter, this will be applied to all routes,
+   * and will catch any exception thrown by the application and send
+   * a response with the exception status code and message.
+   */
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   /**
    * Enable global validation and transformation pipe,
