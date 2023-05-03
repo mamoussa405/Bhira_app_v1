@@ -1,6 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  ValidationPipe,
+} from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import { HttpExceptionFilter } from './exception-filters/http-exception.filter';
 
@@ -25,6 +29,11 @@ async function bootstrap() {
       disableErrorMessages: true,
       whitelist: true,
       transform: true,
+      exceptionFactory: (errors): HttpException => {
+        return new BadRequestException(
+          errors[0].constraints[Object.keys(errors[0].constraints)[0]],
+        );
+      },
     }),
   );
 
