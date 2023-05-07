@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
 import { SignInDto, SignUpDto } from './dto/auth.dto';
 import { UserEntity } from './entities/user.entity';
 import { TransformPhoneNumberPipe } from 'src/pipes/transform-phone-number.pipe';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 import { Public } from 'src/decorators/public.decorator';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { IUserConfirmation } from '../types/user.type';
