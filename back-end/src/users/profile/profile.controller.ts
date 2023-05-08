@@ -21,6 +21,7 @@ import { ValidateFilesPipe } from '../pipes/validate-files.pipe';
 import { FilesValidation } from '../enums/files-validation.enum';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { IProfile } from '../types/profile.type';
+import { Request } from 'express';
 
 @Controller('user/profile')
 export class ProfileController {

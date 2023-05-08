@@ -27,6 +27,7 @@ import { IConfirmationMessage } from 'src/types/response.type';
 import { IProfile } from '../types/profile.type';
 import { IClient } from '../types/client.type';
 import { ParamDto } from './dto/params.dto';
+import { Request } from 'express';
 
 @UseGuards(AdminGuard)
 @Controller('admin')
