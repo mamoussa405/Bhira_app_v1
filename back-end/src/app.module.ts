@@ -27,7 +27,9 @@ import { AppController } from './app.controller';
         username: configService.get<string>('POSTGRES_USER'),
         password: configService.get<string>('POSTGRES_PASSWORD'),
         database: configService.get<string>('POSTGRES_DB'),
-        sslmode: configService.get<string>('POSTGRES_SSLMODE'),
+        ssl: {
+          rejectUnauthorized: false,
+        },
         autoLoadEntities: true,
         migrations: ['dist/migrations/*.js'],
         migrationsRun: true,
