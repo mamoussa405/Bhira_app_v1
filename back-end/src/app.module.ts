@@ -30,7 +30,6 @@ import { AppController } from './app.controller';
         url: configService.get<string>('DATABASE_URL'),
         ssl: {
           rejectUnauthorized: false,
-          ca: process.env.CACERT,
         },
         migrations: ['dist/migrations/*.js'],
         migrationsRun: true,
