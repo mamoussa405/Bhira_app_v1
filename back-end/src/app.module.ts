@@ -28,7 +28,10 @@ import { AppController } from './app.controller';
         // password: configService.get<string>('POSTGRES_PASSWORD'),
         // database: configService.get<string>('POSTGRES_DB'),
         url: configService.get<string>('DATABASE_URL'),
-        ssl: false,
+        ssl: {
+          rejectUnauthorized: false,
+          ca: process.env.CACERT,
+        },
         migrations: ['dist/migrations/*.js'],
         migrationsRun: true,
       }),
