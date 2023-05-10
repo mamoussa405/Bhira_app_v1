@@ -12,7 +12,7 @@ import { CreateProductDto } from 'src/users/admin/dto/create-product.dto';
 import { CloudinaryService } from 'nestjs-cloudinary';
 import { ITopMarketProduct, IFoundProducts } from './types/product.type';
 import { IConfirmationMessage } from 'src/types/response.type';
-import { AppGateway } from 'src/app.gateway';
+import { AppGateway } from 'src/gateway/app.gateway';
 import { v4 as uuidv4 } from 'uuid';
 
 /**

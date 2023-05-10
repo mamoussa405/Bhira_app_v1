@@ -18,7 +18,7 @@ import {
   IUserProfileOrder,
 } from 'src/types/order.type';
 import { IConfirmationMessage } from 'src/types/response.type';
-import { AppGateway } from 'src/app.gateway';
+import { AppGateway } from 'src/gateway/app.gateway';
 
 /**
  * The order service is responsible for orders related operations.
