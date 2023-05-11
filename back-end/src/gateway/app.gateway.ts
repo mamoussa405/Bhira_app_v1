@@ -19,8 +19,13 @@ export class AppGateway implements OnGatewayConnection {
   ) {}
   @WebSocketServer()
   public server: Server;
-  public socketId: Map<number, string> = new Map<number, string>();
 
+  /**
+   * Handle connection from client, verify access_token and set
+   * a map of userId and socketId.
+   * @param {any} client client object
+   * @param {any[]} args arguments
+   */
   async handleConnection(client: any, ...args: any[]) {
     const accessToken = client.handshake.headers.cookie
       .split('; ')
@@ -47,7 +52,29 @@ export class AppGateway implements OnGatewayConnection {
 
   @SubscribeMessage('message')
   handleMessage(client: any, payload: any): string {
-    console.log('Message received: ');
     return 'Hello world!';
   }
+
+  /**
+   * Get socketId of a user.
+   * @param {number} userId user id
+   * @returns {string} socket id
+   */
+  public getSocketId(userId: number): string {
+    return this.socketId.get(userId);
+  }
+
+  /**
+   * Delete socketId of a user.
+   * @param {number} userId user id
+   * @returns {void}
+   */
+  public deleteSocketId(userId: number): void {
+    this.socketId.delete(userId);
+  }
+
+  /**
+   * Map of userId and socketId.
+   */
+  private socketId: Map<number, string> = new Map<number, string>();
 }
