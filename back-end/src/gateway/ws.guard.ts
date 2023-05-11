@@ -20,8 +20,8 @@ export class WsGuard implements CanActivate {
     if (!accessToken) throw new WsException('غير مصرح لك بالدخول');
     try {
       /**
-       * If there is an access_token, we verify it and set the user
-       * to the request object for future use.
+       * If there is an access_token, we verify it and return true
+       * else we throw an exception.
        */
       await this.jwtService.verifyAsync(accessToken, {
         secret: this.configService.get<string>('JWT_SECRET'),

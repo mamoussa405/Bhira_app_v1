@@ -38,8 +38,8 @@ export class AppGateway implements OnGatewayConnection {
     }
     try {
       /**
-       * If there is an access_token, we verify it and set the user
-       * to the request object for future use.
+       * If there is an access_token, we verify it and set a map of
+       * userId and socketId else we disconnect the client.
        */
       const payload = await this.jwtService.verifyAsync(accessToken, {
         secret: this.configService.get<string>('JWT_SECRET'),

@@ -66,7 +66,6 @@ export class AuthService {
       );
       return newUser;
     } catch (error) {
-      console.log(error);
       if (error.message === 'Phone number already exists')
         throw new InternalServerErrorException('رقم الهاتف موجود');
       throw new InternalServerErrorException('تعذر إنشاء المستخدم');

@@ -31,7 +31,7 @@ export class UpdateAddressDto {
   @MaxLength(255, { message: 'العنوان طويل جدًا (بحد أقصى 255 حرفًا)' })
   address: string;
 }
-// TODO: Remember to add messages for the user in arabic
+
 export class UpdatePasswordDto {
   @IsString({ message: 'كلمة المرور يجب أن تكون نصًا' })
   @IsNotEmpty({ message: 'كلمة المرور القديمة مطلوبة' })
