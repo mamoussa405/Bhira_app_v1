@@ -8,7 +8,7 @@ import { ProfileModule } from '../profile/profile.module';
 import { OrderModule } from 'src/orders/order.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../auth/entities/user.entity';
-import { AppGateway } from 'src/app.gateway';
+import { AppGateway } from 'src/gateway/app.gateway';
 
 @Module({
   imports: [

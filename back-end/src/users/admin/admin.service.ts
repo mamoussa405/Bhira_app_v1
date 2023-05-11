@@ -17,7 +17,7 @@ import { IClient } from '../types/client.type';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../auth/entities/user.entity';
-import { AppGateway } from 'src/app.gateway';
+import { AppGateway } from 'src/gateway/app.gateway';
 
 /**
  * Service for admin related operations.

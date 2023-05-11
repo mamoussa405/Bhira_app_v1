@@ -14,7 +14,7 @@ import { IConfirmationMessage } from 'src/types/response.type';
 import { UserEntity } from 'src/users/auth/entities/user.entity';
 import { StoryViewEntity } from 'src/home/entities/story-view.entity';
 import { IStory } from 'src/types/home.type';
-import { AppGateway } from 'src/app.gateway';
+import { AppGateway } from 'src/gateway/app.gateway';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
