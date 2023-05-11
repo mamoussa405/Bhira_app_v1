@@ -44,8 +44,11 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('signout')
-  signOut(@Res({ passthrough: true }) res: Response): IConfirmationMessage {
-    return this.authService.signOut(res);
+  signOut(
+    @Res({ passthrough: true }) res: Response,
+    @Req() req: Request,
+  ): IConfirmationMessage {
+    return this.authService.signOut(res, req['user'].sub);
   }
 
   @Get('user-confirmed')

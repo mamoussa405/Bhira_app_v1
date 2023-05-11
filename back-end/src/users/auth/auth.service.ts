@@ -15,6 +15,7 @@ import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { IUserConfirmation } from '../types/user.type';
+import { AppGateway } from 'src/gateway/app.gateway';
 
 /**
  * Service to handle user authentication, sign up and sign in.
@@ -30,6 +31,7 @@ export class AuthService {
     private readonly userRepository: Repository<UserEntity>,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
+    private readonly appGateway: AppGateway,
   ) {}
 
   /**
@@ -129,9 +131,16 @@ export class AuthService {
    * @param {Response} res response object
    * @returns {IConfirmationMessage} confirmation message
    */
-  public signOut(res: Response): IConfirmationMessage {
+  public signOut(res: Response, userId: number): IConfirmationMessage {
+    const connectedSocketId = this.appGateway.getSocketId(userId);
+    const connectedSocket =
+      this.appGateway.server.sockets.sockets.get(connectedSocketId);
+
     res.clearCookie('access_token');
-    // TODO: close the user socket connection
+    if (connectedSocket) {
+      connectedSocket.disconnect();
+      this.appGateway.deleteSocketId(userId);
+    }
     return { message: 'تم تسجيل الخروج بنجاح' };
   }
 
