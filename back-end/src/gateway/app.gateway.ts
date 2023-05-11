@@ -1,4 +1,4 @@
-import { UnauthorizedException, UseGuards } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
 import {
   OnGatewayConnection,
   SubscribeMessage,
@@ -22,9 +22,15 @@ export class AppGateway implements OnGatewayConnection {
   public socketId: Map<number, string> = new Map<number, string>();
 
   async handleConnection(client: any, ...args: any[]) {
-    const accessToken = client.handshake.query.access_token;
+    const accessToken = client.handshake.headers.cookie
+      .split('; ')
+      .find((cookie: string) => cookie.startsWith('access_token'))
+      .split('=')[1];
 
-    if (!accessToken) throw new UnauthorizedException('غير مصرح لك بالدخول');
+    if (!accessToken) {
+      client.disconnect();
+      return;
+    }
     try {
       /**
        * If there is an access_token, we verify it and set the user
@@ -35,7 +41,7 @@ export class AppGateway implements OnGatewayConnection {
       });
       this.socketId.set(payload['sub'], client.id);
     } catch (error) {
-      throw new UnauthorizedException('غير مصرح لك بالدخول');
+      client.disconnect();
     }
   }
 
