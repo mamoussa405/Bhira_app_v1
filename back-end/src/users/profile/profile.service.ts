@@ -11,7 +11,7 @@ import { UserEntity } from '../auth/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CloudinaryService } from 'nestjs-cloudinary';
 import { OrderService } from 'src/orders/order.service';
-import { IProfile } from '../types/profile.type';
+import { IProfile, IUpdateAvatar } from '../types/profile.type';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { UpdatePasswordDto } from './dto/profile.dto';
 import { v4 as uuidv4 } from 'uuid';
@@ -122,12 +122,12 @@ export class ProfileService {
   public async updateAvatar(
     id: number,
     avatar: Express.Multer.File,
-  ): Promise<any> {
+  ): Promise<IUpdateAvatar> {
     try {
       const avatarURL = await this.uploadAvatar(avatar);
 
       await this.userRepository.update(id, { avatarURL });
-      return { message: 'تم تحديث الصورة بنجاح' };
+      return { message: 'تم تحديث الصورة بنجاح', avatarURL };
     } catch (error) {
       throw new InternalServerErrorException('خطأ في تحديث الصورة');
     }
