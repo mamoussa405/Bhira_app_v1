@@ -122,7 +122,7 @@ export class ProfileService {
   public async updateAvatar(
     id: number,
     avatar: Express.Multer.File,
-  ): Promise<any> {
+  ): Promise<IConfirmationMessage> {
     try {
       const avatarURL = await this.uploadAvatar(avatar);
 
@@ -143,7 +143,7 @@ export class ProfileService {
   public async updatePhoneNumber(
     id: number,
     phoneNumber: string,
-  ): Promise<any> {
+  ): Promise<IConfirmationMessage> {
     try {
       await this.userRepository.update(id, { phoneNumber });
       return { message: 'تم تحديث رقم الهاتف بنجاح' };
@@ -159,7 +159,10 @@ export class ProfileService {
    * @returns {Promise<IConfirmationMessage>} - The confirmation message.
    * @throws {InternalServerErrorException} - If error updating address.
    */
-  public async updateAddress(id: number, address: string): Promise<any> {
+  public async updateAddress(
+    id: number,
+    address: string,
+  ): Promise<IConfirmationMessage> {
     try {
       await this.userRepository.update(id, { address });
       return { message: 'تم تحديث العنوان بنجاح' };
