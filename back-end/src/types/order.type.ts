@@ -48,3 +48,8 @@ export interface IAdminProfileOrder {
     imageURL: string;
   };
 }
+
+export interface ICancelOrConfirmOrder {
+  message: string;
+  id: number;
+}

@@ -11,3 +11,8 @@ export interface IProfile {
   avatarURL: string;
   orders: IUserProfileOrder[] | IAdminProfileOrder[];
 }
+
+export interface IUpdateAvatar {
+  message: string;
+  avatarURL: string;
+}

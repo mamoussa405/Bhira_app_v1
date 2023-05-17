@@ -14,6 +14,7 @@ import { ProductService } from 'src/products/product.service';
 import { ProductEntity } from 'src/products/entities/product.entity';
 import {
   IAdminProfileOrder,
+  ICancelOrConfirmOrder,
   ICartOrder,
   IUserProfileOrder,
 } from 'src/types/order.type';
@@ -365,7 +366,7 @@ export class OrderService {
    * @throws {InternalServerErrorException} - If there is an error while confirming the order.
    * @throws {NotFoundException} - If the order is not found.
    */
-  public async confirmOrder(orderId: number): Promise<IConfirmationMessage> {
+  public async confirmOrder(orderId: number): Promise<ICancelOrConfirmOrder> {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
@@ -375,7 +376,7 @@ export class OrderService {
       await this.orderRepository.update(orderId, { buyConfirmedByAdmin: true });
       // TODO: Emit the event to the user who owns the order, and to the all admins.
       this.appGateway.server.emit('confirmed-order', orderId);
-      return { message: 'تم تأكيد الطلب بنجاح' };
+      return { message: 'تم تأكيد الطلب بنجاح', id: orderId };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -390,7 +391,7 @@ export class OrderService {
    * @throws {InternalServerErrorException} - If there is an error while canceling the order.
    * @throws {NotFoundException} - If the order is not found.
    */
-  public async cancelOrder(orderId: number): Promise<IConfirmationMessage> {
+  public async cancelOrder(orderId: number): Promise<ICancelOrConfirmOrder> {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
@@ -417,7 +418,7 @@ export class OrderService {
       }
       // TODO: Emit the event to the user who owns the order, and to the all admins.
       this.appGateway.server.emit('canceled-order', orderId);
-      return { message: 'تم إلغاء الطلب بنجاح' };
+      return { message: 'تم إلغاء الطلب بنجاح', id: orderId };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
