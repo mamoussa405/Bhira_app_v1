@@ -8,3 +8,8 @@ export interface IClient {
   phoneNumber: string;
   avatarURL: string;
 }
+
+export interface IConfirmCancelClient {
+  message: string;
+  id: number;
+}

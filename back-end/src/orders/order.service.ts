@@ -370,12 +370,22 @@ export class OrderService {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
+        relations: ['user'],
       });
+      const admins = await this.userRepository.find({
+        where: { isAdmin: true },
+      });
+      let socketId: string;
 
       if (!order) throw new NotFoundException('الطلب غير موجود');
       await this.orderRepository.update(orderId, { buyConfirmedByAdmin: true });
-      // TODO: Emit the event to the user who owns the order, and to the all admins.
-      this.appGateway.server.emit('confirmed-order', orderId);
+      /* Emit an event to the owner of the order and to all admins */
+      socketId = this.appGateway.getSocketId(order.user.id);
+      this.appGateway.server.to(socketId).emit('confirmed-order', orderId);
+      for (const admin of admins) {
+        socketId = this.appGateway.getSocketId(admin.id);
+        this.appGateway.server.to(socketId).emit('confirmed-order', orderId);
+      }
       return { message: 'تم تأكيد الطلب بنجاح', id: orderId };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
@@ -395,8 +405,12 @@ export class OrderService {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
-        relations: ['product'],
+        relations: ['product', 'user'],
       });
+      const admins = await this.userRepository.find({
+        where: { isAdmin: true },
+      });
+      let socketId: string;
 
       if (!order) throw new NotFoundException('الطلب غير موجود');
       // TODO: We should use transactions here.
@@ -416,8 +430,13 @@ export class OrderService {
             stock,
           );
       }
-      // TODO: Emit the event to the user who owns the order, and to the all admins.
-      this.appGateway.server.emit('canceled-order', orderId);
+      /* Emit and event to the owner of the order and to all admins */
+      socketId = this.appGateway.getSocketId(order.user.id);
+      this.appGateway.server.to(socketId).emit('canceled-order', orderId);
+      for (const admin of admins) {
+        socketId = this.appGateway.getSocketId(admin.id);
+        this.appGateway.server.to(socketId).emit('canceled-order', orderId);
+      }
       return { message: 'تم إلغاء الطلب بنجاح', id: orderId };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)

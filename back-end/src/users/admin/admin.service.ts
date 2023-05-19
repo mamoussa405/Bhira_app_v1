@@ -13,7 +13,7 @@ import { ProfileService } from '../profile/profile.service';
 import { IConfirmationMessage } from 'src/types/response.type';
 import { IProfile } from '../types/profile.type';
 import { OrderService } from 'src/orders/order.service';
-import { IClient } from '../types/client.type';
+import { IClient, IConfirmCancelClient } from '../types/client.type';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../auth/entities/user.entity';
@@ -135,17 +135,22 @@ export class AdminService {
    * @throws {NotFoundException} - If the client is not found.
    * @throws {InternalServerErrorException} - If an error occurs.
    */
-  public async confirmClient(id: number): Promise<IConfirmationMessage> {
+  public async confirmClient(id: number): Promise<IConfirmCancelClient> {
     try {
       const client = await this.userRepository.findOne({
         where: { id },
       });
+      const admins = await this.userRepository.find({
+        where: { isAdmin: true },
+      });
 
       if (!client) throw new NotFoundException('العميل غير موجود');
       await this.userRepository.update(id, { confirmedByAdmin: true });
-      // TODO: Emit the event to the all admins.
-      this.appGateway.server.emit('updated-clients-list', id);
-      return { message: 'تم تأكيد العميل بنجاح' };
+      for (const admin of admins) {
+        const socketId = this.appGateway.getSocketId(admin.id);
+        this.appGateway.server.to(socketId).emit('confirmed-client', id);
+      }
+      return { message: 'تم تأكيد العميل بنجاح', id };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
@@ -170,17 +175,22 @@ export class AdminService {
    * @throws {NotFoundException} - If the client is not found.
    * @throws {InternalServerErrorException} - If an error occurs.
    */
-  public async cancelClient(id: number): Promise<IConfirmationMessage> {
+  public async cancelClient(id: number): Promise<IConfirmCancelClient> {
     try {
       const client = await this.userRepository.findOne({
         where: { id },
       });
+      const admins = await this.userRepository.find({
+        where: { isAdmin: true },
+      });
 
       if (!client) throw new NotFoundException('العميل غير موجود');
       await this.userRepository.delete(id);
-      // TODO: Emit the event to the all admins.
-      this.appGateway.server.emit('updated-clients-list', id);
-      return { message: 'تم إلغاء العميل بنجاح' };
+      for (const admin of admins) {
+        const socketId = this.appGateway.getSocketId(admin.id);
+        this.appGateway.server.to(socketId).emit('canceled-client', id);
+      }
+      return { message: 'تم إلغاء العميل بنجاح', id };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);
