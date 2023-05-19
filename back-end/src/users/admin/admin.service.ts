@@ -63,8 +63,7 @@ export class AdminService {
       const clients = await this.userRepository.find({
         where: { confirmedByAdmin: false },
       });
-      if (!clients || clients.length === 0)
-        throw new NotFoundException('لم يتم العثور على عملاء');
+      if (!clients || clients.length === 0) return [];
       const clientsArray: IClient[] = [];
 
       for (const client of clients) {
