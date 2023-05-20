@@ -18,7 +18,7 @@ import {
   CreateOrderQueryDto,
 } from './dto/order.dto';
 import { Request } from 'express';
-import { ICartOrder } from 'src/types/order.type';
+import { ICartOrder, IDeleteOrder } from 'src/types/order.type';
 import { TransformPhoneNumberPipe } from 'src/pipes/transform-phone-number.pipe';
 import { IConfirmationMessage } from 'src/types/response.type';
 
@@ -54,7 +54,10 @@ export class OrderController {
   }
 
   @Delete('delete/:id')
-  async deleteOrder(@Param() params: CreateOrderParamDto, @Req() req: Request) {
+  async deleteOrder(
+    @Param() params: CreateOrderParamDto,
+    @Req() req: Request,
+  ): Promise<IDeleteOrder> {
     return await this.orderService.deleteOrder(params.id, req['user'].sub);
   }
 }

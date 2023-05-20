@@ -16,6 +16,7 @@ import {
   IAdminProfileOrder,
   ICancelOrConfirmOrder,
   ICartOrder,
+  IDeleteOrder,
   IUserProfileOrder,
 } from 'src/types/order.type';
 import { IConfirmationMessage } from 'src/types/response.type';
@@ -268,7 +269,7 @@ export class OrderService {
   public async deleteOrder(
     orderId: number,
     userId: number,
-  ): Promise<IConfirmationMessage> {
+  ): Promise<IDeleteOrder> {
     try {
       const order = await this.orderRepository.findOne({
         where: { id: orderId },
@@ -295,7 +296,7 @@ export class OrderService {
             stock,
           );
       }
-      return { message: 'تم حذف الطلب بنجاح' };
+      return { message: 'تم حذف الطلب بنجاح', id: orderId };
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
         throw new NotFoundException(error.message);

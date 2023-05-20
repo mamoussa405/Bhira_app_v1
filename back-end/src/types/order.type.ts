@@ -53,3 +53,8 @@ export interface ICancelOrConfirmOrder {
   message: string;
   id: number;
 }
+
+export interface IDeleteOrder {
+  message: string;
+  id: number;
+}
