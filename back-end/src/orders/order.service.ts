@@ -160,8 +160,7 @@ export class OrderService {
             },
           });
       }
-      if (!res.length)
-        throw new NotFoundException('لم يتم العثور على أية طلبات');
+      if (!res.length) return [];
       return res;
     } catch (error) {
       if (error.status === HttpStatus.NOT_FOUND)
