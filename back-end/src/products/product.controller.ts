@@ -1,4 +1,12 @@
-import { Controller, Get, Param, Query, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  Param,
+  Query,
+  Req,
+  forwardRef,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductParamDto, ProductQueryDto } from './dto/product.dto';
 import { IFoundProducts, INormalProduct } from './types/product.type';
@@ -9,6 +17,7 @@ import { Request } from 'express';
 export class ProductController {
   constructor(
     private readonly productService: ProductService,
+    @Inject(forwardRef(() => OrderService))
     private readonly orderService: OrderService,
   ) {}
 
