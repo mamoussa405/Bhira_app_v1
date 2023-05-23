@@ -1,10 +1,11 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, Req } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductParamDto, ProductQueryDto } from './dto/product.dto';
 import { IFoundProducts, INormalProduct } from './types/product.type';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEntity } from 'src/orders/entities/order.entity';
 import { Repository } from 'typeorm';
+import { Request } from 'express';
 
 @Controller('products')
 export class ProductController {
@@ -15,10 +16,17 @@ export class ProductController {
   ) {}
 
   @Get('get/:id')
-  async getProduct(@Param() params: ProductParamDto): Promise<INormalProduct> {
+  async getProduct(
+    @Param() params: ProductParamDto,
+    @Req() req: Request,
+  ): Promise<INormalProduct> {
     const product = await this.productService.getProduct(params.id);
-    const ordersInCart = await this.orderRepository.find({
+    const orders = await this.orderRepository.find({
       where: { buyConfirmedByUser: false },
+      relations: ['user'],
+    });
+    const ordersInCart = orders.filter((order) => {
+      return order.user.id === req['user'].sub;
     });
 
     return {
