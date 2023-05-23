@@ -35,7 +35,14 @@ export class ProductEntity1681481631543 implements MigrationInterface {
             type: 'text',
           },
           {
-            name: 'stock',
+            name: 'totalStock',
+            type: 'numeric',
+            precision: 10,
+            scale: 2,
+            default: 0.0,
+          },
+          {
+            name: 'remainingStock',
             type: 'numeric',
             precision: 10,
             scale: 2,

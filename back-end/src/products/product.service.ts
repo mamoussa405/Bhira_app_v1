@@ -63,6 +63,8 @@ export class ProductService {
         );
       const productEntity = this.productRepository.create(product);
       productEntity.imagesURL = await this.uploadImages(images);
+      productEntity.remainingStock = product.stock;
+      productEntity.totalStock = product.stock;
       /**
        * If the product is a top market product, check if there is a current
        * top market product, and if there is, set the current top market product
@@ -99,7 +101,8 @@ export class ProductService {
             name: newProduct.name,
             description: newProduct.description,
             price: newProduct.price,
-            stock: newProduct.stock,
+            totalStock: newProduct.remainingStock,
+            remainingStock: newProduct.remainingStock,
             imageURL: newProduct.imagesURL[0],
           });
       return { message: 'تم إنشاء المنتج بنجاح' };
@@ -169,7 +172,8 @@ export class ProductService {
             name: product.name,
             description: product.description,
             price: product.price,
-            stock: product.stock,
+            totalStock: product.totalStock,
+            remainingStock: product.remainingStock,
             imageURL: product.imagesURL[0],
           };
     } catch (error) {
@@ -194,13 +198,13 @@ export class ProductService {
        */
       const topMarketProducts = await this.productRepository.find({
         where: { isTopMarketProduct: true },
-        order: { stock: 'DESC' },
+        order: { remainingStock: 'DESC' },
       });
 
       if (
         !topMarketProducts ||
         !topMarketProducts.length ||
-        !topMarketProducts[0].stock
+        !topMarketProducts[0].remainingStock
       )
         throw new NotFoundException('الصنف غير موجود');
       /**
@@ -284,7 +288,7 @@ export class ProductService {
    */
   public async updateProductStock(id: number, stock: number): Promise<void> {
     try {
-      await this.productRepository.update(id, { stock });
+      await this.productRepository.update(id, { remainingStock: stock });
     } catch (error) {
       throw new InternalServerErrorException('خطأ في تحديث مخزون المنتج');
     }

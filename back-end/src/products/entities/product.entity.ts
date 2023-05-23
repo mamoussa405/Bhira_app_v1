@@ -19,7 +19,10 @@ export class ProductEntity {
   description: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
-  stock: number;
+  totalStock: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  remainingStock: number;
 
   @Column()
   isTopMarketProduct: boolean;

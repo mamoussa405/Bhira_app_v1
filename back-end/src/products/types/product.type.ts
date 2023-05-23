@@ -12,7 +12,8 @@ export interface ITopMarketProduct {
   name: string;
   description: string;
   price: number;
-  stock: number;
+  totalStock: number;
+  remainingStock: number;
   imageURL: string;
 }
 

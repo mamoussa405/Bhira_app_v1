@@ -74,7 +74,7 @@ export class OrderService {
        * Then we check if the stock is enough to make the order, if it is not
        * we throw a NotFoundException.
        */
-      const stock: number = +product.stock - +order.quantity;
+      const stock: number = +product.remainingStock - +order.quantity;
       if (product.isTopMarketProduct) {
         if (!product.isCurrentTopMarketProduct)
           throw new NotFoundException(
@@ -110,14 +110,15 @@ export class OrderService {
             name: newTopMarketProduct.name,
             description: newTopMarketProduct.description,
             price: newTopMarketProduct.price,
-            stock: newTopMarketProduct.stock,
+            totalStock: newTopMarketProduct.totalStock,
+            remainingStock: newTopMarketProduct.remainingStock,
             imageURL: newTopMarketProduct.imagesURL[0],
           });
         } else
-          this.appGateway.server.emit(
-            'updated-top-market-product-stock',
-            stock,
-          );
+          this.appGateway.server.emit('updated-top-market-product-stock', {
+            totalStoack: product.totalStock,
+            remainingStock: stock,
+          });
       }
       return { message: 'تم إنشاء الطلب بنجاح' };
     } catch (error) {
@@ -288,13 +289,13 @@ export class OrderService {
        * of the product in the top market component.
        */
       if (order.product.isTopMarketProduct) {
-        const stock = +order.product.stock + +order.quantity;
+        const stock = +order.product.remainingStock + +order.quantity;
         await this.productService.updateProductStock(order.product.id, stock);
         if (order.product.isCurrentTopMarketProduct)
-          this.appGateway.server.emit(
-            'updated-top-market-product-stock',
-            stock,
-          );
+          this.appGateway.server.emit('updated-top-market-product-stock', {
+            totalStock: order.product.totalStock,
+            remainingStock: stock,
+          });
       }
       return { message: 'تم حذف الطلب بنجاح', id: orderId };
     } catch (error) {
@@ -422,13 +423,13 @@ export class OrderService {
        * Finally we delete the order.
        */
       if (order.product.isTopMarketProduct) {
-        const stock = +order.product.stock + +order.quantity;
+        const stock = +order.product.remainingStock + +order.quantity;
         await this.productService.updateProductStock(order.product.id, stock);
         if (order.product.isCurrentTopMarketProduct)
-          this.appGateway.server.emit(
-            'updated-top-market-product-stock',
-            stock,
-          );
+          this.appGateway.server.emit('updated-top-market-product-stock', {
+            totalStock: order.product.totalStock,
+            remainingStock: stock,
+          });
       }
       /* Emit and event to the owner of the order and to all admins */
       socketId = this.appGateway.getSocketId(order.user.id);
