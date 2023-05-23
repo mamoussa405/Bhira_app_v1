@@ -50,6 +50,7 @@ export class UserEntity1681279367699 implements MigrationInterface {
           },
         ],
       }),
+      true,
     );
   }
 

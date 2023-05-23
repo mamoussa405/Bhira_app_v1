@@ -80,6 +80,7 @@ export class OrderEntity1681663225789 implements MigrationInterface {
           },
         ],
       }),
+      true,
     );
   }
 

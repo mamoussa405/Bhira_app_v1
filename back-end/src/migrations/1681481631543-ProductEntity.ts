@@ -65,6 +65,7 @@ export class ProductEntity1681481631543 implements MigrationInterface {
           },
         ],
       }),
+      true,
     );
   }
 

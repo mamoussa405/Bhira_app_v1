@@ -42,6 +42,7 @@ export class StoryViewEntity1682047397782 implements MigrationInterface {
           },
         ],
       }),
+      true,
     );
   }
 
