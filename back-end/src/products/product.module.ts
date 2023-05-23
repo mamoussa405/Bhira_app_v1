@@ -6,9 +6,11 @@ import { ProductEntity } from './entities/product.entity';
 import { AppGateway } from 'src/gateway/app.gateway';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { OrderModule } from 'src/orders/order.module';
 
 @Module({
   imports: [
+    OrderModule,
     TypeOrmModule.forFeature([ProductEntity]),
     /**
      * Configure the JwtModule with the config service,

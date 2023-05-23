@@ -4,6 +4,7 @@ export interface INormalProduct {
   description: string;
   price: number;
   imagesURL: string[] | string;
+  ordersInCart: number;
 }
 
 export interface ITopMarketProduct {
