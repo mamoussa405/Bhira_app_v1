@@ -146,7 +146,8 @@ export class ProductService {
         where: { isTopMarketProduct: false },
       });
 
-      if (!products || !products.length) return null;
+      if (!products || !products.length)
+        return { fruits: [], vegetables: [], herbes: [] };
       return this.foundProducts(products);
     } catch (error) {
       throw new InternalServerErrorException('خطأ في الحصول على المنتجات');
