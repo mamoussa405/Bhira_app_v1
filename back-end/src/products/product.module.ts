@@ -6,10 +6,11 @@ import { ProductEntity } from './entities/product.entity';
 import { AppGateway } from 'src/gateway/app.gateway';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { OrderEntity } from 'src/orders/entities/order.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ProductEntity]),
+    TypeOrmModule.forFeature([ProductEntity, OrderEntity]),
     /**
      * Configure the JwtModule with the config service,
      * we used the Async configuration to inject the ConfigService.

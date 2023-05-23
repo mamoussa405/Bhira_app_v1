@@ -1,35 +1,25 @@
-import {
-  Controller,
-  Get,
-  Inject,
-  Param,
-  Query,
-  Req,
-  forwardRef,
-} from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductParamDto, ProductQueryDto } from './dto/product.dto';
 import { IFoundProducts, INormalProduct } from './types/product.type';
-import { OrderService } from 'src/orders/order.service';
-import { Request } from 'express';
+import { InjectRepository } from '@nestjs/typeorm';
+import { OrderEntity } from 'src/orders/entities/order.entity';
+import { Repository } from 'typeorm';
 
 @Controller('products')
 export class ProductController {
   constructor(
     private readonly productService: ProductService,
-    @Inject(forwardRef(() => OrderService))
-    private readonly orderService: OrderService,
+    @InjectRepository(OrderEntity)
+    private readonly orderRepository: Repository<OrderEntity>,
   ) {}
 
   @Get('get/:id')
-  async getProduct(
-    @Param() params: ProductParamDto,
-    @Req() req: Request,
-  ): Promise<INormalProduct> {
+  async getProduct(@Param() params: ProductParamDto): Promise<INormalProduct> {
     const product = await this.productService.getProduct(params.id);
-    const ordersInCart = await this.orderService.getAddedToCartOrders(
-      req['user'].sub,
-    );
+    const ordersInCart = await this.orderRepository.find({
+      where: { buyConfirmedByUser: false },
+    });
 
     return {
       id: product.id,
@@ -37,7 +27,7 @@ export class ProductController {
       description: product.description,
       price: product.price,
       imagesURL: product.imagesURL,
-      ordersInCart: ordersInCart.length,
+      ordersInCart: ordersInCart ? ordersInCart.length : 0,
     };
   }
 
