@@ -97,7 +97,7 @@ If you have any questions, need support, or want to get in touch regarding this 
 
 Feel free to contact me with any inquiries, feedback, or collaboration opportunities. We look forward to hearing from you.
 
-### - Observations : 
+### Observations : 
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
