@@ -1,7 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import {
   OnGatewayConnection,
-  SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
@@ -48,11 +47,6 @@ export class AppGateway implements OnGatewayConnection {
     } catch (error) {
       client.disconnect();
     }
-  }
-
-  @SubscribeMessage('message')
-  handleMessage(client: any, payload: any): string {
-    return 'Hello world!';
   }
 
   /**
